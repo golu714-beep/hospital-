@@ -44,7 +44,7 @@
   <!-- MOBILE NAVIGATION DRAWER (OFFCANVAS) -->
   <div class="offcanvas offcanvas-start" id="mobileNav">
     <div class="offcanvas-header border-bottom">
-      <img src="logo.png" alt="Sankalp Logo" style="height:45px">
+      <img src="logo.png" alt="Sankalp Logo" class="mobile-brand-logo">
       <button class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">

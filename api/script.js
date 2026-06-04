@@ -166,7 +166,7 @@ $(document).ready(function () {
     if (heroCarouselEl) {
       try {
         var heroCarousel = new bootstrap.Carousel(heroCarouselEl, {
-          interval: 5000,
+          interval: 3000,
           ride: 'carousel',
           wrap: true
         });

@@ -28,6 +28,12 @@
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --font-heading: 'Poppins', sans-serif;
   --font-body: 'Inter', sans-serif;
+
+  /* Fluid Typography Scale (Mobile-first, clamp scale) */
+  --fs-h1: clamp(2rem, 6vw, 3.2rem);
+  --fs-h2: clamp(1.6rem, 4.5vw, 2.5rem);
+  --fs-h3: clamp(1.25rem, 3.5vw, 1.8rem);
+  --fs-h4: clamp(1.1rem, 2.8vw, 1.4rem);
 }
 
 /* Base Styles */
@@ -91,13 +97,12 @@ img {
 /* FLOATING NAVIGATION CAPSULE */
 .floating-nav {
   position: fixed;
-  top: 20px;
+  top: 10px;
   left: 50%;
   transform: translate3d(-50%, 0, 0);
-  width: 90%;
-  max-width: 1200px;
-  height: 70px;
-  background: rgba(255, 255, 255, 0.85);
+  width: 95%;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -105,7 +110,7 @@ img {
   box-shadow: 0 10px 30px rgba(15, 92, 173, 0.12);
   z-index: 1000;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  padding: 0 25px;
+  padding: 0 15px;
   display: flex;
   align-items: center;
 }
@@ -113,20 +118,23 @@ img {
 .floating-nav.scrolled {
   top: 10px;
   width: 95%;
-  max-width: 1280px;
-  height: 65px;
+  height: 60px;
   background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 12px 35px rgba(15, 92, 173, 0.18);
 }
 
 .brand-logo {
-  height: 42px;
+  height: 36px;
   object-fit: contain;
   transition: var(--transition);
 }
 
 .floating-nav.scrolled .brand-logo {
   height: 36px;
+}
+
+.mobile-brand-logo {
+  height: 40px;
+  object-fit: contain;
 }
 
 .floating-nav .navbar-nav .nav-link {
@@ -182,7 +190,7 @@ img {
   color: var(--white);
   font-weight: 600;
   font-size: 0.8rem;
-  padding: 8px 18px;
+  padding: 10px 20px;
   border-radius: 30px;
   box-shadow: 0 4px 12px rgba(15, 92, 173, 0.25);
   transition: var(--transition);
@@ -203,7 +211,7 @@ img {
   color: var(--white);
   font-weight: 700;
   font-size: 0.78rem;
-  padding: 8px 16px;
+  padding: 10px 18px;
   border-radius: 30px;
   box-shadow: 0 4px 12px rgba(225, 29, 72, 0.2);
   transition: var(--transition);
@@ -219,18 +227,17 @@ img {
   color: var(--white);
 }
 
+.navbar-toggler {
+  min-height: 44px;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Offset target scroll targets for the floating nav height */
 :target {
   scroll-margin-top: 100px;
-}
-
-@media (max-width: 991px) {
-  .floating-nav {
-    top: 10px;
-    width: 95%;
-    height: 60px;
-    padding: 0 15px;
-  }
 }
 
 /* Buttons */
@@ -298,15 +305,14 @@ img {
 }
 
 /* HERO SLIDER SECTION */
-/* HERO SLIDER SECTION */
 .hero-slider {
   position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
   background-color: var(--dark);
-  padding-top: 120px;
-  padding-bottom: 60px;
+  padding-top: 100px;
+  padding-bottom: 40px;
   overflow: hidden;
 }
 
@@ -346,12 +352,14 @@ img {
 
 .hero-text-block {
   color: var(--white);
-  padding-right: 30px;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  padding-right: 0;
+  margin-bottom: 20px;
 }
 
 .hero-text-block h1 {
-  font-size: 3.2rem;
+  font-size: var(--fs-h1);
   font-weight: 800;
   color: var(--white);
   margin-bottom: 20px;
@@ -363,7 +371,7 @@ img {
 }
 
 .hero-text-block p {
-  font-size: 1.15rem;
+  font-size: clamp(0.95rem, 2.5vw, 1.15rem);
   margin-bottom: 30px;
   opacity: 0.9;
   font-weight: 300;
@@ -528,7 +536,7 @@ img {
 /* STATS COUNTER SECTION (Modern Split Theme) */
 .stats-section {
   background: linear-gradient(180deg, var(--white) 0%, #f8fafc 100%);
-  padding: 80px 0;
+  padding: clamp(3rem, 8vw, 6rem) 0;
   position: relative;
   overflow: hidden;
 }
@@ -593,7 +601,7 @@ img {
 }
 
 .stat-number {
-  font-size: 2.8rem;
+  font-size: clamp(2rem, 5vw, 2.8rem);
   font-weight: 800;
   line-height: 1.1;
   margin-bottom: 12px;
@@ -622,7 +630,7 @@ img {
 
 /* ABOUT SECTION */
 .about-section {
-  padding: 90px 0;
+  padding: clamp(3rem, 8vw, 6rem) 0;
   background-color: var(--white);
 }
 
@@ -637,7 +645,7 @@ img {
 }
 
 .about-section h2 {
-  font-size: 2.5rem;
+  font-size: var(--fs-h2);
   margin-bottom: 25px;
 }
 
@@ -648,7 +656,7 @@ img {
 .about-features {
   margin-top: 30px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 20px;
 }
 
@@ -676,7 +684,8 @@ img {
 
 .about-image-wrapper {
   position: relative;
-  padding: 20px;
+  padding: 10px;
+  margin-top: 20px;
 }
 
 .about-img-1 {
@@ -688,16 +697,16 @@ img {
 
 .about-img-experience {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: -15px;
+  right: 10px;
   background-color: var(--secondary);
   color: var(--dark);
-  padding: 25px;
+  padding: clamp(15px, 3vw, 25px);
   border-radius: 12px;
   box-shadow: var(--shadow-lg);
   z-index: 3;
   text-align: center;
-  max-width: 160px;
+  max-width: 140px;
 }
 
 .about-img-experience h3 {
@@ -717,13 +726,13 @@ img {
 /* SPECIALTIES / DEPARTMENTS SECTION */
 .specialties-section {
   background-color: var(--light-bg);
-  padding: 90px 0;
+  padding: clamp(3rem, 8vw, 6rem) 0;
 }
 
 .section-title {
   text-align: center;
   max-width: 650px;
-  margin: 0 auto 55px;
+  margin: 0 auto clamp(2rem, 5vw, 3.5rem);
 }
 
 .section-title span {
@@ -737,7 +746,7 @@ img {
 }
 
 .section-title h2 {
-  font-size: 2.3rem;
+  font-size: var(--fs-h2);
   margin-bottom: 15px;
 }
 
@@ -751,7 +760,7 @@ img {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 12px;
-  padding: 35px 25px;
+  padding: clamp(20px, 4vw, 35px) 25px;
   border: 1px solid rgba(255, 255, 255, 0.6);
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
@@ -805,6 +814,7 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  padding: 8px 0;
 }
 
 .specialty-link i {
@@ -836,31 +846,10 @@ img {
 }
 
 .doctor-card-wrapper {
-  flex: 0 0 25%;
-  max-width: 25%;
+  flex: 0 0 100%;
+  max-width: 100%;
   padding: 0 12px;
   box-sizing: border-box;
-}
-
-@media (max-width: 1199px) {
-  .doctor-card-wrapper {
-    flex: 0 0 33.333%;
-    max-width: 33.333%;
-  }
-}
-
-@media (max-width: 991px) {
-  .doctor-card-wrapper {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
-}
-
-@media (max-width: 575px) {
-  .doctor-card-wrapper {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
 }
 
 .doctor-card {
@@ -1018,21 +1007,26 @@ img {
 
 /* DYNAMIC APPOINTMENT BOOKING SECTION */
 .booking-section {
-  padding: 90px 0;
-  background: linear-gradient(rgba(15, 92, 173, 0.9), rgba(15, 92, 173, 0.95)), url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1000') no-repeat center center/cover;
+  padding: clamp(3rem, 8vw, 6rem) 0;
+  background: linear-gradient(rgba(15, 92, 173, 0.9), rgba(15, 92, 173, 0.95)), url('images/hero1.png') no-repeat center center/cover;
   color: var(--white);
   position: relative;
 }
 
+.booking-text {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
 .booking-text h2 {
   color: var(--white);
-  font-size: 2.5rem;
+  font-size: var(--fs-h2);
   margin-bottom: 20px;
 }
 
 .booking-text p {
   opacity: 0.9;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   font-weight: 300;
 }
 
@@ -1079,7 +1073,7 @@ img {
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 16px;
-  padding: 40px;
+  padding: clamp(20px, 5%, 40px);
   box-shadow: var(--shadow-lg);
   color: var(--text-dark);
 }
@@ -1261,7 +1255,7 @@ img {
 
 /* MAP & FAQ SECTION */
 .faq-section {
-  padding: 90px 0;
+  padding: clamp(3rem, 8vw, 6rem) 0;
   background-color: var(--light-bg);
 }
 
@@ -1596,55 +1590,109 @@ img {
   }
 }
 
-@media (max-width: 767px) {
-  #facilityCarousel .facility-img {
-    height: 280px;
-  }
-  #facilityCarousel .carousel-caption {
-    position: relative;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 0 0 16px 16px;
-    border: none;
-    background: #0f172a;
-    padding: 15px;
-  }
+#facilityCarousel .facility-img {
+  height: 250px;
+  object-fit: cover;
 }
 
-/* RESPONSIVE BREAKPOINTS */
-@media (max-width: 991px) {
-  .hero-text-block {
-    text-align: center;
-    padding-right: 0;
-    margin-bottom: 40px;
-  }
-  .hero-text-block h1 {
-    font-size: 2.4rem;
-  }
-  .about-section {
-    padding: 60px 0;
-  }
-  .about-section h2 {
-    font-size: 2rem;
-  }
-  .specialties-section,
-  .doctors-section,
-  .booking-section,
-  .faq-section {
-    padding: 60px 0;
-  }
+#facilityCarousel .carousel-caption {
+  position: relative;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 0 0 16px 16px;
+  border: none;
+  background: #0f172a;
+  padding: 15px;
 }
 
-@media (max-width: 767px) {
-  .hero-slider {
-    padding-top: 100px;
-    padding-bottom: 40px;
-  }
-  .hero-text-block h1 {
-    font-size: 2rem;
-  }
+/* PROGRESSIVE BREAKPOINT ENHANCEMENTS */
+
+/* 1. Tablet Viewport (min-width: 481px) */
+@media (min-width: 481px) {
   .about-features {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+  .doctor-card-wrapper {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  #facilityCarousel .facility-img {
+    height: 320px;
+  }
+}
+
+/* 2. Laptop/iPad Pro Viewport (min-width: 769px) */
+@media (min-width: 769px) {
+  .floating-nav {
+    top: 20px;
+    width: 90%;
+    max-width: 1200px;
+    height: 70px;
+    padding: 0 25px;
+    background: rgba(255, 255, 255, 0.85);
+  }
+  
+  .floating-nav.scrolled {
+    top: 10px;
+    width: 95%;
+    max-width: 1280px;
+    height: 65px;
+    background: rgba(255, 255, 255, 0.95);
+  }
+  
+  .brand-logo {
+    height: 42px;
+  }
+  
+  .floating-nav.scrolled .brand-logo {
+    height: 36px;
+  }
+
+  .hero-slider {
+    padding-top: 120px;
+    padding-bottom: 60px;
+  }
+
+  .hero-text-block {
+    text-align: left;
+    margin-bottom: 0;
+  }
+
+  .booking-text {
+    text-align: left;
+    margin-bottom: 0;
+  }
+
+  .doctor-card-wrapper {
+    flex: 0 0 33.333%;
+    max-width: 33.333%;
+  }
+
+  .facility-slider-frame {
+    margin-top: 0;
+  }
+
+  #facilityCarousel .facility-img {
+    height: 400px;
+  }
+
+  #facilityCarousel .carousel-caption {
+    position: absolute;
+    left: 6%;
+    right: 6%;
+    bottom: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(15, 23, 42, 0.75);
+    padding: 15px 20px;
+  }
+}
+
+/* 3. Large Desktop Viewport (min-width: 1025px) */
+@media (min-width: 1025px) {
+  .doctor-card-wrapper {
+    flex: 0 0 25%;
+    max-width: 25%;
   }
 }

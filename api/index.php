@@ -8,16 +8,25 @@ include 'includes/navbar.php';
 ?>
   <!-- HERO SECTION WITH QUICK APPOINTMENT WIDGET -->
   <section id="home" class="hero-slider">
-    <div id="heroCarousel" class="carousel slide carousel-fade h-100" data-bs-ride="carousel" data-bs-interval="6000">
+    <div id="heroCarousel" class="carousel slide carousel-fade h-100" data-bs-ride="carousel" data-bs-interval="3000">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1400" alt="Hospital Lobby Banner">
+          <img src="images/hero1.png" alt="Hospital Lobby Banner">
         </div>
         <div class="carousel-item">
-          <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=1400" alt="Advanced Operation Theatre">
+          <img src="images/hero2.png" alt="Advanced Operation Theatre">
         </div>
         <div class="carousel-item">
-          <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=1400" alt="Healthcare Staff and Care">
+          <img src="images/hero3.png" alt="Healthcare Staff and Care">
+        </div>
+        <div class="carousel-item">
+          <img src="images/hero4.png" alt="Modern Clinical Consult">
+        </div>
+        <div class="carousel-item">
+          <img src="images/hero5.png" alt="Advanced Laboratory Setup">
+        </div>
+        <div class="carousel-item">
+          <img src="images/hero6.png" alt="Modern Hospital Building Facade">
         </div>
       </div>
     </div>
@@ -26,45 +35,12 @@ include 'includes/navbar.php';
     <div class="hero-overlay-content">
       <div class="container">
         <div class="row align-items-center">
-          <div class="col-lg-7 hero-text-block">
+          <div class="col-lg-8 hero-text-block">
             <h1>Advanced Medical Care, <span>Close to You</span></h1>
             <p>Sankalp Hospital is Ambikapur's leading multi-specialty healthcare provider, delivering world-class infrastructure, advanced surgical care, and expert medical treatments.</p>
             <div class="d-flex flex-wrap gap-3">
               <a href="#departments" class="btn btn-secondary py-3 px-4"><i class="fas fa-stethoscope"></i> OUR SERVICES</a>
               <a href="tel:+919584889068" class="btn btn-outline-light py-3 px-4 border-2"><i class="fas fa-headset"></i> INQUIRE NOW</a>
-            </div>
-          </div>
-          <div class="col-lg-5 mt-4 mt-lg-0">
-            <div class="hero-booker-widget">
-              <h3>Quick Appointment</h3>
-              <p>Skip the queue by scheduling your OPD slot online</p>
-              <form id="hero-widget-form" class="widget-form">
-                <div class="form-group">
-                  <label for="widget-dept">Medical Specialty</label>
-                  <select id="widget-dept" required>
-                    <option value="">Select Specialty</option>
-                    <option value="gynecology">Obstetrics & Gynecology (IVF)</option>
-                    <option value="orthopedics">Orthopedics & Trauma</option>
-                    <option value="urology">Urology</option>
-                    <option value="ophthalmology">Ophthalmology (Eye)</option>
-                    <option value="pediatrics">Pediatrics</option>
-                    <option value="psychiatry">Psychiatry</option>
-                    <option value="oncology">Chemotherapy & Oncology</option>
-                    <option value="surgery">General & Laparoscopic Surgery</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="widget-doc">Consulting Doctor</label>
-                  <select id="widget-doc" disabled required>
-                    <option value="">Select Specialist</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="widget-date">Preferred Date</label>
-                  <input type="date" id="widget-date" required>
-                </div>
-                <button type="submit" class="btn-submit"><i class="far fa-calendar-check"></i> SECURE SLOT</button>
-              </form>
             </div>
           </div>
         </div>
@@ -138,7 +114,7 @@ include 'includes/navbar.php';
         
         <div class="col-lg-6">
           <div class="about-image-wrapper">
-            <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&q=80&w=600" alt="Doctor consulting patient" class="about-img-1">
+            <img src="images/hero4.png" alt="Doctor consulting patient" class="about-img-1">
             <div class="about-img-experience">
               <h3>15+</h3>
               <p>Years of Caring</p>
@@ -294,7 +270,7 @@ include 'includes/navbar.php';
           <div class="doctor-card-wrapper">
             <div class="doctor-card">
               <div class="doctor-img-container">
-                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=350" alt="Dr. Lata Goyal">
+                <img src="images/doc1.png" alt="Dr. Lata Goyal">
                 <div class="doctor-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
@@ -313,7 +289,7 @@ include 'includes/navbar.php';
           <div class="doctor-card-wrapper">
             <div class="doctor-card">
               <div class="doctor-img-container">
-                <img src="https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=350" alt="Dr. Usha Armo">
+                <img src="images/doc2.png" alt="Dr. Usha Armo">
                 <div class="doctor-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
@@ -332,7 +308,7 @@ include 'includes/navbar.php';
           <div class="doctor-card-wrapper">
             <div class="doctor-card">
               <div class="doctor-img-container">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=350" alt="Dr. Rimsha Lakesh Sahu">
+                <img src="images/doc1.png" alt="Dr. Rimsha Lakesh Sahu">
                 <div class="doctor-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
@@ -351,7 +327,7 @@ include 'includes/navbar.php';
           <div class="doctor-card-wrapper">
             <div class="doctor-card">
               <div class="doctor-img-container">
-                <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=350" alt="Dr. Tanay Goyal">
+                <img src="images/doc3.png" alt="Dr. Tanay Goyal">
                 <div class="doctor-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
@@ -370,7 +346,7 @@ include 'includes/navbar.php';
           <div class="doctor-card-wrapper">
             <div class="doctor-card">
               <div class="doctor-img-container">
-                <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=350" alt="Dr. Sanjay Goyal">
+                <img src="images/doc4.png" alt="Dr. Sanjay Goyal">
                 <div class="doctor-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
@@ -389,7 +365,7 @@ include 'includes/navbar.php';
           <div class="doctor-card-wrapper">
             <div class="doctor-card">
               <div class="doctor-img-container">
-                <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=350" alt="Dr. Nilesh Goyal">
+                <img src="images/doc3.png" alt="Dr. Nilesh Goyal">
                 <div class="doctor-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
@@ -408,7 +384,7 @@ include 'includes/navbar.php';
           <div class="doctor-card-wrapper">
             <div class="doctor-card">
               <div class="doctor-img-container">
-                <img src="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?auto=format&fit=crop&q=80&w=350" alt="Dr. Ankita Bansal Goyal">
+                <img src="images/doc2.png" alt="Dr. Ankita Bansal Goyal">
                 <div class="doctor-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
@@ -427,7 +403,7 @@ include 'includes/navbar.php';
           <div class="doctor-card-wrapper">
             <div class="doctor-card">
               <div class="doctor-img-container">
-                <img src="https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=350" alt="Dr. Megha Goyal">
+                <img src="images/doc1.png" alt="Dr. Megha Goyal">
                 <div class="doctor-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
@@ -446,7 +422,7 @@ include 'includes/navbar.php';
           <div class="doctor-card-wrapper">
             <div class="doctor-card">
               <div class="doctor-img-container">
-                <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=350" alt="Dr. Ankit Gupta">
+                <img src="images/doc4.png" alt="Dr. Ankit Gupta">
                 <div class="doctor-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
@@ -465,7 +441,7 @@ include 'includes/navbar.php';
           <div class="doctor-card-wrapper">
             <div class="doctor-card">
               <div class="doctor-img-container">
-                <img src="https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=350" alt="Dr. Akshaya Goyal">
+                <img src="images/doc2.png" alt="Dr. Akshaya Goyal">
                 <div class="doctor-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
@@ -484,7 +460,7 @@ include 'includes/navbar.php';
           <div class="doctor-card-wrapper">
             <div class="doctor-card">
               <div class="doctor-img-container">
-                <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=350" alt="Dr. Shailesh Gupta">
+                <img src="images/doc3.png" alt="Dr. Shailesh Gupta">
                 <div class="doctor-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
@@ -503,7 +479,7 @@ include 'includes/navbar.php';
           <div class="doctor-card-wrapper">
             <div class="doctor-card">
               <div class="doctor-img-container">
-                <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=350" alt="Dr. Suneedh Gupta">
+                <img src="images/doc4.png" alt="Dr. Suneedh Gupta">
                 <div class="doctor-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
@@ -522,7 +498,7 @@ include 'includes/navbar.php';
           <div class="doctor-card-wrapper">
             <div class="doctor-card">
               <div class="doctor-img-container">
-                <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=350" alt="Dr. Ankit Sharma">
+                <img src="images/doc3.png" alt="Dr. Ankit Sharma">
                 <div class="doctor-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
@@ -541,7 +517,7 @@ include 'includes/navbar.php';
           <div class="doctor-card-wrapper">
             <div class="doctor-card">
               <div class="doctor-img-container">
-                <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=350" alt="Dr. Chandra Mukesh Dhawde">
+                <img src="images/doc4.png" alt="Dr. Chandra Mukesh Dhawde">
                 <div class="doctor-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
@@ -631,7 +607,7 @@ include 'includes/navbar.php';
               <div class="carousel-inner rounded-4 overflow-hidden">
                 <!-- Slide 1 -->
                 <div class="carousel-item active">
-                  <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1000" class="d-block w-100 facility-img" alt="Hospital Reception Lobby">
+                  <img src="images/hero1.png" class="d-block w-100 facility-img" alt="Hospital Reception Lobby">
                   <div class="carousel-caption">
                     <h5>Hospital Reception & Waiting Lobby</h5>
                     <p>A spacious, fully-airconditioned, and sanitized lobby designed for patient comfort.</p>
@@ -639,7 +615,7 @@ include 'includes/navbar.php';
                 </div>
                 <!-- Slide 2 -->
                 <div class="carousel-item">
-                  <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=1000" class="d-block w-100 facility-img" alt="Advanced Operation Theatre">
+                  <img src="images/hero2.png" class="d-block w-100 facility-img" alt="Advanced Operation Theatre">
                   <div class="carousel-caption">
                     <h5>Modular Operation Theatre</h5>
                     <p>Equipped with modern anesthesia and clean air-laminar flows.</p>
@@ -647,7 +623,7 @@ include 'includes/navbar.php';
                 </div>
                 <!-- Slide 3 -->
                 <div class="carousel-item">
-                  <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=1000" class="d-block w-100 facility-img" alt="Specialist Consultation Room">
+                  <img src="images/hero4.png" class="d-block w-100 facility-img" alt="Specialist Consultation Room">
                   <div class="carousel-caption">
                     <h5>Consultation Suites</h5>
                     <p>Private counseling chambers for in-depth clinical discussions.</p>
@@ -655,7 +631,7 @@ include 'includes/navbar.php';
                 </div>
                 <!-- Slide 4 -->
                 <div class="carousel-item">
-                  <img src="https://images.unsplash.com/photo-1502740479091-6398b19d99f6?auto=format&fit=crop&q=80&w=1000" class="d-block w-100 facility-img" alt="Pediatric Ward">
+                  <img src="images/pediatric.png" class="d-block w-100 facility-img" alt="Pediatric Ward">
                   <div class="carousel-caption">
                     <h5>Pediatric Care Ward</h5>
                     <p>Child-friendly clinical ward settings designed to ensure pediatric patients feel safe.</p>
@@ -663,7 +639,7 @@ include 'includes/navbar.php';
                 </div>
                 <!-- Slide 5 -->
                 <div class="carousel-item">
-                  <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=1000" class="d-block w-100 facility-img" alt="Pathology Lab">
+                  <img src="images/hero5.png" class="d-block w-100 facility-img" alt="Pathology Lab">
                   <div class="carousel-caption">
                     <h5>High-Tech Pathology Laboratory</h5>
                     <p>Fully automated analyzer machines for delivering rapid, precise diagnostic test results.</p>
@@ -671,7 +647,7 @@ include 'includes/navbar.php';
                 </div>
                 <!-- Slide 6 -->
                 <div class="carousel-item">
-                  <img src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&q=80&w=1000" class="d-block w-100 facility-img" alt="Diagnostic Ultrasound Room">
+                  <img src="images/ultrasound.png" class="d-block w-100 facility-img" alt="Diagnostic Ultrasound Room">
                   <div class="carousel-caption">
                     <h5>Advanced Ultrasound Diagnostic Room</h5>
                     <p>Armed with advanced ultrasound imaging machines for pregnancy scans.</p>
