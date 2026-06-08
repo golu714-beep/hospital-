@@ -1,4 +1,31 @@
 <?php
+// Dynamic request routing for clean URLs and sub-pages
+$requestPath = parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH);
+$route = basename($requestPath);
+
+if ($route === 'about' || $route === 'about.php') {
+    include __DIR__ . '/about.php';
+    exit;
+} elseif ($route === 'departments' || $route === 'departments.php') {
+    include __DIR__ . '/departments.php';
+    exit;
+} elseif ($route === 'doctors' || $route === 'doctors.php' || $route === 'experts' || $route === 'experts.php') {
+    include __DIR__ . '/doctors.php';
+    exit;
+} elseif ($route === 'empanelments' || $route === 'empanelments.php') {
+    include __DIR__ . '/empanelments.php';
+    exit;
+} elseif ($route === 'faq' || $route === 'faq.php') {
+    include __DIR__ . '/faq.php';
+    exit;
+} elseif ($route === 'myths-facts' || $route === 'myths-facts.php') {
+    include __DIR__ . '/myths-facts.php';
+    exit;
+} elseif ($route === 'glossary' || $route === 'glossary.php') {
+    include __DIR__ . '/glossary.php';
+    exit;
+}
+
 // Dynamic page configuration
 $pageTitle = "Sankalp Hospital | Best Multi-Specialty Hospital In Ambikapur";
 $pageDesc = "Sankalp Hospital is a premier multi-specialist healthcare facility in Ambikapur. We provide advanced IVF treatments, Urology, Gynecology, 24/7 emergency care, and world-class medical infrastructure.";
@@ -72,6 +99,7 @@ include __DIR__ . '/includes/navbar.php';
 
   <!-- ABOUT SECTION -->
   <section id="about" class="about-section">
+    <div class="about-decor-bg"></div>
     <div class="container">
       <div class="row g-5 align-items-center">
         <div class="col-lg-6">
@@ -80,41 +108,33 @@ include __DIR__ . '/includes/navbar.php';
           <p class="lead text-muted mb-4">Located at the heart of Ambikapur, Sankalp Hospital has spent over 15 years providing top-tier clinical diagnostics, patient care, and cutting-edge treatments across diverse medical fields.</p>
           <p class="mb-4">We are dedicated to establishing patient-centered medical excellence. Our state-of-the-art diagnostic imaging, high-success IVF clinics, modular operation theatres, and dedicated pediatric divisions ensure you and your loved ones receive comprehensive clinical support.</p>
           
-          <div class="about-features">
-            <div class="about-feat-item">
-              <i class="fas fa-shield-alt"></i>
-              <div>
-                <h5>Patient Safety First</h5>
-                <p>Advanced sanitization, ICU monitoring, and expert trauma handling.</p>
-              </div>
+          <div class="about-feat-grid">
+            <div class="about-feat-card">
+              <div class="about-feat-icon-box"><i class="fas fa-shield-alt"></i></div>
+              <h5>Patient Safety First</h5>
+              <p>Advanced sanitization, ICU monitoring, and expert trauma handling.</p>
             </div>
-            <div class="about-feat-item">
-              <i class="fas fa-certificate"></i>
-              <div>
-                <h5>Awarded Clinicians</h5>
-                <p>Our senior doctors carry decades of medical expertise in critical fields.</p>
-              </div>
+            <div class="about-feat-card">
+              <div class="about-feat-icon-box"><i class="fas fa-certificate"></i></div>
+              <h5>Awarded Clinicians</h5>
+              <p>Our senior doctors carry decades of medical expertise in critical fields.</p>
             </div>
-            <div class="about-feat-item">
-              <i class="fas fa-microscope"></i>
-              <div>
-                <h5>Advanced Diagnostics</h5>
-                <p>High-resolution pathology labs and modular surgical suites.</p>
-              </div>
+            <div class="about-feat-card">
+              <div class="about-feat-icon-box"><i class="fas fa-microscope"></i></div>
+              <h5>Advanced Diagnostics</h5>
+              <p>High-resolution pathology labs and modular surgical suites.</p>
             </div>
-            <div class="about-feat-item">
-              <i class="fas fa-heartbeat"></i>
-              <div>
-                <h5>Holistic Wellness</h5>
-                <p>Personalized post-surgery protocols and dedicated support staff.</p>
-              </div>
+            <div class="about-feat-card">
+              <div class="about-feat-icon-box"><i class="fas fa-heartbeat"></i></div>
+              <h5>Holistic Wellness</h5>
+              <p>Personalized post-surgery protocols and dedicated support staff.</p>
             </div>
           </div>
         </div>
         
         <div class="col-lg-6">
           <div class="about-image-wrapper">
-            <img src="images/hero4.png" alt="Doctor consulting patient" class="about-img-1">
+            <img src="images/hero4.png" alt="Doctor consulting patient" class="about-img-1 w-100">
             <div class="about-img-experience">
               <h3>15+</h3>
               <p>Years of Caring</p>
@@ -147,30 +167,30 @@ include __DIR__ . '/includes/navbar.php';
         <div class="col-lg-7">
           <div class="row g-4">
             <div class="col-sm-6">
-              <div class="stat-card">
+              <div class="stat-card stat-surgeries">
                 <div class="stat-icon-wrapper"><i class="fas fa-procedures"></i></div>
-                <div class="stat-number" data-count="15000">0</div>
+                <div class="stat-number" data-count="15000">0+</div>
                 <div class="stat-label">Successful Surgeries</div>
               </div>
             </div>
             <div class="col-sm-6">
-              <div class="stat-card">
+              <div class="stat-card stat-dialysis">
                 <div class="stat-icon-wrapper"><i class="fas fa-tint"></i></div>
-                <div class="stat-number" data-count="50000">0</div>
+                <div class="stat-number" data-count="50000">0+</div>
                 <div class="stat-label">Dialysis Treatments</div>
               </div>
             </div>
             <div class="col-sm-6">
-              <div class="stat-card">
+              <div class="stat-card stat-babies">
                 <div class="stat-icon-wrapper"><i class="fas fa-baby"></i></div>
-                <div class="stat-number" data-count="1500">0</div>
+                <div class="stat-number" data-count="1500">0+</div>
                 <div class="stat-label">IVF Babies Born</div>
               </div>
             </div>
             <div class="col-sm-6">
-              <div class="stat-card">
+              <div class="stat-card stat-specialists">
                 <div class="stat-icon-wrapper"><i class="fas fa-user-md"></i></div>
-                <div class="stat-number" data-count="150">0</div>
+                <div class="stat-number" data-count="150">0+</div>
                 <div class="stat-label">Medical Specialists</div>
               </div>
             </div>
@@ -184,69 +204,757 @@ include __DIR__ . '/includes/navbar.php';
   <section id="departments" class="specialties-section">
     <div class="container">
       <div class="section-title">
-        <span>Our Departments</span>
-        <h2>Comprehensive Medical Specialties</h2>
-        <p>Providing specialized clinical expertise, modern equipment, and dedicated outpatient care across all crucial health sectors.</p>
+        <span>Clinical Excellence</span>
+        <h2>Interactive Specialties Hub</h2>
+        <p>Explore our advanced departments, expert medical teams, and specialised clinical procedures at Sankalp Hospital.</p>
       </div>
 
       <div class="row g-4">
-        <!-- IVF -->
-        <div class="col-lg-4 col-md-6">
-          <div class="specialty-card">
-            <div class="specialty-icon"><i class="fas fa-baby"></i></div>
-            <h3>Assisted Fertility (IVF/ICSI/IUI)</h3>
-            <p>Offering hopeful parents advanced fertility treatments, egg freezing, ICSI, and IUI setups under high-success rate guidelines led by specialists.</p>
-            <a href="#appointment" class="specialty-link">Schedule Consultation <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-        
-        <!-- Obstetrics & Gynecology -->
-        <div class="col-lg-4 col-md-6">
-          <div class="specialty-card">
-            <div class="specialty-icon"><i class="fas fa-female"></i></div>
-            <h3>Obstetrics & Gynecology</h3>
-            <p>Comprehensive women's health screening, high-risk pregnancy management, painless deliveries, laparoscopic gynecological surgeries, and routine checkups.</p>
-            <a href="#appointment" class="specialty-link">Schedule Consultation <i class="fas fa-arrow-right"></i></a>
+        <!-- Sidebar Navigation (12 cols on mobile, 4 cols on desktop) -->
+        <div class="col-lg-4">
+          <div class="specialty-sidebar-card">
+            <h5 class="sidebar-title"><i class="fas fa-hand-holding-medical"></i> Select Department</h5>
+            <div class="nav flex-column nav-pills specialty-nav-list" id="specialty-tabs" role="tablist" aria-orientation="vertical">
+              <!-- Item 1: Ophthalmology -->
+              <button class="nav-link active specialty-tab-btn" id="tab-ophthalmology" data-bs-toggle="pill" data-bs-target="#panel-ophthalmology" type="button" role="tab" aria-controls="panel-ophthalmology" aria-selected="true">
+                <span class="btn-icon-title">
+                  <i class="fas fa-eye"></i>
+                  <span>Ophthalmology</span>
+                </span>
+                <i class="fas fa-chevron-right arrow-indicator"></i>
+              </button>
+
+              <!-- Item 2: Emergency & Trauma -->
+              <button class="nav-link specialty-tab-btn" id="tab-emergency" data-bs-toggle="pill" data-bs-target="#panel-emergency" type="button" role="tab" aria-controls="panel-emergency" aria-selected="false">
+                <span class="btn-icon-title">
+                  <i class="fas fa-ambulance"></i>
+                  <span>Emergency & Trauma</span>
+                </span>
+                <i class="fas fa-chevron-right arrow-indicator"></i>
+              </button>
+
+              <!-- Item 3: Obstetrics & Gynecology -->
+              <button class="nav-link specialty-tab-btn" id="tab-gynecology" data-bs-toggle="pill" data-bs-target="#panel-gynecology" type="button" role="tab" aria-controls="panel-gynecology" aria-selected="false">
+                <span class="btn-icon-title">
+                  <i class="fas fa-female"></i>
+                  <span>Obstetrics & Gynecology</span>
+                </span>
+                <i class="fas fa-chevron-right arrow-indicator"></i>
+              </button>
+
+              <!-- Item 4: Assisted Fertility (IVF) -->
+              <button class="nav-link specialty-tab-btn" id="tab-ivf" data-bs-toggle="pill" data-bs-target="#panel-ivf" type="button" role="tab" aria-controls="panel-ivf" aria-selected="false">
+                <span class="btn-icon-title">
+                  <i class="fas fa-baby"></i>
+                  <span>Assisted Fertility (IVF)</span>
+                </span>
+                <i class="fas fa-chevron-right arrow-indicator"></i>
+              </button>
+
+              <!-- Item 5: General & Laparoscopic Surgery -->
+              <button class="nav-link specialty-tab-btn" id="tab-surgery" data-bs-toggle="pill" data-bs-target="#panel-surgery" type="button" role="tab" aria-controls="panel-surgery" aria-selected="false">
+                <span class="btn-icon-title">
+                  <i class="fas fa-procedures"></i>
+                  <span>General & Laparoscopic</span>
+                </span>
+                <i class="fas fa-chevron-right arrow-indicator"></i>
+              </button>
+
+              <!-- Item 6: Pediatrics -->
+              <button class="nav-link specialty-tab-btn" id="tab-pediatrics" data-bs-toggle="pill" data-bs-target="#panel-pediatrics" type="button" role="tab" aria-controls="panel-pediatrics" aria-selected="false">
+                <span class="btn-icon-title">
+                  <i class="fas fa-child"></i>
+                  <span>Pediatrics</span>
+                </span>
+                <i class="fas fa-chevron-right arrow-indicator"></i>
+              </button>
+
+              <!-- Item 7: Orthopaedics Surgery -->
+              <button class="nav-link specialty-tab-btn" id="tab-orthopedics" data-bs-toggle="pill" data-bs-target="#panel-orthopedics" type="button" role="tab" aria-controls="panel-orthopedics" aria-selected="false">
+                <span class="btn-icon-title">
+                  <i class="fas fa-bone"></i>
+                  <span>Orthopaedics Surgery</span>
+                </span>
+                <i class="fas fa-chevron-right arrow-indicator"></i>
+              </button>
+
+              <!-- Item 8: Urology -->
+              <button class="nav-link specialty-tab-btn" id="tab-urology" data-bs-toggle="pill" data-bs-target="#panel-urology" type="button" role="tab" aria-controls="panel-urology" aria-selected="false">
+                <span class="btn-icon-title">
+                  <i class="fas fa-user-md"></i>
+                  <span>Urology</span>
+                </span>
+                <i class="fas fa-chevron-right arrow-indicator"></i>
+              </button>
+
+              <!-- Item 9: Psychiatry -->
+              <button class="nav-link specialty-tab-btn" id="tab-psychiatry" data-bs-toggle="pill" data-bs-target="#panel-psychiatry" type="button" role="tab" aria-controls="panel-psychiatry" aria-selected="false">
+                <span class="btn-icon-title">
+                  <i class="fas fa-brain"></i>
+                  <span>Psychiatry</span>
+                </span>
+                <i class="fas fa-chevron-right arrow-indicator"></i>
+              </button>
+
+              <!-- Item 10: ENT -->
+              <button class="nav-link specialty-tab-btn" id="tab-ent" data-bs-toggle="pill" data-bs-target="#panel-ent" type="button" role="tab" aria-controls="panel-ent" aria-selected="false">
+                <span class="btn-icon-title">
+                  <i class="fas fa-head-side-cough"></i>
+                  <span>ENT</span>
+                </span>
+                <i class="fas fa-chevron-right arrow-indicator"></i>
+              </button>
+
+              <!-- Item 11: Department of Anesthesia -->
+              <button class="nav-link specialty-tab-btn" id="tab-anesthesia" data-bs-toggle="pill" data-bs-target="#panel-anesthesia" type="button" role="tab" aria-controls="panel-anesthesia" aria-selected="false">
+                <span class="btn-icon-title">
+                  <i class="fas fa-syringe"></i>
+                  <span>Anesthesia</span>
+                </span>
+                <i class="fas fa-chevron-right arrow-indicator"></i>
+              </button>
+
+              <!-- Item 12: Onco Surgery -->
+              <button class="nav-link specialty-tab-btn" id="tab-oncology" data-bs-toggle="pill" data-bs-target="#panel-oncology" type="button" role="tab" aria-controls="panel-oncology" aria-selected="false">
+                <span class="btn-icon-title">
+                  <i class="fas fa-hand-holding-medical"></i>
+                  <span>Onco Surgery</span>
+                </span>
+                <i class="fas fa-chevron-right arrow-indicator"></i>
+              </button>
+            </div>
           </div>
         </div>
 
-        <!-- Urology -->
-        <div class="col-lg-4 col-md-6">
-          <div class="specialty-card">
-            <div class="specialty-icon"><i class="fas fa-user-md"></i></div>
-            <h3>Urology & Kidney Care</h3>
-            <p>Diagnostic and clinical management of kidney stones, prostate disorders, bladder issues, and advanced minimally invasive urosurgery procedures.</p>
-            <a href="#appointment" class="specialty-link">Schedule Consultation <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
+        <!-- Detail Display Card (12 cols on mobile, 8 cols on desktop) -->
+        <div class="col-lg-8">
+          <div class="tab-content specialty-details-container" id="specialty-panels">
+            
+            <!-- Panel 1: Ophthalmology -->
+            <div class="tab-pane fade show active specialty-detail-panel" id="panel-ophthalmology" role="tabpanel" aria-labelledby="tab-ophthalmology">
+              <div class="panel-header d-flex align-items-center gap-3">
+                <div class="panel-icon"><i class="fas fa-eye"></i></div>
+                <div>
+                  <span class="panel-tag text-uppercase">Specialized Consultation</span>
+                  <h3 class="panel-title">Ophthalmology (Eye Care)</h3>
+                </div>
+              </div>
+              <div class="panel-body mt-4">
+                <p class="panel-desc">Sankalp Hospital's Ophthalmology Department provides comprehensive diagnostic, surgical, and therapeutic eye care. Our advanced clinical wing handles vision impairments, cataract surgeries, and specialized ocular conditions with precision.</p>
+                
+                <h5 class="procedures-title"><i class="fas fa-stethoscope"></i> Key Clinical Procedures</h5>
+                <div class="row mt-3">
+                  <div class="col-md-6">
+                    <ul class="procedure-list">
+                      <li><i class="fas fa-check-circle"></i> Phacoemulsification for Cataracts</li>
+                      <li><i class="fas fa-check-circle"></i> Computerized Eye Testing</li>
+                      <li><i class="fas fa-check-circle"></i> Glaucoma Detection & Therapy</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <ul class="procedure-list">
+                      <li><i class="fas fa-check-circle"></i> Pediatric Vision Screening</li>
+                      <li><i class="fas fa-check-circle"></i> Dry Eye Diagnostic Clinics</li>
+                      <li><i class="fas fa-check-circle"></i> Diabetic Retinopathy Management</li>
+                    </ul>
+                  </div>
+                </div>
 
-        <!-- Ophthalmology -->
-        <div class="col-lg-4 col-md-6">
-          <div class="specialty-card">
-            <div class="specialty-icon"><i class="fas fa-eye"></i></div>
-            <h3>Ophthalmology (Eye Care)</h3>
-            <p>Modern cataract surgeries (phacoemulsification), refractive error corrections, glaucoma clinics, and pediatric vision screening with advanced equipment.</p>
-            <a href="#appointment" class="specialty-link">Schedule Consultation <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
+                <div class="specialist-box mt-4 pt-3 border-top">
+                  <h5 class="specialists-title"><i class="fas fa-user-md"></i> Department Specialists</h5>
+                  <div class="d-flex flex-wrap gap-4 mt-3">
+                    <div class="mini-doc-card d-flex align-items-center gap-3">
+                      <img src="images/doc2.png" alt="Dr. Ankita Bansal Goyal" class="mini-doc-img">
+                      <div>
+                        <h6>Dr. Ankita Bansal Goyal</h6>
+                        <small class="text-muted">MBBS, MS - Ophthalmology</small>
+                      </div>
+                    </div>
+                    <div class="mini-doc-card d-flex align-items-center gap-3">
+                      <img src="images/doc1.png" alt="Dr. Megha Goyal" class="mini-doc-img">
+                      <div>
+                        <h6>Dr. Megha Goyal</h6>
+                        <small class="text-muted">MBBS, DOMS - Eye Specialist</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer mt-4 pt-3 d-flex justify-content-end">
+                <button class="btn btn-primary btn-book-specialty" data-dept="ophthalmology"><i class="far fa-calendar-check"></i> Book Consultation</button>
+              </div>
+            </div>
 
-        <!-- Pediatrics -->
-        <div class="col-lg-4 col-md-6">
-          <div class="specialty-card">
-            <div class="specialty-icon"><i class="fas fa-child"></i></div>
-            <h3>Pediatrics & Neonatology</h3>
-            <p>Compassionate clinical care for infants, children, and adolescents. Backed by a high-grade Neonatal ICU (NICU) and pediatric vaccination centers.</p>
-            <a href="#appointment" class="specialty-link">Schedule Consultation <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
+            <!-- Panel 2: Emergency & Trauma -->
+            <div class="tab-pane fade specialty-detail-panel" id="panel-emergency" role="tabpanel" aria-labelledby="tab-emergency">
+              <div class="panel-header d-flex align-items-center gap-3">
+                <div class="panel-icon bg-danger-subtle text-danger"><i class="fas fa-ambulance"></i></div>
+                <div>
+                  <span class="panel-tag text-uppercase text-danger">Surgical & Critical Care</span>
+                  <h3 class="panel-title">24 Hours Emergency & Trauma</h3>
+                </div>
+              </div>
+              <div class="panel-body mt-4">
+                <p class="panel-desc">Our emergency department is operational 24/7, providing immediate triage, life-saving resuscitation, and surgical interventions. Backed by dedicated trauma surgeons and advanced imaging, we handle acute medical crises round-the-clock.</p>
+                
+                <h5 class="procedures-title"><i class="fas fa-stethoscope"></i> Key Clinical Procedures</h5>
+                <div class="row mt-3">
+                  <div class="col-md-6">
+                    <ul class="procedure-list">
+                      <li><i class="fas fa-check-circle"></i> Advanced Cardiac Life Support (ACLS)</li>
+                      <li><i class="fas fa-check-circle"></i> Trauma & Accident Resuscitation</li>
+                      <li><i class="fas fa-check-circle"></i> Acute Poisoning & Burn Care</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <ul class="procedure-list">
+                      <li><i class="fas fa-check-circle"></i> Ventilator & ICU Critical Stabilization</li>
+                      <li><i class="fas fa-check-circle"></i> 24/7 Ambulance & Retrieval Services</li>
+                      <li><i class="fas fa-check-circle"></i> Bedside Emergency Ultrasound</li>
+                    </ul>
+                  </div>
+                </div>
 
-        <!-- General Surgery -->
-        <div class="col-lg-4 col-md-6">
-          <div class="specialty-card">
-            <div class="specialty-icon"><i class="fas fa-procedures"></i></div>
-            <h3>General & Laparoscopic Surgery</h3>
-            <p>Surgical handling of hernias, appendicitis, gallstones, and bowel issues with keyhole laparoscopy that guarantees minimal scarring and quick recovery.</p>
-            <a href="#appointment" class="specialty-link">Schedule Consultation <i class="fas fa-arrow-right"></i></a>
+                <div class="specialist-box mt-4 pt-3 border-top">
+                  <h5 class="specialists-title"><i class="fas fa-user-md"></i> Department Specialists</h5>
+                  <div class="d-flex flex-wrap gap-4 mt-3">
+                    <div class="mini-doc-card d-flex align-items-center gap-3">
+                      <div class="mini-doc-avatar-placeholder"><i class="fas fa-hospital-user"></i></div>
+                      <div>
+                        <h6>On-Duty Trauma Team</h6>
+                        <small class="text-muted">Emergency Medical Officers</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer mt-4 pt-3 d-flex justify-content-end">
+                <button class="btn btn-emergency btn-book-specialty" data-dept="emergency"><i class="fas fa-ambulance"></i> Contact Emergency</button>
+              </div>
+            </div>
+
+            <!-- Panel 3: Obstetrics & Gynecology -->
+            <div class="tab-pane fade specialty-detail-panel" id="panel-gynecology" role="tabpanel" aria-labelledby="tab-gynecology">
+              <div class="panel-header d-flex align-items-center gap-3">
+                <div class="panel-icon"><i class="fas fa-female"></i></div>
+                <div>
+                  <span class="panel-tag text-uppercase">Reproductive & Family Health</span>
+                  <h3 class="panel-title">Obstetrics & Gynecology</h3>
+                </div>
+              </div>
+              <div class="panel-body mt-4">
+                <p class="panel-desc">Dedicated to women's health through all stages of life. We provide comprehensive maternal care, high-risk pregnancy monitoring, painless labor suites, and advanced keyhole surgeries for gynecological disorders.</p>
+                
+                <h5 class="procedures-title"><i class="fas fa-stethoscope"></i> Key Clinical Procedures</h5>
+                <div class="row mt-3">
+                  <div class="col-md-6">
+                    <ul class="procedure-list">
+                      <li><i class="fas fa-check-circle"></i> High-Risk Pregnancy Management</li>
+                      <li><i class="fas fa-check-circle"></i> Painless Delivery (Epidural Analgesia)</li>
+                      <li><i class="fas fa-check-circle"></i> Laparoscopic Hysterectomy</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <ul class="procedure-list">
+                      <li><i class="fas fa-check-circle"></i> Ovarian Cyst & Fibroid Surgeries</li>
+                      <li><i class="fas fa-check-circle"></i> Menopause Clinic & Hormonal Testing</li>
+                      <li><i class="fas fa-check-circle"></i> Adolescent Gynecology Consultations</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="specialist-box mt-4 pt-3 border-top">
+                  <h5 class="specialists-title"><i class="fas fa-user-md"></i> Department Specialists</h5>
+                  <div class="d-flex flex-wrap gap-4 mt-3">
+                    <div class="mini-doc-card d-flex align-items-center gap-3">
+                      <img src="images/doc1.png" alt="Dr. Lata Goyal" class="mini-doc-img">
+                      <div>
+                        <h6>Dr. Lata Goyal</h6>
+                        <small class="text-muted">MBBS, MS - Obs & Gynecology</small>
+                      </div>
+                    </div>
+                    <div class="mini-doc-card d-flex align-items-center gap-3">
+                      <img src="images/doc2.png" alt="Dr. Usha Armo" class="mini-doc-img">
+                      <div>
+                        <h6>Dr. Usha Armo</h6>
+                        <small class="text-muted">MBBS, DGO - Gynecology</small>
+                      </div>
+                    </div>
+                    <div class="mini-doc-card d-flex align-items-center gap-3">
+                      <img src="images/doc1.png" alt="Dr. Rimsha Lakesh Sahu" class="mini-doc-img">
+                      <div>
+                        <h6>Dr. Rimsha Lakesh Sahu</h6>
+                        <small class="text-muted">MBBS, DNB - Obs & Gynecology</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer mt-4 pt-3 d-flex justify-content-end">
+                <button class="btn btn-primary btn-book-specialty" data-dept="gynecology"><i class="far fa-calendar-check"></i> Book Consultation</button>
+              </div>
+            </div>
+
+            <!-- Panel 4: Assisted Fertility (IVF) -->
+            <div class="tab-pane fade specialty-detail-panel" id="panel-ivf" role="tabpanel" aria-labelledby="tab-ivf">
+              <div class="panel-header d-flex align-items-center gap-3">
+                <div class="panel-icon"><i class="fas fa-baby"></i></div>
+                <div>
+                  <span class="panel-tag text-uppercase">Reproductive & Family Health</span>
+                  <h3 class="panel-title">Assisted Fertility (IVF/ICSI/IUI)</h3>
+                </div>
+              </div>
+              <div class="panel-body mt-4">
+                <p class="panel-desc">Sankalp Assisted Fertility (IVF) Center is a premier center of reproductive medicine. With state-of-the-art embryology labs and advanced incubation systems, we support couples on their journey to parenthood with empathy and high success rates.</p>
+                
+                <h5 class="procedures-title"><i class="fas fa-stethoscope"></i> Key Clinical Procedures</h5>
+                <div class="row mt-3">
+                  <div class="col-md-6">
+                    <ul class="procedure-list">
+                      <li><i class="fas fa-check-circle"></i> In Vitro Fertilization (IVF)</li>
+                      <li><i class="fas fa-check-circle"></i> Intracytoplasmic Sperm Injection (ICSI)</li>
+                      <li><i class="fas fa-check-circle"></i> Intrauterine Insemination (IUI)</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <ul class="procedure-list">
+                      <li><i class="fas fa-check-circle"></i> Egg & Sperm Cryopreservation</li>
+                      <li><i class="fas fa-check-circle"></i> Blastocyst Culture & Embryo Transfer</li>
+                      <li><i class="fas fa-check-circle"></i> Male Infertility Diagnostics</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="specialist-box mt-4 pt-3 border-top">
+                  <h5 class="specialists-title"><i class="fas fa-user-md"></i> Department Specialists</h5>
+                  <div class="d-flex flex-wrap gap-4 mt-3">
+                    <div class="mini-doc-card d-flex align-items-center gap-3">
+                      <img src="images/doc1.png" alt="Dr. Lata Goyal" class="mini-doc-img">
+                      <div>
+                        <h6>Dr. Lata Goyal</h6>
+                        <small class="text-muted">MBBS, MS - Obs & Gynecology</small>
+                      </div>
+                    </div>
+                    <div class="mini-doc-card d-flex align-items-center gap-3">
+                      <img src="images/doc2.png" alt="Dr. Ankita Bansal Goyal" class="mini-doc-img">
+                      <div>
+                        <h6>Dr. Ankita Bansal Goyal</h6>
+                        <small class="text-muted">MBBS, MS - IVF Specialist</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer mt-4 pt-3 d-flex justify-content-end">
+                <button class="btn btn-primary btn-book-specialty" data-dept="gynecology"><i class="far fa-calendar-check"></i> Book Consultation</button>
+              </div>
+            </div>
+
+            <!-- Panel 5: General & Laparoscopic Surgery -->
+            <div class="tab-pane fade specialty-detail-panel" id="panel-surgery" role="tabpanel" aria-labelledby="tab-surgery">
+              <div class="panel-header d-flex align-items-center gap-3">
+                <div class="panel-icon"><i class="fas fa-procedures"></i></div>
+                <div>
+                  <span class="panel-tag text-uppercase">Surgical & Critical Care</span>
+                  <h3 class="panel-title">General & Laparoscopic Surgery</h3>
+                </div>
+              </div>
+              <div class="panel-body mt-4">
+                <p class="panel-desc">Our surgical unit specializes in minimally invasive laparoscopic procedures. By utilizing keyhole entries, patients benefit from smaller incisions, reduced post-operative pain, shorter hospital stays, and quicker recovery times.</p>
+                
+                <h5 class="procedures-title"><i class="fas fa-stethoscope"></i> Key Clinical Procedures</h5>
+                <div class="row mt-3">
+                  <div class="col-md-6">
+                    <ul class="procedure-list">
+                      <li><i class="fas fa-check-circle"></i> Laparoscopic Gallbladder Removal</li>
+                      <li><i class="fas fa-check-circle"></i> Hernia Repair (Inguinal/Umbilical)</li>
+                      <li><i class="fas fa-check-circle"></i> Laparoscopic Appendectomy</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <ul class="procedure-list">
+                      <li><i class="fas fa-check-circle"></i> Diabetic Foot Wound Management</li>
+                      <li><i class="fas fa-check-circle"></i> Laser Surgery for Piles & Fissures</li>
+                      <li><i class="fas fa-check-circle"></i> Major & Minor Soft Tissue Excisions</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="specialist-box mt-4 pt-3 border-top">
+                  <h5 class="specialists-title"><i class="fas fa-user-md"></i> Department Specialists</h5>
+                  <div class="d-flex flex-wrap gap-4 mt-3">
+                    <div class="mini-doc-card d-flex align-items-center gap-3">
+                      <img src="images/doc3.png" alt="Dr. Ankit Sharma" class="mini-doc-img">
+                      <div>
+                        <h6>Dr. Ankit Sharma</h6>
+                        <small class="text-muted">MBBS, MS - General Surgery</small>
+                      </div>
+                    </div>
+                    <div class="mini-doc-card d-flex align-items-center gap-3">
+                      <img src="images/doc4.png" alt="Dr. Chandra Mukesh Dhawde" class="mini-doc-img">
+                      <div>
+                        <h6>Dr. Chandra Mukesh Dhawde</h6>
+                        <small class="text-muted">MBBS, MS - Laparoscopic Surgeon</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer mt-4 pt-3 d-flex justify-content-end">
+                <button class="btn btn-primary btn-book-specialty" data-dept="surgery"><i class="far fa-calendar-check"></i> Book Consultation</button>
+              </div>
+            </div>
+
+            <!-- Panel 6: Pediatrics -->
+            <div class="tab-pane fade specialty-detail-panel" id="panel-pediatrics" role="tabpanel" aria-labelledby="tab-pediatrics">
+              <div class="panel-header d-flex align-items-center gap-3">
+                <div class="panel-icon"><i class="fas fa-child"></i></div>
+                <div>
+                  <span class="panel-tag text-uppercase">Reproductive & Family Health</span>
+                  <h3 class="panel-title">Pediatrics & Neonatology</h3>
+                </div>
+              </div>
+              <div class="panel-body mt-4">
+                <p class="panel-desc">Comprehensive healthcare for infants, toddlers, and adolescents. Our state-of-the-art Neonatal ICU (NICU) provides critical incubator care for premature babies, managed by expert pediatricians.</p>
+                
+                <h5 class="procedures-title"><i class="fas fa-stethoscope"></i> Key Clinical Procedures</h5>
+                <div class="row mt-3">
+                  <div class="col-md-6">
+                    <ul class="procedure-list">
+                      <li><i class="fas fa-check-circle"></i> Level-III Neonatal ICU (NICU)</li>
+                      <li><i class="fas fa-check-circle"></i> Pediatric Vaccination & Immunization</li>
+                      <li><i class="fas fa-check-circle"></i> Growth & Development Assessment</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <ul class="procedure-list">
+                      <li><i class="fas fa-check-circle"></i> Pediatric Asthma & Allergy Care</li>
+                      <li><i class="fas fa-check-circle"></i> Pediatric Emergency Stabilization</li>
+                      <li><i class="fas fa-check-circle"></i> Childhood Nutrition & Diet Counseling</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="specialist-box mt-4 pt-3 border-top">
+                  <h5 class="specialists-title"><i class="fas fa-user-md"></i> Department Specialists</h5>
+                  <div class="d-flex flex-wrap gap-4 mt-3">
+                    <div class="mini-doc-card d-flex align-items-center gap-3">
+                      <img src="images/doc4.png" alt="Dr. Ankit Gupta" class="mini-doc-img">
+                      <div>
+                        <h6>Dr. Ankit Gupta</h6>
+                        <small class="text-muted">MBBS, MD - Pediatrics</small>
+                      </div>
+                    </div>
+                    <div class="mini-doc-card d-flex align-items-center gap-3">
+                      <img src="images/doc2.png" alt="Dr. Akshaya Goyal" class="mini-doc-img">
+                      <div>
+                        <h6>Dr. Akshaya Goyal</h6>
+                        <small class="text-muted">MBBS, DCH - Pediatrician</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer mt-4 pt-3 d-flex justify-content-end">
+                <button class="btn btn-primary btn-book-specialty" data-dept="pediatrics"><i class="far fa-calendar-check"></i> Book Consultation</button>
+              </div>
+            </div>
+
+            <!-- Panel 7: Orthopaedics Surgery -->
+            <div class="tab-pane fade specialty-detail-panel" id="panel-orthopedics" role="tabpanel" aria-labelledby="tab-orthopedics">
+              <div class="panel-header d-flex align-items-center gap-3">
+                <div class="panel-icon"><i class="fas fa-bone"></i></div>
+                <div>
+                  <span class="panel-tag text-uppercase">Surgical & Critical Care</span>
+                  <h3 class="panel-title">Orthopaedics & Joint Surgery</h3>
+                </div>
+              </div>
+              <div class="panel-body mt-4">
+                <p class="panel-desc">Providing advanced orthopedic care for joint, bone, and muscular conditions. From complex joint replacements to sport trauma management and fracture healing, our surgeons employ the latest techniques.</p>
+                
+                <h5 class="procedures-title"><i class="fas fa-stethoscope"></i> Key Clinical Procedures</h5>
+                <div class="row mt-3">
+                  <div class="col-md-6">
+                    <ul class="procedure-list">
+                      <li><i class="fas fa-check-circle"></i> Total Hip & Knee Joint Replacements</li>
+                      <li><i class="fas fa-check-circle"></i> Arthroscopic Ligament Repairs (ACL/MCL)</li>
+                      <li><i class="fas fa-check-circle"></i> Complex Fracture & Trauma Fixations</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <ul class="procedure-list">
+                      <li><i class="fas fa-check-circle"></i> Spine Decompression & Fusions</li>
+                      <li><i class="fas fa-check-circle"></i> Osteoporosis & Arthritis Management</li>
+                      <li><i class="fas fa-check-circle"></i> Specialized Post-Surgical Rehab</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="specialist-box mt-4 pt-3 border-top">
+                  <h5 class="specialists-title"><i class="fas fa-user-md"></i> Department Specialists</h5>
+                  <div class="d-flex flex-wrap gap-4 mt-3">
+                    <div class="mini-doc-card d-flex align-items-center gap-3">
+                      <img src="images/doc3.png" alt="Dr. Tanay Goyal" class="mini-doc-img">
+                      <div>
+                        <h6>Dr. Tanay Goyal</h6>
+                        <small class="text-muted">MBBS, MS - Orthopaedics</small>
+                      </div>
+                    </div>
+                    <div class="mini-doc-card d-flex align-items-center gap-3">
+                      <img src="images/doc4.png" alt="Dr. Sanjay Goyal" class="mini-doc-img">
+                      <div>
+                        <h6>Dr. Sanjay Goyal</h6>
+                        <small class="text-muted">MBBS, D.Ortho - Orthopaedic Surgeon</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer mt-4 pt-3 d-flex justify-content-end">
+                <button class="btn btn-primary btn-book-specialty" data-dept="orthopedics"><i class="far fa-calendar-check"></i> Book Consultation</button>
+              </div>
+            </div>
+
+            <!-- Panel 8: Urology -->
+            <div class="tab-pane fade specialty-detail-panel" id="panel-urology" role="tabpanel" aria-labelledby="tab-urology">
+              <div class="panel-header d-flex align-items-center gap-3">
+                <div class="panel-icon"><i class="fas fa-user-md"></i></div>
+                <div>
+                  <span class="panel-tag text-uppercase">Specialized Consultation</span>
+                  <h3 class="panel-title">Urology & Kidney Care</h3>
+                </div>
+              </div>
+              <div class="panel-body mt-4">
+                <p class="panel-desc">Advanced kidney, bladder, and prostate care. The urology department offers minimally invasive keyhole laser options for kidney stones and comprehensive treatments for urogenital conditions.</p>
+                
+                <h5 class="procedures-title"><i class="fas fa-stethoscope"></i> Key Clinical Procedures</h5>
+                <div class="row mt-3">
+                  <div class="col-md-6">
+                    <ul class="procedure-list">
+                      <li><i class="fas fa-check-circle"></i> Laser Kidney Stone Removal (PCNL/URSL)</li>
+                      <li><i class="fas fa-check-circle"></i> Laser Surgery for Prostate (TURP)</li>
+                      <li><i class="fas fa-check-circle"></i> Urinary Incontinence Treatments</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <ul class="procedure-list">
+                      <li><i class="fas fa-check-circle"></i> Pediatric Urology Conditions</li>
+                      <li><i class="fas fa-check-circle"></i> Recurrent UTI Diagnostic Management</li>
+                      <li><i class="fas fa-check-circle"></i> Urogenital Reconstruction Surgery</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="specialist-box mt-4 pt-3 border-top">
+                  <h5 class="specialists-title"><i class="fas fa-user-md"></i> Department Specialists</h5>
+                  <div class="d-flex flex-wrap gap-4 mt-3">
+                    <div class="mini-doc-card d-flex align-items-center gap-3">
+                      <img src="images/doc3.png" alt="Dr. Nilesh Goyal" class="mini-doc-img">
+                      <div>
+                        <h6>Dr. Nilesh Goyal</h6>
+                        <small class="text-muted">MBBS, MS, MCh - Urology</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer mt-4 pt-3 d-flex justify-content-end">
+                <button class="btn btn-primary btn-book-specialty" data-dept="urology"><i class="far fa-calendar-check"></i> Book Consultation</button>
+              </div>
+            </div>
+
+            <!-- Panel 9: Psychiatry -->
+            <div class="tab-pane fade specialty-detail-panel" id="panel-psychiatry" role="tabpanel" aria-labelledby="tab-psychiatry">
+              <div class="panel-header d-flex align-items-center gap-3">
+                <div class="panel-icon"><i class="fas fa-brain"></i></div>
+                <div>
+                  <span class="panel-tag text-uppercase">Specialized Consultation</span>
+                  <h3 class="panel-title">Psychiatry & Mental Health</h3>
+                </div>
+              </div>
+              <div class="panel-body mt-4">
+                <p class="panel-desc">Compassionate mental wellness care designed to restore balance and emotional health. We provide clinical evaluations, cognitive therapies, and counseling for stress, anxiety, and neuro-behavioral disorders.</p>
+                
+                <h5 class="procedures-title"><i class="fas fa-stethoscope"></i> Key Clinical Procedures</h5>
+                <div class="row mt-3">
+                  <div class="col-md-6">
+                    <ul class="procedure-list">
+                      <li><i class="fas fa-check-circle"></i> Cognitive Behavioral Therapy (CBT)</li>
+                      <li><i class="fas fa-check-circle"></i> Anxiety & Depression Counseling</li>
+                      <li><i class="fas fa-check-circle"></i> Clinical Mood Disorder Management</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <ul class="procedure-list">
+                      <li><i class="fas fa-check-circle"></i> Pediatric Behavior Evaluations</li>
+                      <li><i class="fas fa-check-circle"></i> Sleep & Stress Management Plans</li>
+                      <li><i class="fas fa-check-circle"></i> Family & Marriage Counseling Sessions</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="specialist-box mt-4 pt-3 border-top">
+                  <h5 class="specialists-title"><i class="fas fa-user-md"></i> Department Specialists</h5>
+                  <div class="d-flex flex-wrap gap-4 mt-3">
+                    <div class="mini-doc-card d-flex align-items-center gap-3">
+                      <img src="images/doc3.png" alt="Dr. Shailesh Gupta" class="mini-doc-img">
+                      <div>
+                        <h6>Dr. Shailesh Gupta</h6>
+                        <small class="text-muted">MBBS, MD - Psychiatry</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer mt-4 pt-3 d-flex justify-content-end">
+                <button class="btn btn-primary btn-book-specialty" data-dept="psychiatry"><i class="far fa-calendar-check"></i> Book Consultation</button>
+              </div>
+            </div>
+
+            <!-- Panel 10: ENT -->
+            <div class="tab-pane fade specialty-detail-panel" id="panel-ent" role="tabpanel" aria-labelledby="tab-ent">
+              <div class="panel-header d-flex align-items-center gap-3">
+                <div class="panel-icon"><i class="fas fa-head-side-cough"></i></div>
+                <div>
+                  <span class="panel-tag text-uppercase">Specialized Consultation</span>
+                  <h3 class="panel-title">ENT (Ear, Nose, Throat)</h3>
+                </div>
+              </div>
+              <div class="panel-body mt-4">
+                <p class="panel-desc">Comprehensive diagnostic and surgical solutions for ear, nose, throat, head, and neck conditions. Our specialists provide pediatric hearing screens, sinus treatments, and tonsillectomies using modern endoscopic equipment.</p>
+                
+                <h5 class="procedures-title"><i class="fas fa-stethoscope"></i> Key Clinical Procedures</h5>
+                <div class="row mt-3">
+                  <div class="col-md-6">
+                    <ul class="procedure-list">
+                      <li><i class="fas fa-check-circle"></i> Endoscopic Sinus Surgery (FESS)</li>
+                      <li><i class="fas fa-check-circle"></i> Tonsillectomy & Adenoidectomy</li>
+                      <li><i class="fas fa-check-circle"></i> Tympanoplasty (Eardrum Repair)</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <ul class="procedure-list">
+                      <li><i class="fas fa-check-circle"></i> Hearing Impairment Diagnostics</li>
+                      <li><i class="fas fa-check-circle"></i> Snoring & Sleep Apnea Care</li>
+                      <li><i class="fas fa-check-circle"></i> Salivary Gland & Thyroid Consults</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="specialist-box mt-4 pt-3 border-top">
+                  <h5 class="specialists-title"><i class="fas fa-user-md"></i> Department Specialists</h5>
+                  <div class="d-flex flex-wrap gap-4 mt-3">
+                    <div class="mini-doc-card d-flex align-items-center gap-3">
+                      <div class="mini-doc-avatar-placeholder"><i class="fas fa-hospital-user"></i></div>
+                      <div>
+                        <h6>On-Call ENT Specialists</h6>
+                        <small class="text-muted">ENT Surgeons</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer mt-4 pt-3 d-flex justify-content-end">
+                <button class="btn btn-primary btn-book-specialty" data-dept="ent"><i class="far fa-calendar-check"></i> Book Consultation</button>
+              </div>
+            </div>
+
+            <!-- Panel 11: Department of Anesthesia -->
+            <div class="tab-pane fade specialty-detail-panel" id="panel-anesthesia" role="tabpanel" aria-labelledby="tab-anesthesia">
+              <div class="panel-header d-flex align-items-center gap-3">
+                <div class="panel-icon"><i class="fas fa-syringe"></i></div>
+                <div>
+                  <span class="panel-tag text-uppercase">Surgical & Critical Care</span>
+                  <h3 class="panel-title">Department of Anesthesia</h3>
+                </div>
+              </div>
+              <div class="panel-body mt-4">
+                <p class="panel-desc">Playing a critical role in patient safety during surgeries. Our anesthesiologists deliver customized general, regional, and local anesthesia, along with comprehensive post-operative pain relief protocols.</p>
+                
+                <h5 class="procedures-title"><i class="fas fa-stethoscope"></i> Key Clinical Procedures</h5>
+                <div class="row mt-3">
+                  <div class="col-md-6">
+                    <ul class="procedure-list">
+                      <li><i class="fas fa-check-circle"></i> General & Regional Anesthesia</li>
+                      <li><i class="fas fa-check-circle"></i> Epidural & Painless Labor Support</li>
+                      <li><i class="fas fa-check-circle"></i> Pre-Anesthetic Health Profiling</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <ul class="procedure-list">
+                      <li><i class="fas fa-check-circle"></i> Chronic & Acute Pain Relief Plans</li>
+                      <li><i class="fas fa-check-circle"></i> ICU Life Support Management</li>
+                      <li><i class="fas fa-check-circle"></i> Post-Surgical Sedation Protocols</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="specialist-box mt-4 pt-3 border-top">
+                  <h5 class="specialists-title"><i class="fas fa-user-md"></i> Department Specialists</h5>
+                  <div class="d-flex flex-wrap gap-4 mt-3">
+                    <div class="mini-doc-card d-flex align-items-center gap-3">
+                      <div class="mini-doc-avatar-placeholder"><i class="fas fa-hospital-user"></i></div>
+                      <div>
+                        <h6>On-Call Anesthesiologists</h6>
+                        <small class="text-muted">Surgical Pain Experts</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer mt-4 pt-3 d-flex justify-content-end">
+                <button class="btn btn-primary btn-book-specialty" data-dept="anesthesia"><i class="far fa-calendar-check"></i> Book Consultation</button>
+              </div>
+            </div>
+
+            <!-- Panel 12: Onco Surgery -->
+            <div class="tab-pane fade specialty-detail-panel" id="panel-oncology" role="tabpanel" aria-labelledby="tab-oncology">
+              <div class="panel-header d-flex align-items-center gap-3">
+                <div class="panel-icon"><i class="fas fa-hand-holding-medical"></i></div>
+                <div>
+                  <span class="panel-tag text-uppercase">Surgical & Critical Care</span>
+                  <h3 class="panel-title">Onco Surgery (Cancer Care)</h3>
+                </div>
+              </div>
+              <div class="panel-body mt-4">
+                <p class="panel-desc">Providing high-precision surgical treatment for cancer. Our oncological surgeons specialize in tumor resections, biopsies, and organ-preserving surgeries, working closely with medical oncology for comprehensive cancer therapies.</p>
+                
+                <h5 class="procedures-title"><i class="fas fa-stethoscope"></i> Key Clinical Procedures</h5>
+                <div class="row mt-3">
+                  <div class="col-md-6">
+                    <ul class="procedure-list">
+                      <li><i class="fas fa-check-circle"></i> Solid Tumor Resection & Biopsy</li>
+                      <li><i class="fas fa-check-circle"></i> Breast Cancer Sparing Surgeries</li>
+                      <li><i class="fas fa-check-circle"></i> Gastrointestinal Oncology Surgeries</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <ul class="procedure-list">
+                      <li><i class="fas fa-check-circle"></i> Sentinel Lymph Node Evaluation</li>
+                      <li><i class="fas fa-check-circle"></i> Cancer Screening & Diagnostics</li>
+                      <li><i class="fas fa-check-circle"></i> Chemotherapy Port Placements</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="specialist-box mt-4 pt-3 border-top">
+                  <h5 class="specialists-title"><i class="fas fa-user-md"></i> Department Specialists</h5>
+                  <div class="d-flex flex-wrap gap-4 mt-3">
+                    <div class="mini-doc-card d-flex align-items-center gap-3">
+                      <img src="images/doc4.png" alt="Dr. Suneedh Gupta" class="mini-doc-img">
+                      <div>
+                        <h6>Dr. Suneedh Gupta</h6>
+                        <small class="text-muted">MBBS, DNB - Medical Oncology</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer mt-4 pt-3 d-flex justify-content-end">
+                <button class="btn btn-primary btn-book-specialty" data-dept="oncology"><i class="far fa-calendar-check"></i> Book Consultation</button>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -271,13 +979,14 @@ include __DIR__ . '/includes/navbar.php';
             <div class="doctor-card">
               <div class="doctor-img-container">
                 <img src="images/doc1.png" alt="Dr. Lata Goyal">
-                <div class="doctor-socials">
+                <span class="doc-badge-status"><i class="fas fa-check-circle text-success me-1"></i> Available Today</span>
+                <div class="doctor-glass-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
+                  <a href="mailto:info.sankalpslms@gmail.com" aria-label="Mail"><i class="fas fa-envelope"></i></a>
                 </div>
               </div>
               <div class="doctor-info">
-                <span class="doc-dept">Gynecology & IVF</span>
+                <span class="doc-dept-badge">Gynecology & IVF</span>
                 <h4>Dr. Lata Goyal</h4>
                 <p class="doc-degrees">MBBS, MS - Obs & Gynecology</p>
                 <a href="#appointment" class="doc-btn">Book Appointment</a>
@@ -290,13 +999,14 @@ include __DIR__ . '/includes/navbar.php';
             <div class="doctor-card">
               <div class="doctor-img-container">
                 <img src="images/doc2.png" alt="Dr. Usha Armo">
-                <div class="doctor-socials">
+                <span class="doc-badge-status"><i class="fas fa-check-circle text-success me-1"></i> Available Today</span>
+                <div class="doctor-glass-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
+                  <a href="mailto:info.sankalpslms@gmail.com" aria-label="Mail"><i class="fas fa-envelope"></i></a>
                 </div>
               </div>
               <div class="doctor-info">
-                <span class="doc-dept">Gynecology</span>
+                <span class="doc-dept-badge">Gynecology</span>
                 <h4>Dr. Usha Armo</h4>
                 <p class="doc-degrees">MBBS, DGO - Gynecology</p>
                 <a href="#appointment" class="doc-btn">Book Appointment</a>
@@ -309,13 +1019,14 @@ include __DIR__ . '/includes/navbar.php';
             <div class="doctor-card">
               <div class="doctor-img-container">
                 <img src="images/doc1.png" alt="Dr. Rimsha Lakesh Sahu">
-                <div class="doctor-socials">
+                <span class="doc-badge-status"><i class="fas fa-check-circle text-success me-1"></i> Available Today</span>
+                <div class="doctor-glass-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
+                  <a href="mailto:info.sankalpslms@gmail.com" aria-label="Mail"><i class="fas fa-envelope"></i></a>
                 </div>
               </div>
               <div class="doctor-info">
-                <span class="doc-dept">Gynecology & Obs</span>
+                <span class="doc-dept-badge">Gynecology & Obs</span>
                 <h4>Dr. Rimsha Lakesh Sahu</h4>
                 <p class="doc-degrees">MBBS, DNB - Obs & Gynecology</p>
                 <a href="#appointment" class="doc-btn">Book Appointment</a>
@@ -328,13 +1039,14 @@ include __DIR__ . '/includes/navbar.php';
             <div class="doctor-card">
               <div class="doctor-img-container">
                 <img src="images/doc3.png" alt="Dr. Tanay Goyal">
-                <div class="doctor-socials">
+                <span class="doc-badge-status"><i class="fas fa-check-circle text-success me-1"></i> Available Today</span>
+                <div class="doctor-glass-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
+                  <a href="mailto:info.sankalpslms@gmail.com" aria-label="Mail"><i class="fas fa-envelope"></i></a>
                 </div>
               </div>
               <div class="doctor-info">
-                <span class="doc-dept">Orthopaedics & Trauma</span>
+                <span class="doc-dept-badge">Orthopaedics & Trauma</span>
                 <h4>Dr. Tanay Goyal</h4>
                 <p class="doc-degrees">MBBS, MS - Orthopaedics</p>
                 <a href="#appointment" class="doc-btn">Book Appointment</a>
@@ -347,13 +1059,14 @@ include __DIR__ . '/includes/navbar.php';
             <div class="doctor-card">
               <div class="doctor-img-container">
                 <img src="images/doc4.png" alt="Dr. Sanjay Goyal">
-                <div class="doctor-socials">
+                <span class="doc-badge-status"><i class="fas fa-check-circle text-success me-1"></i> Available Today</span>
+                <div class="doctor-glass-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
+                  <a href="mailto:info.sankalpslms@gmail.com" aria-label="Mail"><i class="fas fa-envelope"></i></a>
                 </div>
               </div>
               <div class="doctor-info">
-                <span class="doc-dept">Orthopaedics</span>
+                <span class="doc-dept-badge">Orthopaedics</span>
                 <h4>Dr. Sanjay Goyal</h4>
                 <p class="doc-degrees">MBBS, D.Ortho - Orthopaedic Surgeon</p>
                 <a href="#appointment" class="doc-btn">Book Appointment</a>
@@ -366,13 +1079,14 @@ include __DIR__ . '/includes/navbar.php';
             <div class="doctor-card">
               <div class="doctor-img-container">
                 <img src="images/doc3.png" alt="Dr. Nilesh Goyal">
-                <div class="doctor-socials">
+                <span class="doc-badge-status"><i class="fas fa-check-circle text-success me-1"></i> Available Today</span>
+                <div class="doctor-glass-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
+                  <a href="mailto:info.sankalpslms@gmail.com" aria-label="Mail"><i class="fas fa-envelope"></i></a>
                 </div>
               </div>
               <div class="doctor-info">
-                <span class="doc-dept">Urology Specialist</span>
+                <span class="doc-dept-badge">Urology Specialist</span>
                 <h4>Dr. Nilesh Goyal</h4>
                 <p class="doc-degrees">MBBS, MS, MCh - Urology</p>
                 <a href="#appointment" class="doc-btn">Book Appointment</a>
@@ -385,13 +1099,14 @@ include __DIR__ . '/includes/navbar.php';
             <div class="doctor-card">
               <div class="doctor-img-container">
                 <img src="images/doc2.png" alt="Dr. Ankita Bansal Goyal">
-                <div class="doctor-socials">
+                <span class="doc-badge-status"><i class="fas fa-check-circle text-success me-1"></i> Available Today</span>
+                <div class="doctor-glass-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
+                  <a href="mailto:info.sankalpslms@gmail.com" aria-label="Mail"><i class="fas fa-envelope"></i></a>
                 </div>
               </div>
               <div class="doctor-info">
-                <span class="doc-dept">Ophthalmology & IVF</span>
+                <span class="doc-dept-badge">Ophthalmology & IVF</span>
                 <h4>Dr. Ankita Bansal Goyal</h4>
                 <p class="doc-degrees">MBBS, MS - Ophthalmology</p>
                 <a href="#appointment" class="doc-btn">Book Appointment</a>
@@ -404,13 +1119,14 @@ include __DIR__ . '/includes/navbar.php';
             <div class="doctor-card">
               <div class="doctor-img-container">
                 <img src="images/doc1.png" alt="Dr. Megha Goyal">
-                <div class="doctor-socials">
+                <span class="doc-badge-status"><i class="fas fa-check-circle text-success me-1"></i> Available Today</span>
+                <div class="doctor-glass-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
+                  <a href="mailto:info.sankalpslms@gmail.com" aria-label="Mail"><i class="fas fa-envelope"></i></a>
                 </div>
               </div>
               <div class="doctor-info">
-                <span class="doc-dept">Ophthalmology</span>
+                <span class="doc-dept-badge">Ophthalmology</span>
                 <h4>Dr. Megha Goyal</h4>
                 <p class="doc-degrees">MBBS, DOMS - Eye Specialist</p>
                 <a href="#appointment" class="doc-btn">Book Appointment</a>
@@ -423,13 +1139,14 @@ include __DIR__ . '/includes/navbar.php';
             <div class="doctor-card">
               <div class="doctor-img-container">
                 <img src="images/doc4.png" alt="Dr. Ankit Gupta">
-                <div class="doctor-socials">
+                <span class="doc-badge-status"><i class="fas fa-check-circle text-success me-1"></i> Available Today</span>
+                <div class="doctor-glass-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
+                  <a href="mailto:info.sankalpslms@gmail.com" aria-label="Mail"><i class="fas fa-envelope"></i></a>
                 </div>
               </div>
               <div class="doctor-info">
-                <span class="doc-dept">Pediatrics</span>
+                <span class="doc-dept-badge">Pediatrics</span>
                 <h4>Dr. Ankit Gupta</h4>
                 <p class="doc-degrees">MBBS, MD - Pediatrics</p>
                 <a href="#appointment" class="doc-btn">Book Appointment</a>
@@ -442,13 +1159,14 @@ include __DIR__ . '/includes/navbar.php';
             <div class="doctor-card">
               <div class="doctor-img-container">
                 <img src="images/doc2.png" alt="Dr. Akshaya Goyal">
-                <div class="doctor-socials">
+                <span class="doc-badge-status"><i class="fas fa-check-circle text-success me-1"></i> Available Today</span>
+                <div class="doctor-glass-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
+                  <a href="mailto:info.sankalpslms@gmail.com" aria-label="Mail"><i class="fas fa-envelope"></i></a>
                 </div>
               </div>
               <div class="doctor-info">
-                <span class="doc-dept">Pediatrics</span>
+                <span class="doc-dept-badge">Pediatrics</span>
                 <h4>Dr. Akshaya Goyal</h4>
                 <p class="doc-degrees">MBBS, DCH - Pediatrician</p>
                 <a href="#appointment" class="doc-btn">Book Appointment</a>
@@ -461,13 +1179,14 @@ include __DIR__ . '/includes/navbar.php';
             <div class="doctor-card">
               <div class="doctor-img-container">
                 <img src="images/doc3.png" alt="Dr. Shailesh Gupta">
-                <div class="doctor-socials">
+                <span class="doc-badge-status"><i class="fas fa-check-circle text-success me-1"></i> Available Today</span>
+                <div class="doctor-glass-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
+                  <a href="mailto:info.sankalpslms@gmail.com" aria-label="Mail"><i class="fas fa-envelope"></i></a>
                 </div>
               </div>
               <div class="doctor-info">
-                <span class="doc-dept">Psychiatry</span>
+                <span class="doc-dept-badge">Psychiatry</span>
                 <h4>Dr. Shailesh Gupta</h4>
                 <p class="doc-degrees">MBBS, MD - Psychiatry</p>
                 <a href="#appointment" class="doc-btn">Book Appointment</a>
@@ -480,13 +1199,14 @@ include __DIR__ . '/includes/navbar.php';
             <div class="doctor-card">
               <div class="doctor-img-container">
                 <img src="images/doc4.png" alt="Dr. Suneedh Gupta">
-                <div class="doctor-socials">
+                <span class="doc-badge-status"><i class="fas fa-check-circle text-success me-1"></i> Available Today</span>
+                <div class="doctor-glass-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
+                  <a href="mailto:info.sankalpslms@gmail.com" aria-label="Mail"><i class="fas fa-envelope"></i></a>
                 </div>
               </div>
               <div class="doctor-info">
-                <span class="doc-dept">Oncology</span>
+                <span class="doc-dept-badge">Oncology</span>
                 <h4>Dr. Suneedh Gupta</h4>
                 <p class="doc-degrees">MBBS, DNB - Medical Oncology</p>
                 <a href="#appointment" class="doc-btn">Book Appointment</a>
@@ -499,13 +1219,14 @@ include __DIR__ . '/includes/navbar.php';
             <div class="doctor-card">
               <div class="doctor-img-container">
                 <img src="images/doc3.png" alt="Dr. Ankit Sharma">
-                <div class="doctor-socials">
+                <span class="doc-badge-status"><i class="fas fa-check-circle text-success me-1"></i> Available Today</span>
+                <div class="doctor-glass-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
+                  <a href="mailto:info.sankalpslms@gmail.com" aria-label="Mail"><i class="fas fa-envelope"></i></a>
                 </div>
               </div>
               <div class="doctor-info">
-                <span class="doc-dept">General Surgery</span>
+                <span class="doc-dept-badge">General Surgery</span>
                 <h4>Dr. Ankit Sharma</h4>
                 <p class="doc-degrees">MBBS, MS - General Surgery</p>
                 <a href="#appointment" class="doc-btn">Book Appointment</a>
@@ -518,13 +1239,14 @@ include __DIR__ . '/includes/navbar.php';
             <div class="doctor-card">
               <div class="doctor-img-container">
                 <img src="images/doc4.png" alt="Dr. Chandra Mukesh Dhawde">
-                <div class="doctor-socials">
+                <span class="doc-badge-status"><i class="fas fa-check-circle text-success me-1"></i> Available Today</span>
+                <div class="doctor-glass-socials">
                   <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="#" aria-label="Mail"><i class="fas fa-envelope"></i></a>
+                  <a href="mailto:info.sankalpslms@gmail.com" aria-label="Mail"><i class="fas fa-envelope"></i></a>
                 </div>
               </div>
               <div class="doctor-info">
-                <span class="doc-dept">Laparoscopic Surgery</span>
+                <span class="doc-dept-badge">Laparoscopic Surgery</span>
                 <h4>Dr. Chandra Mukesh Dhawde</h4>
                 <p class="doc-degrees">MBBS, MS - Laparoscopic Surgeon</p>
                 <a href="#appointment" class="doc-btn">Book Appointment</a>
@@ -713,14 +1435,18 @@ include __DIR__ . '/includes/navbar.php';
                   <label for="book-dept">Select Specialty</label>
                   <select id="book-dept" required>
                     <option value="">Select Specialty</option>
-                    <option value="gynecology">Obstetrics & Gynecology (IVF)</option>
-                    <option value="orthopedics">Orthopedics & Trauma</option>
-                    <option value="urology">Urology</option>
-                    <option value="ophthalmology">Ophthalmology (Eye)</option>
-                    <option value="pediatrics">Pediatrics</option>
-                    <option value="psychiatry">Psychiatry</option>
-                    <option value="oncology">Chemotherapy & Oncology</option>
+                    <option value="ophthalmology">Ophthalmology</option>
+                    <option value="emergency">24 Hours Emergency & Trauma</option>
+                    <option value="gynecology">Obstetrics & Gynecology</option>
+                    <option value="gynecology">Assisted Fertility (IVF/ICSI/IUI)</option>
                     <option value="surgery">General & Laparoscopic Surgery</option>
+                    <option value="pediatrics">Pediatrics</option>
+                    <option value="orthopedics">Orthopaedics Surgery</option>
+                    <option value="urology">Urology</option>
+                    <option value="psychiatry">Psychiatry</option>
+                    <option value="ent">ENT</option>
+                    <option value="anesthesia">Department of Anesthesia</option>
+                    <option value="oncology">Onco Surgery</option>
                   </select>
                 </div>
                 <div class="col-md-6 form-group">
@@ -754,23 +1480,43 @@ include __DIR__ . '/includes/navbar.php';
         <div class="empanelments-track">
           <!-- First Set -->
           <div class="empanelment-logo"><i class="fas fa-heartbeat"></i> Ayushman Bharat (PMJAY)</div>
+          <div class="empanelment-logo"><i class="fas fa-hand-holding-medical"></i> Dr. Khubchand Baghel Yojana</div>
+          <div class="empanelment-logo"><i class="fas fa-award"></i> CG State Govt Employees</div>
           <div class="empanelment-logo"><i class="fas fa-check-circle"></i> CGHS Cashless</div>
-          <div class="empanelment-logo"><i class="fas fa-hospital"></i> ESIC Cashless</div>
+          <div class="empanelment-logo"><i class="fas fa-hospital"></i> ESIC Panel</div>
           <div class="empanelment-logo"><i class="fas fa-shield-alt"></i> Star Health Insurance</div>
-          <div class="empanelment-logo"><i class="fas fa-medkit"></i> HDFC ERGO TPA</div>
+          <div class="empanelment-logo"><i class="fas fa-medkit"></i> HDFC ERGO Insurance</div>
           <div class="empanelment-logo"><i class="fas fa-first-aid"></i> ICICI Lombard</div>
           <div class="empanelment-logo"><i class="fas fa-heart"></i> Bajaj Allianz</div>
           <div class="empanelment-logo"><i class="fas fa-plus-square"></i> SBI General</div>
+          <div class="empanelment-logo"><i class="fas fa-shield-alt"></i> Niva Bupa Health</div>
+          <div class="empanelment-logo"><i class="fas fa-heartbeat"></i> Care Health Insurance</div>
+          <div class="empanelment-logo"><i class="fas fa-award"></i> Aditya Birla Health</div>
+          <div class="empanelment-logo"><i class="fas fa-medkit"></i> Medi Assist TPA</div>
+          <div class="empanelment-logo"><i class="fas fa-first-aid"></i> Paramount TPA</div>
+          <div class="empanelment-logo"><i class="fas fa-plus-square"></i> Vidal Health TPA</div>
+          <div class="empanelment-logo"><i class="fas fa-heart"></i> Family Health Plan TPA</div>
+          <div class="empanelment-logo"><i class="fas fa-shield-alt"></i> Raksha TPA</div>
           
           <!-- Second Set (Duplicate for Infinite Loop) -->
           <div class="empanelment-logo"><i class="fas fa-heartbeat"></i> Ayushman Bharat (PMJAY)</div>
+          <div class="empanelment-logo"><i class="fas fa-hand-holding-medical"></i> Dr. Khubchand Baghel Yojana</div>
+          <div class="empanelment-logo"><i class="fas fa-award"></i> CG State Govt Employees</div>
           <div class="empanelment-logo"><i class="fas fa-check-circle"></i> CGHS Cashless</div>
-          <div class="empanelment-logo"><i class="fas fa-hospital"></i> ESIC Cashless</div>
+          <div class="empanelment-logo"><i class="fas fa-hospital"></i> ESIC Panel</div>
           <div class="empanelment-logo"><i class="fas fa-shield-alt"></i> Star Health Insurance</div>
-          <div class="empanelment-logo"><i class="fas fa-medkit"></i> HDFC ERGO TPA</div>
+          <div class="empanelment-logo"><i class="fas fa-medkit"></i> HDFC ERGO Insurance</div>
           <div class="empanelment-logo"><i class="fas fa-first-aid"></i> ICICI Lombard</div>
           <div class="empanelment-logo"><i class="fas fa-heart"></i> Bajaj Allianz</div>
           <div class="empanelment-logo"><i class="fas fa-plus-square"></i> SBI General</div>
+          <div class="empanelment-logo"><i class="fas fa-shield-alt"></i> Niva Bupa Health</div>
+          <div class="empanelment-logo"><i class="fas fa-heartbeat"></i> Care Health Insurance</div>
+          <div class="empanelment-logo"><i class="fas fa-award"></i> Aditya Birla Health</div>
+          <div class="empanelment-logo"><i class="fas fa-medkit"></i> Medi Assist TPA</div>
+          <div class="empanelment-logo"><i class="fas fa-first-aid"></i> Paramount TPA</div>
+          <div class="empanelment-logo"><i class="fas fa-plus-square"></i> Vidal Health TPA</div>
+          <div class="empanelment-logo"><i class="fas fa-heart"></i> Family Health Plan TPA</div>
+          <div class="empanelment-logo"><i class="fas fa-shield-alt"></i> Raksha TPA</div>
         </div>
       </div>
     </div>

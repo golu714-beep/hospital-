@@ -18,11 +18,14 @@
           <div class="footer-widget">
             <h4>Quick Links</h4>
             <ul class="footer-links">
-              <li><a href="#home">Home</a></li>
-              <li><a href="#about">About Us</a></li>
-              <li><a href="#departments">Our Specialties</a></li>
-              <li><a href="#doctors">Meet Doctors</a></li>
-              <li><a href="#faq">Support & FAQs</a></li>
+              <li><a href="index.php">Home</a></li>
+              <li><a href="about.php">About Us</a></li>
+              <li><a href="departments.php">Our Specialties</a></li>
+              <li><a href="doctors.php">Meet Doctors</a></li>
+              <li><a href="empanelments.php">Empanelments & Cashless</a></li>
+              <li><a href="faq.php">Support & FAQs</a></li>
+              <li><a href="myths-facts.php">Myths & Facts</a></li>
+              <li><a href="glossary.php">Medical Glossary</a></li>
             </ul>
           </div>
         </div>
@@ -53,6 +56,7 @@
       </div>
     </div>
   </footer>
+</div> <!-- .page-wrapper -->
 
   <!-- SCROLL TOP -->
   <a href="#home" class="scrollTop" aria-label="Scroll to top">
