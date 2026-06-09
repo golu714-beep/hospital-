@@ -8,9 +8,17 @@ include __DIR__ . '/includes/navbar.php';
 
 <!-- SUBPAGE HERO BANNER -->
 <section class="subpage-hero">
-  <div class="container">
-    <h1>Medical Glossary</h1>
-    <p>A comprehensive, searchable index explaining clinical terminologies, procedures, and terms in plain language.</p>
+  <div class="container text-center text-lg-start">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-8">
+        <span class="badge bg-white-20 text-white px-3 py-2 rounded-pill text-uppercase mb-3"><i class="fas fa-book-medical me-1"></i> Medical Glossary</span>
+        <h1 class="text-white display-4 fw-bold">Medical Glossary</h1>
+        <p class="lead text-white-50 mb-0">A comprehensive, searchable index explaining clinical terminologies, procedures, and terms in plain language.</p>
+      </div>
+      <div class="col-lg-4 text-center text-lg-end">
+        <a href="index.php#appointment" class="btn btn-light btn-lg px-4 py-3 border-0 rounded-pill shadow-lg text-primary fw-bold fs-6"><i class="far fa-calendar-check me-2"></i> Book Consultation</a>
+      </div>
+    </div>
   </div>
 </section>
 

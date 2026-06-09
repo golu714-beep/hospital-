@@ -3,6 +3,58 @@
 $requestPath = parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH);
 $route = basename($requestPath);
 
+// Mapping for clinical department pages to the unified detail template
+$departmentRoutes = [
+    'ophthalmology' => 'ophthalmology',
+    'ophthalmology.php' => 'ophthalmology',
+    'emergency' => 'emergency',
+    'emergency.php' => 'emergency',
+    'emergency-trauma' => 'emergency',
+    'emergency-trauma.php' => 'emergency',
+    'gynecology' => 'gynecology',
+    'gynecology.php' => 'gynecology',
+    'obstetrics-gynecology' => 'gynecology',
+    'obstetrics-gynecology.php' => 'gynecology',
+    'ivf' => 'ivf',
+    'ivf.php' => 'ivf',
+    'assisted-fertility' => 'ivf',
+    'assisted-fertility.php' => 'ivf',
+    'surgery' => 'surgery',
+    'surgery.php' => 'surgery',
+    'general-surgery' => 'surgery',
+    'general-surgery.php' => 'surgery',
+    'laparoscopic-surgery' => 'surgery',
+    'laparoscopic-surgery.php' => 'surgery',
+    'pediatrics' => 'pediatrics',
+    'pediatrics.php' => 'pediatrics',
+    'neonatology' => 'pediatrics',
+    'neonatology.php' => 'pediatrics',
+    'orthopedics' => 'orthopedics',
+    'orthopedics.php' => 'orthopedics',
+    'orthopaedics' => 'orthopedics',
+    'orthopaedics.php' => 'orthopedics',
+    'urology' => 'urology',
+    'urology.php' => 'urology',
+    'psychiatry' => 'psychiatry',
+    'psychiatry.php' => 'psychiatry',
+    'ent' => 'ent',
+    'ent.php' => 'ent',
+    'anesthesiology' => 'anesthesia',
+    'anesthesiology.php' => 'anesthesia',
+    'anesthesia' => 'anesthesia',
+    'anesthesia.php' => 'anesthesia',
+    'oncology' => 'oncology',
+    'oncology.php' => 'oncology',
+    'onco-surgery' => 'oncology',
+    'onco-surgery.php' => 'oncology',
+];
+
+if (isset($departmentRoutes[$route])) {
+    $deptKey = $departmentRoutes[$route];
+    include __DIR__ . '/department-detail.php';
+    exit;
+}
+
 if ($route === 'about' || $route === 'about.php') {
     include __DIR__ . '/about.php';
     exit;

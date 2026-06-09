@@ -8,9 +8,17 @@ include __DIR__ . '/includes/navbar.php';
 
 <!-- SUBPAGE HERO BANNER -->
 <section class="subpage-hero">
-  <div class="container">
-    <h1>Clinical Departments</h1>
-    <p>Providing specialized clinical expertise, modern equipment, and dedicated outpatient care across 12 crucial health sectors.</p>
+  <div class="container text-center text-lg-start">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-8">
+        <span class="badge bg-white-20 text-white px-3 py-2 rounded-pill text-uppercase mb-3"><i class="fas fa-hand-holding-medical me-1"></i> Sankalp Specialities</span>
+        <h1 class="text-white display-4 fw-bold">Clinical Departments</h1>
+        <p class="lead text-white-50 mb-0">Providing specialized clinical expertise, modern medical equipment, and dedicated patient care across 12 crucial health sectors.</p>
+      </div>
+      <div class="col-lg-4 text-center text-lg-end">
+        <a href="index.php#appointment" class="btn btn-light btn-lg px-4 py-3 border-0 rounded-pill shadow-lg text-primary fw-bold fs-6"><i class="far fa-calendar-check me-2"></i> Book Consultation</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -188,7 +196,8 @@ include __DIR__ . '/includes/navbar.php';
                 </div>
               </div>
             </div>
-            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end">
+            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end gap-2">
+              <a href="ophthalmology" class="btn btn-outline-primary rounded-pill px-4"><i class="fas fa-info-circle"></i> Learn More</a>
               <button class="btn btn-primary btn-book-specialty" data-dept="ophthalmology"><i class="far fa-calendar-check"></i> Book Consultation</button>
             </div>
           </div>
@@ -236,7 +245,8 @@ include __DIR__ . '/includes/navbar.php';
                 </div>
               </div>
             </div>
-            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end">
+            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end gap-2">
+              <a href="emergency" class="btn btn-outline-danger rounded-pill px-4"><i class="fas fa-info-circle"></i> Learn More</a>
               <button class="btn btn-emergency btn-book-specialty" data-dept="emergency"><i class="fas fa-ambulance"></i> Contact Emergency</button>
             </div>
           </div>
@@ -298,7 +308,8 @@ include __DIR__ . '/includes/navbar.php';
                 </div>
               </div>
             </div>
-            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end">
+            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end gap-2">
+              <a href="gynecology" class="btn btn-outline-primary rounded-pill px-4"><i class="fas fa-info-circle"></i> Learn More</a>
               <button class="btn btn-primary btn-book-specialty" data-dept="gynecology"><i class="far fa-calendar-check"></i> Book Consultation</button>
             </div>
           </div>
@@ -353,7 +364,8 @@ include __DIR__ . '/includes/navbar.php';
                 </div>
               </div>
             </div>
-            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end">
+            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end gap-2">
+              <a href="ivf" class="btn btn-outline-primary rounded-pill px-4"><i class="fas fa-info-circle"></i> Learn More</a>
               <button class="btn btn-primary btn-book-specialty" data-dept="gynecology"><i class="far fa-calendar-check"></i> Book Consultation</button>
             </div>
           </div>
@@ -408,7 +420,8 @@ include __DIR__ . '/includes/navbar.php';
                 </div>
               </div>
             </div>
-            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end">
+            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end gap-2">
+              <a href="surgery" class="btn btn-outline-primary rounded-pill px-4"><i class="fas fa-info-circle"></i> Learn More</a>
               <button class="btn btn-primary btn-book-specialty" data-dept="surgery"><i class="far fa-calendar-check"></i> Book Consultation</button>
             </div>
           </div>
@@ -463,7 +476,8 @@ include __DIR__ . '/includes/navbar.php';
                 </div>
               </div>
             </div>
-            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end">
+            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end gap-2">
+              <a href="pediatrics" class="btn btn-outline-primary rounded-pill px-4"><i class="fas fa-info-circle"></i> Learn More</a>
               <button class="btn btn-primary btn-book-specialty" data-dept="pediatrics"><i class="far fa-calendar-check"></i> Book Consultation</button>
             </div>
           </div>
@@ -518,7 +532,8 @@ include __DIR__ . '/includes/navbar.php';
                 </div>
               </div>
             </div>
-            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end">
+            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end gap-2">
+              <a href="orthopedics" class="btn btn-outline-primary rounded-pill px-4"><i class="fas fa-info-circle"></i> Learn More</a>
               <button class="btn btn-primary btn-book-specialty" data-dept="orthopedics"><i class="far fa-calendar-check"></i> Book Consultation</button>
             </div>
           </div>
@@ -566,7 +581,8 @@ include __DIR__ . '/includes/navbar.php';
                 </div>
               </div>
             </div>
-            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end">
+            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end gap-2">
+              <a href="urology" class="btn btn-outline-primary rounded-pill px-4"><i class="fas fa-info-circle"></i> Learn More</a>
               <button class="btn btn-primary btn-book-specialty" data-dept="urology"><i class="far fa-calendar-check"></i> Book Consultation</button>
             </div>
           </div>
@@ -614,7 +630,8 @@ include __DIR__ . '/includes/navbar.php';
                 </div>
               </div>
             </div>
-            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end">
+            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end gap-2">
+              <a href="psychiatry" class="btn btn-outline-primary rounded-pill px-4"><i class="fas fa-info-circle"></i> Learn More</a>
               <button class="btn btn-primary btn-book-specialty" data-dept="psychiatry"><i class="far fa-calendar-check"></i> Book Consultation</button>
             </div>
           </div>
@@ -662,7 +679,8 @@ include __DIR__ . '/includes/navbar.php';
                 </div>
               </div>
             </div>
-            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end">
+            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end gap-2">
+              <a href="ent" class="btn btn-outline-primary rounded-pill px-4"><i class="fas fa-info-circle"></i> Learn More</a>
               <button class="btn btn-primary btn-book-specialty" data-dept="ent"><i class="far fa-calendar-check"></i> Book Consultation</button>
             </div>
           </div>
@@ -710,7 +728,8 @@ include __DIR__ . '/includes/navbar.php';
                 </div>
               </div>
             </div>
-            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end">
+            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end gap-2">
+              <a href="anesthesiology" class="btn btn-outline-primary rounded-pill px-4"><i class="fas fa-info-circle"></i> Learn More</a>
               <button class="btn btn-primary btn-book-specialty" data-dept="anesthesia"><i class="far fa-calendar-check"></i> Book Consultation</button>
             </div>
           </div>
@@ -758,7 +777,8 @@ include __DIR__ . '/includes/navbar.php';
                 </div>
               </div>
             </div>
-            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end">
+            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end gap-2">
+              <a href="oncology" class="btn btn-outline-primary rounded-pill px-4"><i class="fas fa-info-circle"></i> Learn More</a>
               <button class="btn btn-primary btn-book-specialty" data-dept="oncology"><i class="far fa-calendar-check"></i> Book Consultation</button>
             </div>
           </div>

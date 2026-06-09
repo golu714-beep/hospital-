@@ -26,18 +26,18 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="departments.php" role="button">Departments</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="departments.php?dept=ophthalmology"><i class="fas fa-eye me-2 text-primary"></i> Ophthalmology</a></li>
-              <li><a class="dropdown-item" href="departments.php?dept=emergency"><i class="fas fa-ambulance me-2 text-primary"></i> Emergency & Trauma</a></li>
-              <li><a class="dropdown-item" href="departments.php?dept=gynecology"><i class="fas fa-female me-2 text-primary"></i> Obstetrics & Gynecology</a></li>
-              <li><a class="dropdown-item" href="departments.php?dept=ivf"><i class="fas fa-baby me-2 text-primary"></i> Assisted Fertility (IVF)</a></li>
-              <li><a class="dropdown-item" href="departments.php?dept=surgery"><i class="fas fa-procedures me-2 text-primary"></i> Laparoscopic Surgery</a></li>
-              <li><a class="dropdown-item" href="departments.php?dept=pediatrics"><i class="fas fa-child me-2 text-primary"></i> Pediatrics</a></li>
-              <li><a class="dropdown-item" href="departments.php?dept=orthopedics"><i class="fas fa-bone me-2 text-primary"></i> Orthopaedics Surgery</a></li>
-              <li><a class="dropdown-item" href="departments.php?dept=urology"><i class="fas fa-user-md me-2 text-primary"></i> Urology</a></li>
-              <li><a class="dropdown-item" href="departments.php?dept=psychiatry"><i class="fas fa-brain me-2 text-primary"></i> Psychiatry</a></li>
-              <li><a class="dropdown-item" href="departments.php?dept=ent"><i class="fas fa-head-side-cough me-2 text-primary"></i> ENT</a></li>
-              <li><a class="dropdown-item" href="departments.php?dept=anesthesia"><i class="fas fa-syringe me-2 text-primary"></i> Anesthesia</a></li>
-              <li><a class="dropdown-item" href="departments.php?dept=oncology"><i class="fas fa-hand-holding-medical me-2 text-primary"></i> Onco Surgery</a></li>
+              <li><a class="dropdown-item" href="ophthalmology"><i class="fas fa-eye me-2 text-primary"></i> Ophthalmology</a></li>
+              <li><a class="dropdown-item" href="emergency"><i class="fas fa-ambulance me-2 text-primary"></i> Emergency & Trauma</a></li>
+              <li><a class="dropdown-item" href="gynecology"><i class="fas fa-female me-2 text-primary"></i> Obstetrics & Gynecology</a></li>
+              <li><a class="dropdown-item" href="ivf"><i class="fas fa-baby me-2 text-primary"></i> Assisted Fertility (IVF)</a></li>
+              <li><a class="dropdown-item" href="surgery"><i class="fas fa-procedures me-2 text-primary"></i> Laparoscopic Surgery</a></li>
+              <li><a class="dropdown-item" href="pediatrics"><i class="fas fa-child me-2 text-primary"></i> Pediatrics</a></li>
+              <li><a class="dropdown-item" href="orthopedics"><i class="fas fa-bone me-2 text-primary"></i> Orthopaedics Surgery</a></li>
+              <li><a class="dropdown-item" href="urology"><i class="fas fa-user-md me-2 text-primary"></i> Urology</a></li>
+              <li><a class="dropdown-item" href="psychiatry"><i class="fas fa-brain me-2 text-primary"></i> Psychiatry</a></li>
+              <li><a class="dropdown-item" href="ent"><i class="fas fa-head-side-cough me-2 text-primary"></i> ENT</a></li>
+              <li><a class="dropdown-item" href="anesthesiology"><i class="fas fa-syringe me-2 text-primary"></i> Anesthesia</a></li>
+              <li><a class="dropdown-item" href="oncology"><i class="fas fa-hand-holding-medical me-2 text-primary"></i> Onco Surgery</a></li>
             </ul>
           </li>
           <li class="nav-item"><a class="nav-link" href="doctors.php">Experts</a></li>

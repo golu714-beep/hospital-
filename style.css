@@ -3362,3 +3362,715 @@ img {
   line-height: 1.5;
   margin: 0;
 }
+
+/* ==========================================================================
+   Department Detail Pages Premium Styles
+   ========================================================================== */
+
+/* Brand Gradients for Department Themes */
+.gradient-clinical {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, var(--secondary-dark) 100%) !important;
+}
+
+.gradient-emergency {
+  background: linear-gradient(135deg, #9f1239 0%, var(--emergency) 70%, #f43f5e 100%) !important;
+}
+
+.gradient-family-care {
+  background: linear-gradient(135deg, var(--secondary-dark) 0%, var(--secondary) 50%, #0ea5e9 100%) !important;
+}
+
+/* Subpage Hero Banner */
+.subpage-hero {
+  position: relative;
+  padding: clamp(140px, 16vh, 180px) 0 clamp(80px, 10vh, 110px) 0;
+  color: var(--white);
+  overflow: hidden;
+}
+
+.subpage-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+  z-index: 1;
+}
+
+.subpage-hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+.subpage-hero h1 {
+  font-size: var(--fs-h1);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+}
+
+.subpage-hero .lead {
+  font-family: var(--font-body);
+  font-weight: 400;
+  max-width: 700px;
+}
+
+/* Sticky secondary sub-navigation floating capsule */
+.sticky-sub-nav-wrapper {
+  position: sticky;
+  top: 85px; /* Spaced below the floating-nav */
+  z-index: 999;
+  pointer-events: none; /* Let clicks pass through margins */
+  padding: 10px 0;
+}
+
+.sticky-sub-nav {
+  max-width: 780px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(15, 92, 173, 0.08);
+  border-radius: 50px;
+  box-shadow: 0 10px 30px -5px rgba(15, 92, 173, 0.08);
+  pointer-events: auto; /* Re-enable clicks for the menu itself */
+  padding: 2px 16px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sticky-sub-nav .nav {
+  border: none !important;
+}
+
+.sticky-sub-nav .nav-link {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-muted) !important;
+  padding: 10px 18px !important;
+  border-radius: 30px;
+  transition: var(--transition);
+  position: relative;
+}
+
+.sticky-sub-nav .nav-link:hover,
+.sticky-sub-nav .nav-link.active {
+  color: var(--primary) !important;
+  background-color: var(--primary-light);
+}
+
+/* When inside a custom theme container, hover & active states should adapt */
+.dept-theme-container .sticky-sub-nav .nav-link:hover,
+.dept-theme-container .sticky-sub-nav .nav-link.active {
+  color: var(--dept-color) !important;
+  background-color: var(--dept-color-light) !important;
+}
+
+.sticky-sub-nav .nav-link.active {
+  font-weight: 700;
+}
+
+/* Feature Icon Boxes */
+.feature-icon-box {
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  background-color: var(--dept-color-light) !important;
+  color: var(--dept-color) !important;
+}
+
+/* Department Promo Card (Overlay-like glassmorphic look) */
+.dept-promo-card {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.dept-promo-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dept-promo-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.promo-icon-circle {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.bg-white-20 {
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.border-white-10 {
+  border-color: rgba(255,255,255,0.15) !important;
+}
+
+/* Service Cards */
+.service-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--white);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid var(--border-color) !important;
+}
+
+.service-card-decor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  transition: var(--transition);
+  background-color: var(--dept-color) !important;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08) !important;
+}
+
+.service-icon-box {
+  font-size: 1.75rem;
+  color: var(--dept-color) !important;
+}
+
+/* Check circle styles */
+.check-circle-decor {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--dept-color-light) !important;
+  color: var(--dept-color) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+/* Procedure visual overlay */
+.bg-gradient-dark {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+/* Accordion Custom Styling */
+.accordion-custom .accordion-item {
+  border: 1px solid var(--border-color) !important;
+  overflow: hidden;
+}
+
+.accordion-custom .accordion-button {
+  background-color: var(--white) !important;
+  color: var(--text-dark) !important;
+  font-family: var(--font-heading) !important;
+  outline: none;
+  box-shadow: none;
+}
+
+.accordion-custom .accordion-button:not(.collapsed) {
+  background-color: var(--dept-color-light) !important;
+  color: var(--dept-color) !important;
+}
+
+/* Hover transitions */
+.transition-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.transition-hover:hover {
+  transform: translateY(-5px);
+}
+
+/* Booking box custom */
+.booking-form-box {
+  border: 1px solid var(--border-color);
+}
+
+/* Global Custom Doctor Card overrides for consistent button & themes */
+.doc-cta-btn {
+  background-color: var(--light-bg);
+  color: var(--dept-color, var(--primary));
+  border: 1px solid var(--border-color);
+  font-weight: 600;
+  font-size: 0.82rem;
+  padding: 10px 24px;
+  border-radius: 30px;
+  transition: var(--transition);
+  display: inline-block;
+  text-align: center;
+  width: auto;
+  margin-top: 10px;
+  box-shadow: none;
+}
+
+.doctor-card:hover .doc-cta-btn {
+  background: var(--dept-color, var(--primary)) !important;
+  color: var(--white) !important;
+  border-color: var(--dept-color, var(--primary)) !important;
+  box-shadow: 0 4px 12px rgba(15, 92, 173, 0.15) !important;
+}
+
+/* Local Theme Overrides for Utility Classes */
+.dept-theme-container {
+  width: 100%;
+}
+
+.dept-theme-container .text-primary {
+  color: var(--dept-color) !important;
+}
+
+.dept-theme-container .btn-primary {
+  background-color: var(--dept-color) !important;
+  border-color: var(--dept-color) !important;
+}
+
+.dept-theme-container .btn-primary:hover {
+  filter: brightness(0.9);
+}
+
+.dept-theme-container .bg-primary {
+  background-color: var(--dept-color) !important;
+}
+
+.dept-theme-container .border-primary-light {
+  border-color: var(--dept-color-light) !important;
+}
+
+.dept-theme-container .doc-dept-badge {
+  background-color: var(--dept-color-light) !important;
+  color: var(--dept-color) !important;
+}
+
+.dept-theme-container .doctor-card:hover .doc-dept-badge {
+  background-color: var(--dept-color) !important;
+  color: var(--white) !important;
+}
+
+.dept-theme-container .appointment-support-icon {
+  background-color: var(--dept-color-light) !important;
+  color: var(--dept-color) !important;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+/* Extra Font Weights */
+.fw-extrabold {
+  font-weight: 800 !important;
+}
+
+.fw-black {
+  font-weight: 900 !important;
+}
+
+/* ==========================================================================
+   PREMIUM MAKE-OVER STYLES (UI/UX UPGRADES)
+   ========================================================================== */
+
+/* 1. Premium Timeline cards horizontal scrollbar */
+.timeline-cards-scroll::-webkit-scrollbar-track {
+  background: rgba(15, 92, 173, 0.03) !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(15, 92, 173, 0.05) !important;
+}
+
+.timeline-cards-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, rgba(15, 92, 173, 0.35) 0%, rgba(0, 204, 167, 0.35) 100%) !important;
+  border-radius: 20px !important;
+  border: 2px solid transparent !important;
+  background-clip: padding-box !important;
+}
+
+.timeline-cards-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%) !important;
+  border-radius: 20px !important;
+  border: 2px solid transparent !important;
+  background-clip: padding-box !important;
+}
+
+/* 2. Vision & Mission Cards - sliding colored border accent and soft scale lift */
+.vision-mission-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease !important;
+}
+
+.vision-mission-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 5;
+}
+
+.vision-mission-card:hover {
+  transform: translateY(-8px) scale(1.01) !important;
+  box-shadow: 0 30px 60px -15px rgba(15, 92, 173, 0.15) !important;
+}
+
+.vision-mission-card:hover::before {
+  transform: scaleX(1);
+}
+
+.vision-mission-card.vision:hover {
+  border-color: rgba(15, 92, 173, 0.3) !important;
+}
+
+.vision-mission-card.mission:hover {
+  border-color: rgba(0, 204, 167, 0.3) !important;
+}
+
+/* 3. Patient Care Tab Left-Border Glows */
+.care-tab-link {
+  position: relative;
+  border-left: 4px solid transparent !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.care-tab-link:hover {
+  border-left-color: rgba(15, 92, 173, 0.25) !important;
+}
+
+.care-tab-link.active {
+  border-left-color: var(--primary) !important;
+  background-color: rgba(15, 92, 173, 0.04) !important;
+  box-shadow: 0 8px 20px -5px rgba(15, 92, 173, 0.08) !important;
+}
+
+/* 4. Refined 3D Flipping Cards for Myths & Facts */
+.myth-card-container {
+  perspective: 2000px !important;
+}
+
+.card-flipper {
+  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) !important; /* Elegant elastic snap-back */
+}
+
+.card-front, .card-back {
+  border-radius: 24px !important;
+  border: 1px solid rgba(15, 92, 173, 0.08) !important;
+  box-shadow: 0 15px 35px -5px rgba(15, 92, 173, 0.05) !important;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease !important;
+}
+
+.card-front:hover {
+  border-color: var(--emergency) !important;
+  box-shadow: 0 25px 45px -10px rgba(225, 29, 72, 0.12) !important;
+}
+
+.card-back:hover {
+  border-color: var(--secondary) !important;
+  box-shadow: 0 25px 45px -10px rgba(0, 204, 167, 0.12) !important;
+}
+
+/* 5. Mobile Offcanvas Glassmorphism Makeover */
+.offcanvas {
+  background: rgba(255, 255, 255, 0.82) !important;
+  backdrop-filter: blur(25px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(190%) !important;
+  border-right: 1px solid rgba(15, 92, 173, 0.08) !important;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.offcanvas-header {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(15, 92, 173, 0.05) !important;
+}
+
+.offcanvas-body .mobile-menu a {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--text-dark) !important;
+  padding: 10px 15px;
+  border-radius: 12px;
+  display: block;
+  transition: all 0.3s ease !important;
+}
+
+.offcanvas-body .mobile-menu a:hover {
+  background-color: var(--primary-light) !important;
+  color: var(--primary) !important;
+  transform: translateX(6px) !important;
+}
+
+/* 6. Filter Tab Buttons Makeover */
+.filter-tab-btn {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  border-width: 1px !important;
+}
+
+.filter-tab-btn:hover {
+  background: var(--primary-light) !important;
+  color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  transform: translateY(-2px);
+}
+
+.filter-tab-btn.active {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%) !important;
+  color: var(--white) !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 8px 20px -5px rgba(15, 92, 173, 0.3) !important;
+}
+
+/* ==========================================================================
+   WORLD-CLASS PHONE & MOBILE RESPONSIVENESS OVERRIDES
+   ========================================================================== */
+
+/* General Mobile Polish (< 768px) */
+@media (max-width: 767px) {
+  section {
+    padding: clamp(2rem, 6vw, 4rem) 0 !important;
+  }
+  
+  .section-title {
+    margin-bottom: clamp(1.5rem, 5vw, 2.5rem) !important;
+  }
+
+  .section-title h2 {
+    font-size: clamp(1.4rem, 5vw, 2rem) !important;
+  }
+
+  .director-msg-card {
+    padding: 24px 16px !important;
+    border-radius: 20px !important;
+  }
+
+  .director-quote {
+    font-size: 1rem !important;
+    padding-left: 12px !important;
+    margin-bottom: 15px !important;
+  }
+
+  .vision-mission-card {
+    padding: 25px 20px !important;
+  }
+
+  .vision-mission-icon {
+    width: 54px !important;
+    height: 54px !important;
+    font-size: 1.5rem !important;
+    margin-bottom: 15px !important;
+  }
+
+  .stat-card {
+    padding: 30px 20px !important;
+    border-radius: 16px !important;
+  }
+
+  .stat-icon-wrapper {
+    width: 54px !important;
+    height: 54px !important;
+    font-size: 1.35rem !important;
+    margin-bottom: 15px !important;
+  }
+
+  /* Compact footer for mobile */
+  footer {
+    padding: 40px 0 20px 0 !important;
+  }
+  
+  .footer-col {
+    margin-bottom: 25px;
+  }
+}
+
+/* Small Smartphone Viewports (< 576px) */
+@media (max-width: 575px) {
+  /* Prevent massive heroes on small screens */
+  .subpage-hero {
+    padding: clamp(100px, 12vh, 120px) 0 clamp(40px, 8vh, 60px) 0 !important;
+    text-align: center !important;
+  }
+
+  .subpage-hero h1 {
+    font-size: clamp(1.75rem, 7vw, 2.2rem) !important;
+    font-weight: 800 !important;
+    margin-bottom: 10px !important;
+    line-height: 1.2 !important;
+  }
+
+  .subpage-hero p.lead {
+    font-size: 0.92rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Booking form container phone padding */
+  .hero-booker-widget {
+    padding: 20px 15px !important;
+    border-radius: 20px !important;
+  }
+
+  .hero-booker-widget h3 {
+    font-size: 1.2rem !important;
+  }
+
+  /* Ensure myth card text doesn't overflow height */
+  .myth-card-container {
+    height: 340px !important;
+  }
+
+  .card-front, .card-back {
+    padding: 20px !important;
+    border-radius: 16px !important;
+  }
+
+  .card-title-box {
+    margin-top: 10px !important;
+  }
+
+  .card-title-box h4 {
+    font-size: 1rem !important;
+  }
+
+  .card-desc-box {
+    font-size: 0.82rem !important;
+    line-height: 1.5 !important;
+    margin-top: 10px !important;
+  }
+
+  /* Narrow timeline scroll cards to look best on swipe */
+  .timeline-scroll-card {
+    flex: 0 0 270px !important;
+    padding: 25px 20px 20px 20px !important;
+  }
+
+  .timeline-scroll-card h4 {
+    font-size: 1.1rem !important;
+  }
+
+  .timeline-scroll-card p {
+    font-size: 0.8rem !important;
+  }
+
+  .timeline-node {
+    top: -50px !important;
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  /* Ensure department overview sections align */
+  .dept-promo-card {
+    padding: 20px !important;
+    border-radius: 16px !important;
+  }
+}
+
+/* Extra Small Phones & Screen Widths (< 480px) */
+@media (max-width: 479px) {
+  /* Nav bar auto scaling */
+  .floating-nav {
+    width: 96% !important;
+    height: 56px !important;
+    top: 10px !important;
+    padding: 0 10px !important;
+  }
+
+  .floating-nav.scrolled {
+    height: 52px !important;
+    top: 6px !important;
+  }
+
+  .brand-logo {
+    height: 28px !important;
+  }
+
+  .floating-nav.scrolled .brand-logo {
+    height: 24px !important;
+  }
+
+  .btn-primary-nav {
+    padding: 8px 12px !important;
+    font-size: 0.72rem !important;
+    gap: 4px !important;
+  }
+
+  .navbar-toggler {
+    padding: 2px 4px !important;
+  }
+
+  .navbar-toggler i {
+    font-size: 1.15rem !important;
+  }
+
+  /* Scale down tabs for category filter wrap */
+  .myths-filter-wrap {
+    gap: 8px !important;
+    margin-bottom: 25px !important;
+  }
+
+  .filter-tab-btn {
+    padding: 6px 14px !important;
+    font-size: 0.78rem !important;
+    border-radius: 20px !important;
+  }
+
+  /* Make tab scroll bar lists on mobile smooth and responsive */
+  .specialty-nav-list {
+    gap: 6px !important;
+  }
+
+  .specialty-tab-btn {
+    padding: 8px 12px !important;
+    font-size: 0.8rem !important;
+    border-radius: 10px !important;
+  }
+
+  /* Align forms on phone screens */
+  .widget-form select,
+  .widget-form input {
+    padding: 10px 14px !important;
+    font-size: 0.85rem !important;
+  }
+
+  .widget-form .btn-submit {
+    padding: 11px 20px !important;
+    font-size: 0.88rem !important;
+  }
+}
