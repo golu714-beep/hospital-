@@ -1,5 +1,4 @@
 $(document).ready(function () {
-  
   /* ==========================================
      1. Sticky Navbar Transition
      ========================================== */
@@ -18,45 +17,53 @@ $(document).ready(function () {
      2. Doctor-Department Dynamic Filters
      ========================================== */
   var doctorsData = {
-    "gynecology": [
+    gynecology: [
       { name: "Dr. Lata Goyal", degrees: "MBBS, MS - Obstetrics & Gynecology" },
       { name: "Dr. Usha Armo", degrees: "MBBS, DGO - Gynecology" },
-      { name: "Dr. Rimsha Lakesh Sahu", degrees: "MBBS, DNB - Obstetrics & Gynecology" }
+      {
+        name: "Dr. Rimsha Lakesh Sahu",
+        degrees: "MBBS, DNB - Obstetrics & Gynecology",
+      },
     ],
-    "orthopedics": [
+    orthopedics: [
       { name: "Dr. Tanay Goyal", degrees: "MBBS, MS - Orthopaedics" },
-      { name: "Dr. Sanjay Goyal", degrees: "MBBS, D.Ortho - Orthopaedic Surgeon" }
+      {
+        name: "Dr. Sanjay Goyal",
+        degrees: "MBBS, D.Ortho - Orthopaedic Surgeon",
+      },
     ],
-    "urology": [
-      { name: "Dr. Nilesh Goyal", degrees: "MBBS, MS, MCh - Urology" }
-    ],
-    "ophthalmology": [
+    urology: [{ name: "Dr. Nilesh Goyal", degrees: "MBBS, MS, MCh - Urology" }],
+    ophthalmology: [
       { name: "Dr. Ankita Bansal Goyal", degrees: "MBBS, MS - Ophthalmology" },
-      { name: "Dr. Megha Goyal", degrees: "MBBS, DOMS - Eye Specialist" }
+      { name: "Dr. Megha Goyal", degrees: "MBBS, DOMS - Eye Specialist" },
     ],
-    "pediatrics": [
+    pediatrics: [
       { name: "Dr. Ankit Gupta", degrees: "MBBS, MD - Pediatrics" },
-      { name: "Dr. Akshaya Goyal", degrees: "MBBS, DCH - Pediatrician" }
+      { name: "Dr. Akshaya Goyal", degrees: "MBBS, DCH - Pediatrician" },
     ],
-    "psychiatry": [
-      { name: "Dr. Shailesh Gupta", degrees: "MBBS, MD - Psychiatry" }
+    psychiatry: [
+      { name: "Dr. Shailesh Gupta", degrees: "MBBS, MD - Psychiatry" },
     ],
-    "oncology": [
-      { name: "Dr. Suneedh Gupta", degrees: "MBBS, DNB - Medical Oncology" }
+    oncology: [
+      { name: "Dr. Suneedh Gupta", degrees: "MBBS, DNB - Medical Oncology" },
     ],
-    "surgery": [
+    surgery: [
       { name: "Dr. Ankit Sharma", degrees: "MBBS, MS - General Surgery" },
-      { name: "Dr. Chandra Mukesh Dhawde", degrees: "MBBS, MS - Laparoscopic Surgeon" }
+      {
+        name: "Dr. Chandra Mukesh Dhawde",
+        degrees: "MBBS, MS - Laparoscopic Surgeon",
+      },
     ],
-    "emergency": [
-      { name: "Emergency Duty Medical Officer", degrees: "MBBS, MD - Trauma Care" }
+    emergency: [
+      {
+        name: "Emergency Duty Medical Officer",
+        degrees: "MBBS, MD - Trauma Care",
+      },
     ],
-    "ent": [
-      { name: "On-Call ENT Specialist", degrees: "MBBS, MS - ENT" }
+    ent: [{ name: "On-Call ENT Specialist", degrees: "MBBS, MS - ENT" }],
+    anesthesia: [
+      { name: "On-Call Anesthesiologist", degrees: "MBBS, MD - Anaesthesia" },
     ],
-    "anesthesia": [
-      { name: "On-Call Anesthesiologist", degrees: "MBBS, MD - Anaesthesia" }
-    ]
   };
 
   // Bind dropdown changing logic for both forms
@@ -64,15 +71,17 @@ $(document).ready(function () {
     var deptId = $(this).val();
     var isHeroWidget = $(this).attr("id") === "widget-dept";
     var doctorSelect = isHeroWidget ? $("#widget-doc") : $("#book-doc");
-    
+
     // Clear current options
     doctorSelect.html('<option value="">Select Specialist</option>');
-    
+
     if (deptId && doctorsData[deptId]) {
       // Populate specialists
       $.each(doctorsData[deptId], function (idx, doc) {
         doctorSelect.append(
-          $("<option></option>").val(doc.name).text(doc.name + " (" + doc.degrees.split(" - ")[0] + ")")
+          $("<option></option>")
+            .val(doc.name)
+            .text(doc.name + " (" + doc.degrees.split(" - ")[0] + ")"),
         );
       });
       doctorSelect.prop("disabled", false);
@@ -88,17 +97,17 @@ $(document).ready(function () {
     if (this.hash !== "" && this.hash !== "#") {
       var hash = this.hash;
       var target = $(hash);
-      
+
       if (target.length) {
         event.preventDefault();
         $("html, body").animate(
           {
-            scrollTop: target.offset().top - 80
+            scrollTop: target.offset().top - 80,
           },
           600,
           function () {
             window.location.hash = hash;
-          }
+          },
         );
       } else {
         // If the hash target does not exist on this page, and it is a simple anchor, redirect to home page
@@ -114,21 +123,29 @@ $(document).ready(function () {
   /* Close mobile menu drawer on click (specifically for hash anchors / current page links) */
   $(".mobile-menu a").click(function (e) {
     var href = $(this).attr("href");
-    
+
     // Ignore dropdown / collapse toggles
-    if ($(this).attr("data-bs-toggle") === "collapse" || $(this).hasClass("dropdown-toggle")) {
+    if (
+      $(this).attr("data-bs-toggle") === "collapse" ||
+      $(this).hasClass("dropdown-toggle")
+    ) {
       return;
     }
-    
+
     // Check if it's a hash link targeting the current page
     if (href && href.includes("#")) {
       var parts = href.split("#");
       var pagePart = parts[0];
-      
-      var currentPage = window.location.pathname.split("/").pop() || "index.php";
-      if (pagePart === "" || pagePart === currentPage || (pagePart === "index.php" && currentPage === "")) {
-        var offcanvasEl = document.getElementById('mobileNav');
-        if (offcanvasEl && typeof bootstrap !== 'undefined') {
+
+      var currentPage =
+        window.location.pathname.split("/").pop() || "index.php";
+      if (
+        pagePart === "" ||
+        pagePart === currentPage ||
+        (pagePart === "index.php" && currentPage === "")
+      ) {
+        var offcanvasEl = document.getElementById("mobileNav");
+        if (offcanvasEl && typeof bootstrap !== "undefined") {
           var offcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl);
           if (offcanvas) {
             offcanvas.hide();
@@ -142,12 +159,12 @@ $(document).ready(function () {
      4. Animated Statistics Counter
      ========================================== */
   var countersStarted = false;
-  
+
   function startCounters() {
     $(".stat-number").each(function () {
       var $this = $(this);
       var countTo = parseInt($this.attr("data-count"), 10);
-      
+
       $({ countNum: 0 }).animate(
         { countNum: countTo },
         {
@@ -158,8 +175,8 @@ $(document).ready(function () {
           },
           complete: function () {
             $this.text(countTo.toLocaleString() + "+");
-          }
-        }
+          },
+        },
       );
     });
   }
@@ -183,23 +200,31 @@ $(document).ready(function () {
     var form = $(this);
     var submitBtn = form.find('button[type="submit"]');
     var originalText = submitBtn.html();
-    
+
     // Simple UI state change during validation/sending simulation
-    submitBtn.prop("disabled", true).html('<i class="fas fa-spinner fa-spin"></i> Processing Request...');
-    
+    submitBtn
+      .prop("disabled", true)
+      .html('<i class="fas fa-spinner fa-spin"></i> Processing Request...');
+
     setTimeout(function () {
       // Simulate success message alert
-      alert("Thank you! Your appointment request has been successfully registered.\n\nSankalp Hospital will contact you shortly on the provided number to confirm your schedule slot.");
-      
+      alert(
+        "Thank you! Your appointment request has been successfully registered.\n\nSankalp Hospital will contact you shortly on the provided number to confirm your schedule slot.",
+      );
+
       // Reset form and UI buttons
       form[0].reset();
       submitBtn.prop("disabled", false).html(originalText);
-      
+
       // If hero widget was selected, disable doctor selection again
       if (form.attr("id") === "hero-widget-form") {
-        $("#widget-doc").prop("disabled", true).html('<option value="">Select Specialist</option>');
+        $("#widget-doc")
+          .prop("disabled", true)
+          .html('<option value="">Select Specialist</option>');
       } else {
-        $("#book-doc").prop("disabled", true).html('<option value="">Select Specialist</option>');
+        $("#book-doc")
+          .prop("disabled", true)
+          .html('<option value="">Select Specialist</option>');
       }
     }, 1500);
   });
@@ -207,14 +232,14 @@ $(document).ready(function () {
   /* ==========================================
      6. Explicitly Initialize and Cycle the Carousels (Hero and Facility)
      ========================================== */
-  if (typeof bootstrap !== 'undefined') {
-    var heroCarouselEl = document.querySelector('#heroCarousel');
+  if (typeof bootstrap !== "undefined") {
+    var heroCarouselEl = document.querySelector("#heroCarousel");
     if (heroCarouselEl) {
       try {
         var heroCarousel = new bootstrap.Carousel(heroCarouselEl, {
           interval: 3000,
-          ride: 'carousel',
-          wrap: true
+          ride: "carousel",
+          wrap: true,
         });
         heroCarousel.cycle();
       } catch (e) {
@@ -222,13 +247,13 @@ $(document).ready(function () {
       }
     }
 
-    var facilityCarouselEl = document.querySelector('#facilityCarousel');
+    var facilityCarouselEl = document.querySelector("#facilityCarousel");
     if (facilityCarouselEl) {
       try {
         var facilityCarousel = new bootstrap.Carousel(facilityCarouselEl, {
           interval: 4000,
-          ride: 'carousel',
-          wrap: true
+          ride: "carousel",
+          wrap: true,
         });
         facilityCarousel.cycle();
       } catch (e) {
@@ -240,13 +265,13 @@ $(document).ready(function () {
   /* ==========================================
      7. Custom Auto-scrolling Doctor Slider
      ========================================== */
-  var docTrack = document.querySelector('.doctors-track');
-  var docPrevBtn = document.querySelector('.doc-control-prev');
-  var docNextBtn = document.querySelector('.doc-control-next');
+  var docTrack = document.querySelector(".doctors-track");
+  var docPrevBtn = document.querySelector(".doc-control-prev");
+  var docNextBtn = document.querySelector(".doc-control-next");
   if (docTrack && docPrevBtn && docNextBtn) {
-    var docCards = document.querySelectorAll('.doctor-card-wrapper');
+    var docCards = document.querySelectorAll(".doctor-card-wrapper");
     var docIndex = 0;
-    
+
     function getVisibleDocCount() {
       var w = window.innerWidth;
       if (w >= 1200) return 4;
@@ -254,55 +279,55 @@ $(document).ready(function () {
       if (w >= 576) return 2;
       return 1;
     }
-    
+
     function updateDocSlider() {
       if (docCards.length === 0) return;
       var cardWidth = docCards[0].offsetWidth;
       var maxIndex = docCards.length - getVisibleDocCount();
-      
+
       if (docIndex > maxIndex) {
         docIndex = 0; // Loop back to the start
       } else if (docIndex < 0) {
         docIndex = maxIndex;
       }
-      docTrack.style.transform = 'translateX(' + (-docIndex * cardWidth) + 'px)';
+      docTrack.style.transform = "translateX(" + -docIndex * cardWidth + "px)";
     }
-    
+
     // Initial call after paint to ensure correct cardWidth calculations
     setTimeout(updateDocSlider, 300);
-    
-    docNextBtn.addEventListener('click', function() {
+
+    docNextBtn.addEventListener("click", function () {
       docIndex++;
       updateDocSlider();
     });
-    
-    docPrevBtn.addEventListener('click', function() {
+
+    docPrevBtn.addEventListener("click", function () {
       docIndex--;
       updateDocSlider();
     });
-    
+
     // Auto-scroll every 4 seconds
-    var docTimer = setInterval(function() {
+    var docTimer = setInterval(function () {
       docIndex++;
       updateDocSlider();
     }, 4000);
-    
+
     // Pause auto-scroll on hover
-    var docContainer = document.querySelector('.doctors-slider-container');
+    var docContainer = document.querySelector(".doctors-slider-container");
     if (docContainer) {
-      docContainer.addEventListener('mouseenter', function() {
+      docContainer.addEventListener("mouseenter", function () {
         clearInterval(docTimer);
       });
-      docContainer.addEventListener('mouseleave', function() {
-        docTimer = setInterval(function() {
+      docContainer.addEventListener("mouseleave", function () {
+        docTimer = setInterval(function () {
           docIndex++;
           updateDocSlider();
         }, 4000);
       });
     }
-    
+
     // Handle window resize dynamically
-    window.addEventListener('resize', updateDocSlider);
+    window.addEventListener("resize", updateDocSlider);
   }
 
   /* ==========================================
@@ -311,19 +336,20 @@ $(document).ready(function () {
   $(".btn-book-specialty").click(function () {
     var deptVal = $(this).attr("data-dept");
     var appointmentSection = $("#appointment");
-    
+
     if (appointmentSection.length) {
       if (deptVal) {
         $("#book-dept").val(deptVal).change();
       }
       $("html, body").animate(
         {
-          scrollTop: appointmentSection.offset().top - 80
+          scrollTop: appointmentSection.offset().top - 80,
         },
-        600
+        600,
       );
     } else {
-      window.location.href = "index.php?dept=" + (deptVal || "all") + "#appointment";
+      window.location.href =
+        "index.php?dept=" + (deptVal || "all") + "#appointment";
     }
   });
 
@@ -331,25 +357,27 @@ $(document).ready(function () {
      9. URL Parameter Handling & Auto-Selection
      ========================================== */
   function getUrlParameter(name) {
-    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
     var results = regex.exec(location.search);
-    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    return results === null
+      ? ""
+      : decodeURIComponent(results[1].replace(/\+/g, " "));
   }
 
-  var deptParam = getUrlParameter('dept');
+  var deptParam = getUrlParameter("dept");
   if (deptParam) {
     // 1. Booking form dropdown pre-selection (Homepage)
     var bookDeptSelect = $("#book-dept");
     if (bookDeptSelect.length) {
-      var selectVal = (deptParam === 'ivf') ? 'gynecology' : deptParam;
+      var selectVal = deptParam === "ivf" ? "gynecology" : deptParam;
       bookDeptSelect.val(selectVal).change();
     }
 
     // 2. Interactive Specialties Hub tab pre-selection (departments.php)
-    var tabEl = document.getElementById('tab-' + deptParam);
+    var tabEl = document.getElementById("tab-" + deptParam);
     if (tabEl) {
-      if (typeof bootstrap !== 'undefined') {
+      if (typeof bootstrap !== "undefined") {
         var tab = bootstrap.Tab.getOrCreateInstance(tabEl);
         tab.show();
       } else {
@@ -357,16 +385,19 @@ $(document).ready(function () {
       }
       var specialtiesSection = $("#departments");
       if (specialtiesSection.length) {
-        $("html, body").animate({
-          scrollTop: specialtiesSection.offset().top - 80
-        }, 300);
+        $("html, body").animate(
+          {
+            scrollTop: specialtiesSection.offset().top - 80,
+          },
+          300,
+        );
       }
     }
 
     // 3. Doctors filter pre-selection (doctors.php)
     var filterVal = deptParam;
-    if (deptParam === 'ivf') {
-      filterVal = 'gynecology';
+    if (deptParam === "ivf") {
+      filterVal = "gynecology";
     }
     var filterBtn = $('.filter-tab-btn[data-filter="' + filterVal + '"]');
     if (filterBtn.length) {
@@ -379,11 +410,11 @@ $(document).ready(function () {
      ========================================== */
   $(".filter-tabs-container .filter-tab-btn").click(function () {
     var filterValue = $(this).attr("data-filter");
-    
+
     // Toggle active class on buttons
     $(".filter-tabs-container .filter-tab-btn").removeClass("active");
     $(this).addClass("active");
-    
+
     if (filterValue === "all") {
       $(".doctor-item").fadeIn(400);
     } else {
@@ -403,10 +434,10 @@ $(document).ready(function () {
   // Myths & Facts Filter Tabs
   $(".myths-filter-wrap .filter-tab-btn").click(function () {
     var filterValue = $(this).attr("data-filter");
-    
+
     $(".myths-filter-wrap .filter-tab-btn").removeClass("active");
     $(this).addClass("active");
-    
+
     if (filterValue === "all") {
       $(".myth-item").fadeIn(400);
     } else {
@@ -435,8 +466,10 @@ $(document).ready(function () {
       var descText = item.find("p").text().toLowerCase();
       var itemLetter = item.attr("data-letter");
 
-      var matchesSearch = termText.indexOf(searchText) !== -1 || descText.indexOf(searchText) !== -1;
-      var matchesLetter = (activeLetter === "all") || (itemLetter === activeLetter);
+      var matchesSearch =
+        termText.indexOf(searchText) !== -1 ||
+        descText.indexOf(searchText) !== -1;
+      var matchesLetter = activeLetter === "all" || itemLetter === activeLetter;
 
       if (matchesSearch && matchesLetter) {
         item.fadeIn(300);
@@ -454,13 +487,15 @@ $(document).ready(function () {
   }
 
   // Bind A-Z letter buttons
-  $(".az-letter-btn").not("[disabled]").click(function () {
-    $(".az-letter-btn").removeClass("active");
-    $(this).addClass("active");
-    // Clear search input on clicking A-Z letters to let user view all terms for that letter
-    searchInput.val("");
-    filterGlossary();
-  });
+  $(".az-letter-btn")
+    .not("[disabled]")
+    .click(function () {
+      $(".az-letter-btn").removeClass("active");
+      $(this).addClass("active");
+      // Clear search input on clicking A-Z letters to let user view all terms for that letter
+      searchInput.val("");
+      filterGlossary();
+    });
 
   // Bind keyup/input on search text box
   searchInput.on("input keyup", function () {
@@ -476,10 +511,13 @@ $(document).ready(function () {
   $(".care-tab-link").click(function () {
     $(".care-tab-link").removeClass("active");
     $(this).addClass("active");
-    
+
     var target = $(this).attr("data-target");
     $(".care-details-pane").addClass("d-none");
-    $("#pane-" + target).removeClass("d-none").hide().fadeIn(300);
+    $("#pane-" + target)
+      .removeClass("d-none")
+      .hide()
+      .fadeIn(300);
   });
 
   /* ==========================================
@@ -487,10 +525,10 @@ $(document).ready(function () {
      ========================================== */
   $("#faq-categories .filter-tab-btn").click(function () {
     var category = $(this).attr("data-category");
-    
+
     $("#faq-categories .filter-tab-btn").removeClass("active");
     $(this).addClass("active");
-    
+
     if (category === "all") {
       $(".faq-panel-node").fadeIn(300);
     } else {

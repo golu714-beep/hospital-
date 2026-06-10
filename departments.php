@@ -1,794 +1,565 @@
 <?php
-$pageTitle = "Clinical Departments | Sankalp Hospital - Best Multi-Specialty Hospital in Ambikapur";
-$pageDesc = "Explore Sankalp Hospital's clinical departments including Assisted Fertility (IVF), Urology, Gynecology, Pediatrics, Orthopaedics, Ophthalmology, General Surgery, and more.";
-
+$pageTitle = "Clinical Departments | Sankalp Hospital Ambikapur";
+$pageDesc  = "Explore 12 world-class specialty departments at Sankalp Hospital — IVF, Eye Care, Emergency, Gynecology, Pediatrics and more.";
 include __DIR__ . '/includes/header.php';
 include __DIR__ . '/includes/navbar.php';
-?>
+require_once __DIR__ . '/includes/departments-data.php';
 
-<!-- SUBPAGE HERO BANNER -->
-<section class="subpage-hero">
-  <div class="container text-center text-lg-start">
-    <div class="row align-items-center g-4">
-      <div class="col-lg-8">
-        <span class="badge bg-white-20 text-white px-3 py-2 rounded-pill text-uppercase mb-3"><i class="fas fa-hand-holding-medical me-1"></i> Sankalp Specialities</span>
-        <h1 class="text-white display-4 fw-bold">Clinical Departments</h1>
-        <p class="lead text-white-50 mb-0">Providing specialized clinical expertise, modern medical equipment, and dedicated patient care across 12 crucial health sectors.</p>
-      </div>
-      <div class="col-lg-4 text-center text-lg-end">
-        <a href="index.php#appointment" class="btn btn-light btn-lg px-4 py-3 border-0 rounded-pill shadow-lg text-primary fw-bold fs-6"><i class="far fa-calendar-check me-2"></i> Book Consultation</a>
-      </div>
+$catLabels = [
+    'surgical'=>['label'=>'Surgical','icon'=>'fa-procedures','color'=>'#0f5cad'],
+    'clinical'=>['label'=>'Clinical','icon'=>'fa-stethoscope','color'=>'#00a385'],
+    'critical'=>['label'=>'Critical Care','icon'=>'fa-ambulance','color'=>'#e11d48'],
+    'family'  =>['label'=>'Family','icon'=>'fa-baby-carriage','color'=>'#ea580c'],
+];
+?>
+<style>
+/* =============================================
+   SANKALP — DEPARTMENTS LISTING — POLISHED
+   Site theme: Blue/Teal, White/Light-Slate bg
+   ============================================= */
+
+/* HERO */
+.dp-hero {
+    position: relative;
+    background: linear-gradient(135deg, var(--primary-dark) 0%, #082f5c 40%, var(--primary) 100%);
+    padding: 140px 0 0;
+    overflow: hidden;
+    color: #fff;
+}
+.dp-hero-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.06);
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    animation: ringPulse 8s linear infinite;
+}
+.dp-hero-ring:nth-child(1){width:600px;height:600px;animation-delay:0s;}
+.dp-hero-ring:nth-child(2){width:900px;height:900px;animation-delay:-3s;}
+.dp-hero-ring:nth-child(3){width:1200px;height:1200px;animation-delay:-6s;}
+@keyframes ringPulse{
+    0%{opacity:0.5;transform:translate(-50%,-50%) scale(0.95);}
+    50%{opacity:0.15;transform:translate(-50%,-50%) scale(1.02);}
+    100%{opacity:0.5;transform:translate(-50%,-50%) scale(0.95);}
+}
+.dp-hero::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(circle at 80% 20%,rgba(0,204,167,0.18) 0%,transparent 55%),
+               radial-gradient(circle at 10% 70%,rgba(0,204,167,0.08) 0%,transparent 45%);
+}
+.dp-hero .container{position:relative;z-index:2;}
+
+.dp-hero-badge {
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(0,204,167,0.15);
+    border:1px solid rgba(0,204,167,0.3);
+    color:var(--secondary);
+    font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;
+    padding:7px 18px;border-radius:50px;margin-bottom:24px;
+}
+.dp-hero-badge .pulse-dot{
+    width:7px;height:7px;background:var(--secondary);border-radius:50%;
+    animation:pulseDot 2s infinite;
+}
+@keyframes pulseDot{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(0.6);opacity:0.4;}}
+
+.dp-hero h1{
+    font-size:clamp(2.2rem,5vw,3.8rem);
+    font-weight:800;color:#fff;
+    line-height:1.1;letter-spacing:-0.04em;
+    margin-bottom:18px;
+}
+.dp-hero h1 span{
+    background:linear-gradient(90deg,var(--secondary) 0%,#00f0c8 100%);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.dp-hero-sub{
+    font-size:1.05rem;color:rgba(255,255,255,0.65);
+    line-height:1.75;max-width:480px;margin-bottom:32px;
+}
+.dp-hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:0;}
+.dp-btn-white{
+    display:inline-flex;align-items:center;gap:9px;
+    background:#fff;color:var(--primary);
+    font-weight:700;font-size:0.88rem;
+    padding:13px 28px;border-radius:50px;text-decoration:none;
+    box-shadow:0 8px 24px rgba(0,0,0,0.15);
+    transition:all 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.dp-btn-white:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 16px 36px rgba(0,0,0,0.2);color:var(--primary);}
+.dp-btn-ghost{
+    display:inline-flex;align-items:center;gap:9px;
+    background:rgba(255,255,255,0.1);
+    border:1.5px solid rgba(255,255,255,0.25);
+    color:#fff;font-weight:600;font-size:0.88rem;
+    padding:13px 26px;border-radius:50px;text-decoration:none;
+    backdrop-filter:blur(10px);
+    transition:all 0.3s ease;
+}
+.dp-btn-ghost:hover{background:rgba(255,255,255,0.18);color:#fff;transform:translateY(-2px);}
+
+/* Hero right: big stat display */
+.dp-hero-stats-panel{
+    display:flex;flex-direction:column;gap:12px;
+}
+.dp-hero-stat-card{
+    background:rgba(255,255,255,0.07);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:18px;
+    padding:20px 24px;
+    backdrop-filter:blur(12px);
+    display:flex;align-items:center;gap:16px;
+    transition:transform 0.3s ease,background 0.3s ease;
+}
+.dp-hero-stat-card:hover{background:rgba(255,255,255,0.12);transform:translateX(-5px);}
+.dp-stat-icon{
+    width:48px;height:48px;border-radius:14px;
+    background:rgba(0,204,167,0.2);
+    border:1px solid rgba(0,204,167,0.3);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.2rem;color:var(--secondary);flex-shrink:0;
+}
+.dp-stat-num{font-size:1.8rem;font-weight:800;color:#fff;font-family:var(--font-heading);letter-spacing:-0.04em;line-height:1;}
+.dp-stat-label{font-size:0.7rem;font-weight:600;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.1em;margin-top:3px;}
+
+/* Hero bottom metric bar */
+.dp-hero-metrics{
+    display:flex;
+    border-top:1px solid rgba(255,255,255,0.08);
+    background:rgba(0,0,0,0.15);
+    backdrop-filter:blur(8px);
+    margin-top:48px;
+}
+.dp-metric{flex:1;padding:20px 24px;border-right:1px solid rgba(255,255,255,0.07);text-align:center;}
+.dp-metric:last-child{border-right:none;}
+.dp-metric .mn{display:block;font-size:1.55rem;font-weight:800;color:#fff;font-family:var(--font-heading);letter-spacing:-0.04em;line-height:1;margin-bottom:4px;}
+.dp-metric .ml{display:block;font-size:0.63rem;font-weight:600;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.12em;}
+
+/* FILTER BAR */
+.dp-filter-bar{
+    background:#fff;
+    border-bottom:1px solid var(--border-color);
+    padding:18px 0;
+    position:sticky;top:72px;z-index:100;
+    box-shadow:0 4px 24px rgba(15,92,173,0.07);
+}
+.dp-filter-bar .container{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.dp-search-wrap{position:relative;flex:1;min-width:200px;max-width:300px;}
+.dp-search-wrap i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:0.88rem;}
+.dp-search-input{
+    width:100%;padding:11px 14px 11px 40px;
+    background:var(--light-bg);border:1.5px solid var(--border-color);
+    border-radius:50px;font-size:0.85rem;font-family:var(--font-body);
+    color:var(--text-dark);outline:none;transition:var(--transition);
+}
+.dp-search-input:focus{border-color:var(--primary);background:#fff;box-shadow:0 0 0 4px rgba(15,92,173,0.08);}
+.dp-filter-btns{display:flex;gap:8px;flex-wrap:wrap;}
+.dp-filter-btn{
+    background:var(--light-bg);border:1.5px solid var(--border-color);
+    color:var(--text-muted);font-size:0.78rem;font-weight:700;
+    padding:9px 18px;border-radius:50px;cursor:pointer;
+    font-family:var(--font-body);transition:var(--transition);
+    display:flex;align-items:center;gap:6px;
+}
+.dp-filter-btn:hover{border-color:var(--primary);color:var(--primary);background:rgba(15,92,173,0.04);}
+.dp-filter-btn.active{
+    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+    border-color:var(--primary-dark);color:#fff;
+    box-shadow:0 4px 14px rgba(15,92,173,0.28);
+}
+.dp-count-badge{
+    background:rgba(255,255,255,0.2);
+    border-radius:50px;padding:1px 7px;font-size:0.68rem;
+}
+.dp-filter-btn.active .dp-count-badge{background:rgba(255,255,255,0.2);}
+.dp-filter-btn:not(.active) .dp-count-badge{background:rgba(15,92,173,0.08);color:var(--primary);}
+
+/* DEPARTMENTS GRID */
+.dp-grid-section{background:var(--light-bg);padding:64px 0 80px;}
+.dp-grid-header{margin-bottom:48px;}
+.dp-eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;
+    color:var(--primary);margin-bottom:10px;
+}
+.dp-eyebrow .bar{width:24px;height:2px;background:var(--secondary);border-radius:2px;}
+.dp-grid-h2{font-size:clamp(1.6rem,4vw,2.5rem);font-weight:800;color:var(--text-dark);letter-spacing:-0.03em;margin-bottom:10px;}
+.dp-grid-sub{font-size:0.95rem;color:var(--text-muted);max-width:500px;line-height:1.7;}
+
+/* Department card */
+.dp-dept-card{
+    background:#fff;
+    border:1px solid var(--border-color);
+    border-radius:20px;
+    overflow:hidden;
+    transition:all 0.38s cubic-bezier(0.4,0,0.2,1);
+    height:100%;
+    display:flex;flex-direction:column;
+    box-shadow:0 2px 8px rgba(15,92,173,0.04);
+    position:relative;
+}
+.dp-dept-card:hover{
+    transform:translateY(-7px);
+    box-shadow:0 24px 48px rgba(15,92,173,0.13);
+    border-color:rgba(15,92,173,0.15);
+}
+.dp-card-accent-bar{height:3px;width:100%;transition:height 0.25s ease;}
+.dp-dept-card:hover .dp-card-accent-bar{height:4px;}
+
+.dp-card-body{padding:26px 24px 20px;flex:1;display:flex;flex-direction:column;}
+
+.dp-card-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;}
+.dp-card-icon{
+    width:52px;height:52px;border-radius:14px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.3rem;border:1px solid transparent;
+    transition:var(--transition);
+}
+.dp-dept-card:hover .dp-card-icon{transform:scale(1.1) rotate(5deg);}
+
+.dp-cat-pill{
+    display:inline-flex;align-items:center;gap:5px;
+    font-size:0.65rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+    color:var(--text-muted);background:var(--light-bg);
+    border:1.5px solid var(--border-color);
+    padding:5px 11px;border-radius:50px;
+}
+.dp-cat-dot{width:6px;height:6px;border-radius:50%;}
+
+.dp-card-title{font-size:1.1rem;font-weight:800;color:var(--text-dark);letter-spacing:-0.02em;margin-bottom:7px;line-height:1.3;}
+.dp-card-tagline{font-size:0.82rem;color:var(--text-muted);line-height:1.65;flex:1;margin-bottom:18px;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+
+/* Service chips */
+.dp-chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:16px;}
+.dp-chip{
+    font-size:0.68rem;font-weight:600;color:var(--text-muted);
+    background:var(--light-bg);border:1px solid var(--border-color);
+    padding:3px 10px;border-radius:50px;
+    transition:var(--transition);
+}
+.dp-dept-card:hover .dp-chip{color:var(--primary);border-color:rgba(15,92,173,0.18);background:rgba(15,92,173,0.04);}
+
+/* Stats strip */
+.dp-stats-strip{
+    display:flex;background:var(--light-bg);
+    border:1px solid var(--border-color);border-radius:12px;
+    overflow:hidden;margin-bottom:18px;
+}
+.dp-stat-box{flex:1;padding:11px 8px;text-align:center;border-right:1px solid var(--border-color);}
+.dp-stat-box:last-child{border-right:none;}
+.dp-stat-box .sn{display:block;font-size:1.0rem;font-weight:800;font-family:var(--font-heading);letter-spacing:-0.02em;line-height:1;margin-bottom:2px;}
+.dp-stat-box .sl{display:block;font-size:0.58rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;}
+
+/* Explore link */
+.dp-explore-link{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 16px;border-radius:12px;
+    font-size:0.83rem;font-weight:700;
+    color:var(--primary);
+    background:rgba(15,92,173,0.05);
+    border:1.5px solid rgba(15,92,173,0.1);
+    text-decoration:none;transition:var(--transition);
+}
+.dp-explore-link:hover,.dp-dept-card:hover .dp-explore-link{
+    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+    color:#fff;border-color:transparent;
+    box-shadow:0 8px 20px rgba(15,92,173,0.28);
+}
+.dp-arrow-wrap{
+    width:28px;height:28px;border-radius:50%;
+    background:rgba(15,92,173,0.1);
+    display:flex;align-items:center;justify-content:center;font-size:0.72rem;
+    transition:var(--transition);
+}
+.dp-explore-link:hover .dp-arrow-wrap,.dp-dept-card:hover .dp-explore-link .dp-arrow-wrap{
+    background:rgba(255,255,255,0.2);transform:translateX(3px);
+}
+
+/* No results */
+.dp-no-results{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text-muted);}
+.dp-no-results h3{font-size:1.4rem;font-weight:700;color:var(--text-dark);margin-bottom:8px;}
+
+/* Scroll reveal */
+.dp-reveal{opacity:0;transform:translateY(32px);transition:opacity 0.65s ease,transform 0.65s cubic-bezier(0.16,1,0.3,1);}
+.dp-reveal.visible{opacity:1;transform:none;}
+
+/* BOTTOM CTA */
+.dp-cta{
+    background:linear-gradient(135deg,rgba(15,92,173,0.94),rgba(11,69,130,0.97)),
+              url('images/hero1.png') center/cover;
+    padding:76px 0;text-align:center;
+    position:relative;overflow:hidden;
+}
+.dp-cta::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(circle at 50% 0%,rgba(0,204,167,0.12) 0%,transparent 60%);
+}
+.dp-cta .container{position:relative;z-index:1;}
+.dp-cta h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;color:#fff;letter-spacing:-0.03em;margin-bottom:12px;}
+.dp-cta h2 span{background:linear-gradient(90deg,var(--secondary),#00f0c8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.dp-cta p{font-size:0.98rem;color:rgba(255,255,255,0.6);line-height:1.75;max-width:480px;margin:0 auto 36px;}
+
+/* Responsive */
+@media(max-width:991px){
+    .dp-hero-stats-panel{display:none;}
+    .dp-hero h1{font-size:2.4rem;}
+}
+@media(max-width:767px){
+    .dp-hero{padding:100px 0 0;}
+    .dp-hero h1{font-size:2.2rem; line-height:1.2;}
+    .dp-hero-sub { font-size: 0.95rem; line-height: 1.6; }
+    
+    .dp-hero-metrics{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .dp-metric{
+        border-bottom:1px solid rgba(255,255,255,0.07);
+        padding: 16px 10px;
+    }
+    .dp-metric:nth-child(odd){border-right:1px solid rgba(255,255,255,0.07);}
+    .dp-metric:nth-child(even){border-right:none;}
+    .dp-metric:last-child {
+        grid-column: 1 / -1;
+        border-bottom: none;
+        border-right: none;
+    }
+    
+    .dp-filter-bar .container{flex-direction:column;align-items:stretch;gap:12px;}
+    .dp-search-wrap{max-width:100%;}
+    .dp-filter-btns{
+        flex-wrap:nowrap;
+        overflow-x:auto;
+        padding-bottom:6px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .dp-filter-btns::-webkit-scrollbar { display: none; }
+    
+    .dp-grid-section { padding: 50px 0; }
+    .dp-grid-h2 { font-size: 1.8rem; }
+    .dp-dept-card { padding: 22px; }
+    
+    .dp-cta { padding: 50px 0; }
+    .dp-cta h2 { font-size: 2rem; }
+}
+</style>
+
+<!-- HERO -->
+<section class="dp-hero">
+    <div class="dp-hero-ring"></div><div class="dp-hero-ring"></div><div class="dp-hero-ring"></div>
+    <div class="container">
+        <div class="row g-5 align-items-end">
+            <div class="col-lg-7">
+                <div class="dp-hero-badge">
+                    <span class="pulse-dot"></span>
+                    Sankalp Hospital · Ambikapur
+                </div>
+                <h1>Expert Care Across<br><span>12 Specialities.</span></h1>
+                <p class="dp-hero-sub">Advanced multi-specialty clinical care — from critical emergency trauma to precision IVF — delivered with compassion and cutting-edge technology.</p>
+                <div class="dp-hero-actions">
+                    <a href="index.php#appointment" class="dp-btn-white">
+                        <i class="far fa-calendar-check"></i> Book Consultation
+                    </a>
+                    <a href="tel:+917774223344" class="dp-btn-ghost">
+                        <i class="fas fa-phone-alt"></i> Emergency: 7774 223344
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-5 d-none d-lg-block">
+                <div class="dp-hero-stats-panel">
+                    <div class="dp-hero-stat-card">
+                        <div class="dp-stat-icon"><i class="fas fa-hospital-alt"></i></div>
+                        <div>
+                            <div class="dp-stat-num">12</div>
+                            <div class="dp-stat-label">Clinical Specialities</div>
+                        </div>
+                    </div>
+                    <div class="dp-hero-stat-card">
+                        <div class="dp-stat-icon"><i class="fas fa-user-md"></i></div>
+                        <div>
+                            <div class="dp-stat-num">15+</div>
+                            <div class="dp-stat-label">Senior Specialists</div>
+                        </div>
+                    </div>
+                    <div class="dp-hero-stat-card">
+                        <div class="dp-stat-icon"><i class="fas fa-check-circle"></i></div>
+                        <div>
+                            <div class="dp-stat-num">99.8%</div>
+                            <div class="dp-stat-label">Clinical Success Rate</div>
+                        </div>
+                    </div>
+                    <div class="dp-hero-stat-card">
+                        <div class="dp-stat-icon"><i class="fas fa-ambulance"></i></div>
+                        <div>
+                            <div class="dp-stat-num">24/7</div>
+                            <div class="dp-stat-label">Emergency Ready</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+    <div class="dp-hero-metrics">
+        <div class="container d-flex p-0">
+            <div class="dp-metric"><span class="mn">12</span><span class="ml">Specialities</span></div>
+            <div class="dp-metric"><span class="mn">15+</span><span class="ml">Specialists</span></div>
+            <div class="dp-metric"><span class="mn">24/7</span><span class="ml">Emergency</span></div>
+            <div class="dp-metric"><span class="mn">99.8%</span><span class="ml">Success Rate</span></div>
+            <div class="dp-metric"><span class="mn">1,500+</span><span class="ml">IVF Births</span></div>
+        </div>
+    </div>
 </section>
 
-<!-- INTERACTIVE DEPARTMENTS SECTION -->
-<section class="py-5 bg-light" id="departments">
-  <div class="container">
-    <div class="row g-4">
-      <!-- Sidebar Navigation (12 cols on mobile, 4 cols on desktop) -->
-      <div class="col-lg-4">
-        <div class="specialty-sidebar-card">
-          <h5 class="sidebar-title"><i class="fas fa-hand-holding-medical"></i> Select Department</h5>
-          <div class="nav flex-column nav-pills specialty-nav-list" id="specialty-tabs" role="tablist" aria-orientation="vertical">
-            <!-- Item 1: Ophthalmology -->
-            <button class="nav-link active specialty-tab-btn" id="tab-ophthalmology" data-bs-toggle="pill" data-bs-target="#panel-ophthalmology" type="button" role="tab" aria-controls="panel-ophthalmology" aria-selected="true">
-              <span class="btn-icon-title">
-                <i class="fas fa-eye"></i>
-                <span>Ophthalmology</span>
-              </span>
-              <i class="fas fa-chevron-right arrow-indicator"></i>
-            </button>
-
-            <!-- Item 2: Emergency & Trauma -->
-            <button class="nav-link specialty-tab-btn" id="tab-emergency" data-bs-toggle="pill" data-bs-target="#panel-emergency" type="button" role="tab" aria-controls="panel-emergency" aria-selected="false">
-              <span class="btn-icon-title">
-                <i class="fas fa-ambulance"></i>
-                <span>Emergency & Trauma</span>
-              </span>
-              <i class="fas fa-chevron-right arrow-indicator"></i>
-            </button>
-
-            <!-- Item 3: Obstetrics & Gynecology -->
-            <button class="nav-link specialty-tab-btn" id="tab-gynecology" data-bs-toggle="pill" data-bs-target="#panel-gynecology" type="button" role="tab" aria-controls="panel-gynecology" aria-selected="false">
-              <span class="btn-icon-title">
-                <i class="fas fa-female"></i>
-                <span>Obstetrics & Gynecology</span>
-              </span>
-              <i class="fas fa-chevron-right arrow-indicator"></i>
-            </button>
-
-            <!-- Item 4: Assisted Fertility (IVF) -->
-            <button class="nav-link specialty-tab-btn" id="tab-ivf" data-bs-toggle="pill" data-bs-target="#panel-ivf" type="button" role="tab" aria-controls="panel-ivf" aria-selected="false">
-              <span class="btn-icon-title">
-                <i class="fas fa-baby"></i>
-                <span>Assisted Fertility (IVF)</span>
-              </span>
-              <i class="fas fa-chevron-right arrow-indicator"></i>
-            </button>
-
-            <!-- Item 5: General & Laparoscopic Surgery -->
-            <button class="nav-link specialty-tab-btn" id="tab-surgery" data-bs-toggle="pill" data-bs-target="#panel-surgery" type="button" role="tab" aria-controls="panel-surgery" aria-selected="false">
-              <span class="btn-icon-title">
-                <i class="fas fa-procedures"></i>
-                <span>General & Laparoscopic</span>
-              </span>
-              <i class="fas fa-chevron-right arrow-indicator"></i>
-            </button>
-
-            <!-- Item 6: Pediatrics -->
-            <button class="nav-link specialty-tab-btn" id="tab-pediatrics" data-bs-toggle="pill" data-bs-target="#panel-pediatrics" type="button" role="tab" aria-controls="panel-pediatrics" aria-selected="false">
-              <span class="btn-icon-title">
-                <i class="fas fa-child"></i>
-                <span>Pediatrics</span>
-              </span>
-              <i class="fas fa-chevron-right arrow-indicator"></i>
-            </button>
-
-            <!-- Item 7: Orthopaedics Surgery -->
-            <button class="nav-link specialty-tab-btn" id="tab-orthopedics" data-bs-toggle="pill" data-bs-target="#panel-orthopedics" type="button" role="tab" aria-controls="panel-orthopedics" aria-selected="false">
-              <span class="btn-icon-title">
-                <i class="fas fa-bone"></i>
-                <span>Orthopaedics Surgery</span>
-              </span>
-              <i class="fas fa-chevron-right arrow-indicator"></i>
-            </button>
-
-            <!-- Item 8: Urology -->
-            <button class="nav-link specialty-tab-btn" id="tab-urology" data-bs-toggle="pill" data-bs-target="#panel-urology" type="button" role="tab" aria-controls="panel-urology" aria-selected="false">
-              <span class="btn-icon-title">
-                <i class="fas fa-user-md"></i>
-                <span>Urology</span>
-              </span>
-              <i class="fas fa-chevron-right arrow-indicator"></i>
-            </button>
-
-            <!-- Item 9: Psychiatry -->
-            <button class="nav-link specialty-tab-btn" id="tab-psychiatry" data-bs-toggle="pill" data-bs-target="#panel-psychiatry" type="button" role="tab" aria-controls="panel-psychiatry" aria-selected="false">
-              <span class="btn-icon-title">
-                <i class="fas fa-brain"></i>
-                <span>Psychiatry</span>
-              </span>
-              <i class="fas fa-chevron-right arrow-indicator"></i>
-            </button>
-
-            <!-- Item 10: ENT -->
-            <button class="nav-link specialty-tab-btn" id="tab-ent" data-bs-toggle="pill" data-bs-target="#panel-ent" type="button" role="tab" aria-controls="panel-ent" aria-selected="false">
-              <span class="btn-icon-title">
-                <i class="fas fa-head-side-cough"></i>
-                <span>ENT</span>
-              </span>
-              <i class="fas fa-chevron-right arrow-indicator"></i>
-            </button>
-
-            <!-- Item 11: Department of Anesthesia -->
-            <button class="nav-link specialty-tab-btn" id="tab-anesthesia" data-bs-toggle="pill" data-bs-target="#panel-anesthesia" type="button" role="tab" aria-controls="panel-anesthesia" aria-selected="false">
-              <span class="btn-icon-title">
-                <i class="fas fa-syringe"></i>
-                <span>Anesthesia</span>
-              </span>
-              <i class="fas fa-chevron-right arrow-indicator"></i>
-            </button>
-
-            <!-- Item 12: Onco Surgery -->
-            <button class="nav-link specialty-tab-btn" id="tab-oncology" data-bs-toggle="pill" data-bs-target="#panel-oncology" type="button" role="tab" aria-controls="panel-oncology" aria-selected="false">
-              <span class="btn-icon-title">
-                <i class="fas fa-hand-holding-medical"></i>
-                <span>Onco Surgery</span>
-              </span>
-              <i class="fas fa-chevron-right arrow-indicator"></i>
-            </button>
-          </div>
+<!-- FILTER BAR -->
+<div class="dp-filter-bar">
+    <div class="container">
+        <div class="dp-search-wrap">
+            <i class="fas fa-search"></i>
+            <input type="text" id="dp-search" class="dp-search-input" placeholder="Search departments...">
         </div>
-      </div>
-
-      <!-- Detail Display Card (12 cols on mobile, 8 cols on desktop) -->
-      <div class="col-lg-8">
-        <div class="tab-content specialty-details-container" id="specialty-panels">
-          
-          <!-- Panel 1: Ophthalmology -->
-          <div class="tab-pane fade show active specialty-detail-panel" id="panel-ophthalmology" role="tabpanel" aria-labelledby="tab-ophthalmology">
-            <div class="panel-header d-flex align-items-center gap-3">
-              <div class="panel-icon"><i class="fas fa-eye"></i></div>
-              <div>
-                <span class="panel-tag text-uppercase">Specialized Consultation</span>
-                <h3 class="panel-title">Ophthalmology (Eye Care)</h3>
-              </div>
-            </div>
-            <div class="panel-body mt-4">
-              <p class="panel-desc">Sankalp Hospital's Ophthalmology Department provides comprehensive diagnostic, surgical, and therapeutic eye care. Our advanced clinical wing handles vision impairments, cataract surgeries, and specialized ocular conditions with precision.</p>
-              
-              <h5 class="procedures-title"><i class="fas fa-stethoscope"></i> Key Clinical Procedures</h5>
-              <div class="row mt-3">
-                <div class="col-md-6">
-                  <ul class="procedure-list">
-                    <li><i class="fas fa-check-circle"></i> Phacoemulsification for Cataracts</li>
-                    <li><i class="fas fa-check-circle"></i> Computerized Eye Testing</li>
-                    <li><i class="fas fa-check-circle"></i> Glaucoma Detection & Therapy</li>
-                  </ul>
-                </div>
-                <div class="col-md-6">
-                  <ul class="procedure-list">
-                    <li><i class="fas fa-check-circle"></i> Pediatric Vision Screening</li>
-                    <li><i class="fas fa-check-circle"></i> Dry Eye Diagnostic Clinics</li>
-                    <li><i class="fas fa-check-circle"></i> Diabetic Retinopathy Management</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="specialist-box mt-4 pt-3 border-top">
-                <h5 class="specialists-title"><i class="fas fa-user-md"></i> Department Specialists</h5>
-                <div class="d-flex flex-wrap gap-4 mt-3">
-                  <div class="mini-doc-card d-flex align-items-center gap-3">
-                    <img src="images/doc2.png" alt="Dr. Ankita Bansal Goyal" class="mini-doc-img">
-                    <div>
-                      <h6>Dr. Ankita Bansal Goyal</h6>
-                      <small class="text-muted">MBBS, MS - Ophthalmology</small>
-                    </div>
-                  </div>
-                  <div class="mini-doc-card d-flex align-items-center gap-3">
-                    <img src="images/doc1.png" alt="Dr. Megha Goyal" class="mini-doc-img">
-                    <div>
-                      <h6>Dr. Megha Goyal</h6>
-                      <small class="text-muted">MBBS, DOMS - Eye Specialist</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end gap-2">
-              <a href="ophthalmology" class="btn btn-outline-primary rounded-pill px-4"><i class="fas fa-info-circle"></i> Learn More</a>
-              <button class="btn btn-primary btn-book-specialty" data-dept="ophthalmology"><i class="far fa-calendar-check"></i> Book Consultation</button>
-            </div>
-          </div>
-
-          <!-- Panel 2: Emergency & Trauma -->
-          <div class="tab-pane fade specialty-detail-panel" id="panel-emergency" role="tabpanel" aria-labelledby="tab-emergency">
-            <div class="panel-header d-flex align-items-center gap-3">
-              <div class="panel-icon bg-danger-subtle text-danger"><i class="fas fa-ambulance"></i></div>
-              <div>
-                <span class="panel-tag text-uppercase text-danger">Surgical & Critical Care</span>
-                <h3 class="panel-title">24 Hours Emergency & Trauma</h3>
-              </div>
-            </div>
-            <div class="panel-body mt-4">
-              <p class="panel-desc">Our emergency department is operational 24/7, providing immediate triage, life-saving resuscitation, and surgical interventions. Backed by dedicated trauma surgeons and advanced imaging, we handle acute medical crises round-the-clock.</p>
-              
-              <h5 class="procedures-title"><i class="fas fa-stethoscope"></i> Key Clinical Procedures</h5>
-              <div class="row mt-3">
-                <div class="col-md-6">
-                  <ul class="procedure-list">
-                    <li><i class="fas fa-check-circle"></i> Advanced Cardiac Life Support (ACLS)</li>
-                    <li><i class="fas fa-check-circle"></i> Trauma & Accident Resuscitation</li>
-                    <li><i class="fas fa-check-circle"></i> Acute Poisoning & Burn Care</li>
-                  </ul>
-                </div>
-                <div class="col-md-6">
-                  <ul class="procedure-list">
-                    <li><i class="fas fa-check-circle"></i> Ventilator & ICU Critical Stabilization</li>
-                    <li><i class="fas fa-check-circle"></i> 24/7 Ambulance & Retrieval Services</li>
-                    <li><i class="fas fa-check-circle"></i> Bedside Emergency Ultrasound</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="specialist-box mt-4 pt-3 border-top">
-                <h5 class="specialists-title"><i class="fas fa-user-md"></i> Department Specialists</h5>
-                <div class="d-flex flex-wrap gap-4 mt-3">
-                  <div class="mini-doc-card d-flex align-items-center gap-3">
-                    <div class="mini-doc-avatar-placeholder"><i class="fas fa-hospital-user"></i></div>
-                    <div>
-                      <h6>On-Duty Trauma Team</h6>
-                      <small class="text-muted">Emergency Medical Officers</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end gap-2">
-              <a href="emergency" class="btn btn-outline-danger rounded-pill px-4"><i class="fas fa-info-circle"></i> Learn More</a>
-              <button class="btn btn-emergency btn-book-specialty" data-dept="emergency"><i class="fas fa-ambulance"></i> Contact Emergency</button>
-            </div>
-          </div>
-
-          <!-- Panel 3: Obstetrics & Gynecology -->
-          <div class="tab-pane fade specialty-detail-panel" id="panel-gynecology" role="tabpanel" aria-labelledby="tab-gynecology">
-            <div class="panel-header d-flex align-items-center gap-3">
-              <div class="panel-icon"><i class="fas fa-female"></i></div>
-              <div>
-                <span class="panel-tag text-uppercase">Reproductive & Family Health</span>
-                <h3 class="panel-title">Obstetrics & Gynecology</h3>
-              </div>
-            </div>
-            <div class="panel-body mt-4">
-              <p class="panel-desc">Dedicated to women's health through all stages of life. We provide comprehensive maternal care, high-risk pregnancy monitoring, painless labor suites, and advanced keyhole surgeries for gynecological disorders.</p>
-              
-              <h5 class="procedures-title"><i class="fas fa-stethoscope"></i> Key Clinical Procedures</h5>
-              <div class="row mt-3">
-                <div class="col-md-6">
-                  <ul class="procedure-list">
-                    <li><i class="fas fa-check-circle"></i> High-Risk Pregnancy Management</li>
-                    <li><i class="fas fa-check-circle"></i> Painless Delivery (Epidural Analgesia)</li>
-                    <li><i class="fas fa-check-circle"></i> Laparoscopic Hysterectomy</li>
-                  </ul>
-                </div>
-                <div class="col-md-6">
-                  <ul class="procedure-list">
-                    <li><i class="fas fa-check-circle"></i> Ovarian Cyst & Fibroid Surgeries</li>
-                    <li><i class="fas fa-check-circle"></i> Menopause Clinic & Hormonal Testing</li>
-                    <li><i class="fas fa-check-circle"></i> Adolescent Gynecology Consultations</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="specialist-box mt-4 pt-3 border-top">
-                <h5 class="specialists-title"><i class="fas fa-user-md"></i> Department Specialists</h5>
-                <div class="d-flex flex-wrap gap-4 mt-3">
-                  <div class="mini-doc-card d-flex align-items-center gap-3">
-                    <img src="images/doc1.png" alt="Dr. Lata Goyal" class="mini-doc-img">
-                    <div>
-                      <h6>Dr. Lata Goyal</h6>
-                      <small class="text-muted">MBBS, MS - Obs & Gynecology</small>
-                    </div>
-                  </div>
-                  <div class="mini-doc-card d-flex align-items-center gap-3">
-                    <img src="images/doc2.png" alt="Dr. Usha Armo" class="mini-doc-img">
-                    <div>
-                      <h6>Dr. Usha Armo</h6>
-                      <small class="text-muted">MBBS, DGO - Gynecology</small>
-                    </div>
-                  </div>
-                  <div class="mini-doc-card d-flex align-items-center gap-3">
-                    <img src="images/doc1.png" alt="Dr. Rimsha Lakesh Sahu" class="mini-doc-img">
-                    <div>
-                      <h6>Dr. Rimsha Lakesh Sahu</h6>
-                      <small class="text-muted">MBBS, DNB - Obs & Gynecology</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end gap-2">
-              <a href="gynecology" class="btn btn-outline-primary rounded-pill px-4"><i class="fas fa-info-circle"></i> Learn More</a>
-              <button class="btn btn-primary btn-book-specialty" data-dept="gynecology"><i class="far fa-calendar-check"></i> Book Consultation</button>
-            </div>
-          </div>
-
-          <!-- Panel 4: Assisted Fertility (IVF) -->
-          <div class="tab-pane fade specialty-detail-panel" id="panel-ivf" role="tabpanel" aria-labelledby="tab-ivf">
-            <div class="panel-header d-flex align-items-center gap-3">
-              <div class="panel-icon"><i class="fas fa-baby"></i></div>
-              <div>
-                <span class="panel-tag text-uppercase">Reproductive & Family Health</span>
-                <h3 class="panel-title">Assisted Fertility (IVF/ICSI/IUI)</h3>
-              </div>
-            </div>
-            <div class="panel-body mt-4">
-              <p class="panel-desc">Sankalp Assisted Fertility (IVF) Center is a premier center of reproductive medicine. With state-of-the-art embryology labs and advanced incubation systems, we support couples on their journey to parenthood with empathy and high success rates.</p>
-              
-              <h5 class="procedures-title"><i class="fas fa-stethoscope"></i> Key Clinical Procedures</h5>
-              <div class="row mt-3">
-                <div class="col-md-6">
-                  <ul class="procedure-list">
-                    <li><i class="fas fa-check-circle"></i> In Vitro Fertilization (IVF)</li>
-                    <li><i class="fas fa-check-circle"></i> Intracytoplasmic Sperm Injection (ICSI)</li>
-                    <li><i class="fas fa-check-circle"></i> Intrauterine Insemination (IUI)</li>
-                  </ul>
-                </div>
-                <div class="col-md-6">
-                  <ul class="procedure-list">
-                    <li><i class="fas fa-check-circle"></i> Egg & Sperm Cryopreservation</li>
-                    <li><i class="fas fa-check-circle"></i> Blastocyst Culture & Embryo Transfer</li>
-                    <li><i class="fas fa-check-circle"></i> Male Infertility Diagnostics</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="specialist-box mt-4 pt-3 border-top">
-                <h5 class="specialists-title"><i class="fas fa-user-md"></i> Department Specialists</h5>
-                <div class="d-flex flex-wrap gap-4 mt-3">
-                  <div class="mini-doc-card d-flex align-items-center gap-3">
-                    <img src="images/doc1.png" alt="Dr. Lata Goyal" class="mini-doc-img">
-                    <div>
-                      <h6>Dr. Lata Goyal</h6>
-                      <small class="text-muted">MBBS, MS - Obs & Gynecology</small>
-                    </div>
-                  </div>
-                  <div class="mini-doc-card d-flex align-items-center gap-3">
-                    <img src="images/doc2.png" alt="Dr. Ankita Bansal Goyal" class="mini-doc-img">
-                    <div>
-                      <h6>Dr. Ankita Bansal Goyal</h6>
-                      <small class="text-muted">MBBS, MS - IVF Specialist</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end gap-2">
-              <a href="ivf" class="btn btn-outline-primary rounded-pill px-4"><i class="fas fa-info-circle"></i> Learn More</a>
-              <button class="btn btn-primary btn-book-specialty" data-dept="gynecology"><i class="far fa-calendar-check"></i> Book Consultation</button>
-            </div>
-          </div>
-
-          <!-- Panel 5: General & Laparoscopic Surgery -->
-          <div class="tab-pane fade specialty-detail-panel" id="panel-surgery" role="tabpanel" aria-labelledby="tab-surgery">
-            <div class="panel-header d-flex align-items-center gap-3">
-              <div class="panel-icon"><i class="fas fa-procedures"></i></div>
-              <div>
-                <span class="panel-tag text-uppercase">Surgical & Critical Care</span>
-                <h3 class="panel-title">General & Laparoscopic Surgery</h3>
-              </div>
-            </div>
-            <div class="panel-body mt-4">
-              <p class="panel-desc">Our surgical unit specializes in minimally invasive laparoscopic procedures. By utilizing keyhole entries, patients benefit from smaller incisions, reduced post-operative pain, shorter hospital stays, and quicker recovery times.</p>
-              
-              <h5 class="procedures-title"><i class="fas fa-stethoscope"></i> Key Clinical Procedures</h5>
-              <div class="row mt-3">
-                <div class="col-md-6">
-                  <ul class="procedure-list">
-                    <li><i class="fas fa-check-circle"></i> Laparoscopic Gallbladder Removal</li>
-                    <li><i class="fas fa-check-circle"></i> Hernia Repair (Inguinal/Umbilical)</li>
-                    <li><i class="fas fa-check-circle"></i> Laparoscopic Appendectomy</li>
-                  </ul>
-                </div>
-                <div class="col-md-6">
-                  <ul class="procedure-list">
-                    <li><i class="fas fa-check-circle"></i> Diabetic Foot Wound Management</li>
-                    <li><i class="fas fa-check-circle"></i> Laser Surgery for Piles & Fissures</li>
-                    <li><i class="fas fa-check-circle"></i> Major & Minor Soft Tissue Excisions</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="specialist-box mt-4 pt-3 border-top">
-                <h5 class="specialists-title"><i class="fas fa-user-md"></i> Department Specialists</h5>
-                <div class="d-flex flex-wrap gap-4 mt-3">
-                  <div class="mini-doc-card d-flex align-items-center gap-3">
-                    <img src="images/doc3.png" alt="Dr. Ankit Sharma" class="mini-doc-img">
-                    <div>
-                      <h6>Dr. Ankit Sharma</h6>
-                      <small class="text-muted">MBBS, MS - General Surgery</small>
-                    </div>
-                  </div>
-                  <div class="mini-doc-card d-flex align-items-center gap-3">
-                    <img src="images/doc4.png" alt="Dr. Chandra Mukesh Dhawde" class="mini-doc-img">
-                    <div>
-                      <h6>Dr. Chandra Mukesh Dhawde</h6>
-                      <small class="text-muted">MBBS, MS - Laparoscopic Surgeon</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end gap-2">
-              <a href="surgery" class="btn btn-outline-primary rounded-pill px-4"><i class="fas fa-info-circle"></i> Learn More</a>
-              <button class="btn btn-primary btn-book-specialty" data-dept="surgery"><i class="far fa-calendar-check"></i> Book Consultation</button>
-            </div>
-          </div>
-
-          <!-- Panel 6: Pediatrics -->
-          <div class="tab-pane fade specialty-detail-panel" id="panel-pediatrics" role="tabpanel" aria-labelledby="tab-pediatrics">
-            <div class="panel-header d-flex align-items-center gap-3">
-              <div class="panel-icon"><i class="fas fa-child"></i></div>
-              <div>
-                <span class="panel-tag text-uppercase">Reproductive & Family Health</span>
-                <h3 class="panel-title">Pediatrics & Neonatology</h3>
-              </div>
-            </div>
-            <div class="panel-body mt-4">
-              <p class="panel-desc">Comprehensive healthcare for infants, toddlers, and adolescents. Our state-of-the-art Neonatal ICU (NICU) provides critical incubator care for premature babies, managed by expert pediatricians.</p>
-              
-              <h5 class="procedures-title"><i class="fas fa-stethoscope"></i> Key Clinical Procedures</h5>
-              <div class="row mt-3">
-                <div class="col-md-6">
-                  <ul class="procedure-list">
-                    <li><i class="fas fa-check-circle"></i> Level-III Neonatal ICU (NICU)</li>
-                    <li><i class="fas fa-check-circle"></i> Pediatric Vaccination & Immunization</li>
-                    <li><i class="fas fa-check-circle"></i> Growth & Development Assessment</li>
-                  </ul>
-                </div>
-                <div class="col-md-6">
-                  <ul class="procedure-list">
-                    <li><i class="fas fa-check-circle"></i> Pediatric Asthma & Allergy Care</li>
-                    <li><i class="fas fa-check-circle"></i> Pediatric Emergency Stabilization</li>
-                    <li><i class="fas fa-check-circle"></i> Childhood Nutrition & Diet Counseling</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="specialist-box mt-4 pt-3 border-top">
-                <h5 class="specialists-title"><i class="fas fa-user-md"></i> Department Specialists</h5>
-                <div class="d-flex flex-wrap gap-4 mt-3">
-                  <div class="mini-doc-card d-flex align-items-center gap-3">
-                    <img src="images/doc4.png" alt="Dr. Ankit Gupta" class="mini-doc-img">
-                    <div>
-                      <h6>Dr. Ankit Gupta</h6>
-                      <small class="text-muted">MBBS, MD - Pediatrics</small>
-                    </div>
-                  </div>
-                  <div class="mini-doc-card d-flex align-items-center gap-3">
-                    <img src="images/doc2.png" alt="Dr. Akshaya Goyal" class="mini-doc-img">
-                    <div>
-                      <h6>Dr. Akshaya Goyal</h6>
-                      <small class="text-muted">MBBS, DCH - Pediatrician</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end gap-2">
-              <a href="pediatrics" class="btn btn-outline-primary rounded-pill px-4"><i class="fas fa-info-circle"></i> Learn More</a>
-              <button class="btn btn-primary btn-book-specialty" data-dept="pediatrics"><i class="far fa-calendar-check"></i> Book Consultation</button>
-            </div>
-          </div>
-
-          <!-- Panel 7: Orthopaedics Surgery -->
-          <div class="tab-pane fade specialty-detail-panel" id="panel-orthopedics" role="tabpanel" aria-labelledby="tab-orthopedics">
-            <div class="panel-header d-flex align-items-center gap-3">
-              <div class="panel-icon"><i class="fas fa-bone"></i></div>
-              <div>
-                <span class="panel-tag text-uppercase">Surgical & Critical Care</span>
-                <h3 class="panel-title">Orthopaedics & Joint Surgery</h3>
-              </div>
-            </div>
-            <div class="panel-body mt-4">
-              <p class="panel-desc">Providing advanced orthopedic care for joint, bone, and muscular conditions. From complex joint replacements to sport trauma management and fracture healing, our surgeons employ the latest techniques.</p>
-              
-              <h5 class="procedures-title"><i class="fas fa-stethoscope"></i> Key Clinical Procedures</h5>
-              <div class="row mt-3">
-                <div class="col-md-6">
-                  <ul class="procedure-list">
-                    <li><i class="fas fa-check-circle"></i> Total Hip & Knee Joint Replacements</li>
-                    <li><i class="fas fa-check-circle"></i> Arthroscopic Ligament Repairs (ACL/MCL)</li>
-                    <li><i class="fas fa-check-circle"></i> Complex Fracture & Trauma Fixations</li>
-                  </ul>
-                </div>
-                <div class="col-md-6">
-                  <ul class="procedure-list">
-                    <li><i class="fas fa-check-circle"></i> Spine Decompression & Fusions</li>
-                    <li><i class="fas fa-check-circle"></i> Osteoporosis & Arthritis Management</li>
-                    <li><i class="fas fa-check-circle"></i> Specialized Post-Surgical Rehab</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="specialist-box mt-4 pt-3 border-top">
-                <h5 class="specialists-title"><i class="fas fa-user-md"></i> Department Specialists</h5>
-                <div class="d-flex flex-wrap gap-4 mt-3">
-                  <div class="mini-doc-card d-flex align-items-center gap-3">
-                    <img src="images/doc3.png" alt="Dr. Tanay Goyal" class="mini-doc-img">
-                    <div>
-                      <h6>Dr. Tanay Goyal</h6>
-                      <small class="text-muted">MBBS, MS - Orthopaedics</small>
-                    </div>
-                  </div>
-                  <div class="mini-doc-card d-flex align-items-center gap-3">
-                    <img src="images/doc4.png" alt="Dr. Sanjay Goyal" class="mini-doc-img">
-                    <div>
-                      <h6>Dr. Sanjay Goyal</h6>
-                      <small class="text-muted">MBBS, D.Ortho - Orthopaedic Surgeon</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end gap-2">
-              <a href="orthopedics" class="btn btn-outline-primary rounded-pill px-4"><i class="fas fa-info-circle"></i> Learn More</a>
-              <button class="btn btn-primary btn-book-specialty" data-dept="orthopedics"><i class="far fa-calendar-check"></i> Book Consultation</button>
-            </div>
-          </div>
-
-          <!-- Panel 8: Urology -->
-          <div class="tab-pane fade specialty-detail-panel" id="panel-urology" role="tabpanel" aria-labelledby="tab-urology">
-            <div class="panel-header d-flex align-items-center gap-3">
-              <div class="panel-icon"><i class="fas fa-user-md"></i></div>
-              <div>
-                <span class="panel-tag text-uppercase">Specialized Consultation</span>
-                <h3 class="panel-title">Urology & Kidney Care</h3>
-              </div>
-            </div>
-            <div class="panel-body mt-4">
-              <p class="panel-desc">Advanced kidney, bladder, and prostate care. The urology department offers minimally invasive keyhole laser options for kidney stones and comprehensive treatments for urogenital conditions.</p>
-              
-              <h5 class="procedures-title"><i class="fas fa-stethoscope"></i> Key Clinical Procedures</h5>
-              <div class="row mt-3">
-                <div class="col-md-6">
-                  <ul class="procedure-list">
-                    <li><i class="fas fa-check-circle"></i> Laser Kidney Stone Removal (PCNL/URSL)</li>
-                    <li><i class="fas fa-check-circle"></i> Laser Surgery for Prostate (TURP)</li>
-                    <li><i class="fas fa-check-circle"></i> Urinary Incontinence Treatments</li>
-                  </ul>
-                </div>
-                <div class="col-md-6">
-                  <ul class="procedure-list">
-                    <li><i class="fas fa-check-circle"></i> Pediatric Urology Conditions</li>
-                    <li><i class="fas fa-check-circle"></i> Recurrent UTI Diagnostic Management</li>
-                    <li><i class="fas fa-check-circle"></i> Urogenital Reconstruction Surgery</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="specialist-box mt-4 pt-3 border-top">
-                <h5 class="specialists-title"><i class="fas fa-user-md"></i> Department Specialists</h5>
-                <div class="d-flex flex-wrap gap-4 mt-3">
-                  <div class="mini-doc-card d-flex align-items-center gap-3">
-                    <img src="images/doc3.png" alt="Dr. Nilesh Goyal" class="mini-doc-img">
-                    <div>
-                      <h6>Dr. Nilesh Goyal</h6>
-                      <small class="text-muted">MBBS, MS, MCh - Urology</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end gap-2">
-              <a href="urology" class="btn btn-outline-primary rounded-pill px-4"><i class="fas fa-info-circle"></i> Learn More</a>
-              <button class="btn btn-primary btn-book-specialty" data-dept="urology"><i class="far fa-calendar-check"></i> Book Consultation</button>
-            </div>
-          </div>
-
-          <!-- Panel 9: Psychiatry -->
-          <div class="tab-pane fade specialty-detail-panel" id="panel-psychiatry" role="tabpanel" aria-labelledby="tab-psychiatry">
-            <div class="panel-header d-flex align-items-center gap-3">
-              <div class="panel-icon"><i class="fas fa-brain"></i></div>
-              <div>
-                <span class="panel-tag text-uppercase">Specialized Consultation</span>
-                <h3 class="panel-title">Psychiatry & Mental Health</h3>
-              </div>
-            </div>
-            <div class="panel-body mt-4">
-              <p class="panel-desc">Compassionate mental wellness care designed to restore balance and emotional health. We provide clinical evaluations, cognitive therapies, and counseling for stress, anxiety, and neuro-behavioral disorders.</p>
-              
-              <h5 class="procedures-title"><i class="fas fa-stethoscope"></i> Key Clinical Procedures</h5>
-              <div class="row mt-3">
-                <div class="col-md-6">
-                  <ul class="procedure-list">
-                    <li><i class="fas fa-check-circle"></i> Cognitive Behavioral Therapy (CBT)</li>
-                    <li><i class="fas fa-check-circle"></i> Anxiety & Depression Counseling</li>
-                    <li><i class="fas fa-check-circle"></i> Clinical Mood Disorder Management</li>
-                  </ul>
-                </div>
-                <div class="col-md-6">
-                  <ul class="procedure-list">
-                    <li><i class="fas fa-check-circle"></i> Pediatric Behavior Evaluations</li>
-                    <li><i class="fas fa-check-circle"></i> Sleep & Stress Management Plans</li>
-                    <li><i class="fas fa-check-circle"></i> Family & Marriage Counseling Sessions</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="specialist-box mt-4 pt-3 border-top">
-                <h5 class="specialists-title"><i class="fas fa-user-md"></i> Department Specialists</h5>
-                <div class="d-flex flex-wrap gap-4 mt-3">
-                  <div class="mini-doc-card d-flex align-items-center gap-3">
-                    <img src="images/doc3.png" alt="Dr. Shailesh Gupta" class="mini-doc-img">
-                    <div>
-                      <h6>Dr. Shailesh Gupta</h6>
-                      <small class="text-muted">MBBS, MD - Psychiatry</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end gap-2">
-              <a href="psychiatry" class="btn btn-outline-primary rounded-pill px-4"><i class="fas fa-info-circle"></i> Learn More</a>
-              <button class="btn btn-primary btn-book-specialty" data-dept="psychiatry"><i class="far fa-calendar-check"></i> Book Consultation</button>
-            </div>
-          </div>
-
-          <!-- Panel 10: ENT -->
-          <div class="tab-pane fade specialty-detail-panel" id="panel-ent" role="tabpanel" aria-labelledby="tab-ent">
-            <div class="panel-header d-flex align-items-center gap-3">
-              <div class="panel-icon"><i class="fas fa-head-side-cough"></i></div>
-              <div>
-                <span class="panel-tag text-uppercase">Specialized Consultation</span>
-                <h3 class="panel-title">ENT (Ear, Nose, Throat)</h3>
-              </div>
-            </div>
-            <div class="panel-body mt-4">
-              <p class="panel-desc">Comprehensive diagnostic and surgical solutions for ear, nose, throat, head, and neck conditions. Our specialists provide pediatric hearing screens, sinus treatments, and tonsillectomies using modern endoscopic equipment.</p>
-              
-              <h5 class="procedures-title"><i class="fas fa-stethoscope"></i> Key Clinical Procedures</h5>
-              <div class="row mt-3">
-                <div class="col-md-6">
-                  <ul class="procedure-list">
-                    <li><i class="fas fa-check-circle"></i> Endoscopic Sinus Surgery (FESS)</li>
-                    <li><i class="fas fa-check-circle"></i> Tonsillectomy & Adenoidectomy</li>
-                    <li><i class="fas fa-check-circle"></i> Tympanoplasty (Eardrum Repair)</li>
-                  </ul>
-                </div>
-                <div class="col-md-6">
-                  <ul class="procedure-list">
-                    <li><i class="fas fa-check-circle"></i> Hearing Impairment Diagnostics</li>
-                    <li><i class="fas fa-check-circle"></i> Snoring & Sleep Apnea Care</li>
-                    <li><i class="fas fa-check-circle"></i> Salivary Gland & Thyroid Consults</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="specialist-box mt-4 pt-3 border-top">
-                <h5 class="specialists-title"><i class="fas fa-user-md"></i> Department Specialists</h5>
-                <div class="d-flex flex-wrap gap-4 mt-3">
-                  <div class="mini-doc-card d-flex align-items-center gap-3">
-                    <div class="mini-doc-avatar-placeholder"><i class="fas fa-hospital-user"></i></div>
-                    <div>
-                      <h6>On-Call ENT Specialists</h6>
-                      <small class="text-muted">ENT Surgeons</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end gap-2">
-              <a href="ent" class="btn btn-outline-primary rounded-pill px-4"><i class="fas fa-info-circle"></i> Learn More</a>
-              <button class="btn btn-primary btn-book-specialty" data-dept="ent"><i class="far fa-calendar-check"></i> Book Consultation</button>
-            </div>
-          </div>
-
-          <!-- Panel 11: Department of Anesthesia -->
-          <div class="tab-pane fade specialty-detail-panel" id="panel-anesthesia" role="tabpanel" aria-labelledby="tab-anesthesia">
-            <div class="panel-header d-flex align-items-center gap-3">
-              <div class="panel-icon"><i class="fas fa-syringe"></i></div>
-              <div>
-                <span class="panel-tag text-uppercase">Surgical & Critical Care</span>
-                <h3 class="panel-title">Department of Anesthesia</h3>
-              </div>
-            </div>
-            <div class="panel-body mt-4">
-              <p class="panel-desc">Playing a critical role in patient safety during surgeries. Our anesthesiologists deliver customized general, regional, and local anesthesia, along with comprehensive post-operative pain relief protocols.</p>
-              
-              <h5 class="procedures-title"><i class="fas fa-stethoscope"></i> Key Clinical Procedures</h5>
-              <div class="row mt-3">
-                <div class="col-md-6">
-                  <ul class="procedure-list">
-                    <li><i class="fas fa-check-circle"></i> General & Regional Anesthesia</li>
-                    <li><i class="fas fa-check-circle"></i> Epidural & Painless Labor Support</li>
-                    <li><i class="fas fa-check-circle"></i> Pre-Anesthetic Health Profiling</li>
-                  </ul>
-                </div>
-                <div class="col-md-6">
-                  <ul class="procedure-list">
-                    <li><i class="fas fa-check-circle"></i> Chronic & Acute Pain Relief Plans</li>
-                    <li><i class="fas fa-check-circle"></i> ICU Life Support Management</li>
-                    <li><i class="fas fa-check-circle"></i> Post-Surgical Sedation Protocols</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="specialist-box mt-4 pt-3 border-top">
-                <h5 class="specialists-title"><i class="fas fa-user-md"></i> Department Specialists</h5>
-                <div class="d-flex flex-wrap gap-4 mt-3">
-                  <div class="mini-doc-card d-flex align-items-center gap-3">
-                    <div class="mini-doc-avatar-placeholder"><i class="fas fa-hospital-user"></i></div>
-                    <div>
-                      <h6>On-Call Anesthesiologists</h6>
-                      <small class="text-muted">Surgical Pain Experts</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end gap-2">
-              <a href="anesthesiology" class="btn btn-outline-primary rounded-pill px-4"><i class="fas fa-info-circle"></i> Learn More</a>
-              <button class="btn btn-primary btn-book-specialty" data-dept="anesthesia"><i class="far fa-calendar-check"></i> Book Consultation</button>
-            </div>
-          </div>
-
-          <!-- Panel 12: Onco Surgery -->
-          <div class="tab-pane fade specialty-detail-panel" id="panel-oncology" role="tabpanel" aria-labelledby="tab-oncology">
-            <div class="panel-header d-flex align-items-center gap-3">
-              <div class="panel-icon"><i class="fas fa-hand-holding-medical"></i></div>
-              <div>
-                <span class="panel-tag text-uppercase">Surgical & Critical Care</span>
-                <h3 class="panel-title">Onco Surgery (Cancer Care)</h3>
-              </div>
-            </div>
-            <div class="panel-body mt-4">
-              <p class="panel-desc">Providing high-precision surgical treatment for cancer. Our oncological surgeons specialize in tumor resections, biopsies, and organ-preserving surgeries, working closely with medical oncology for comprehensive cancer therapies.</p>
-              
-              <h5 class="procedures-title"><i class="fas fa-stethoscope"></i> Key Clinical Procedures</h5>
-              <div class="row mt-3">
-                <div class="col-md-6">
-                  <ul class="procedure-list">
-                    <li><i class="fas fa-check-circle"></i> Solid Tumor Resection & Biopsy</li>
-                    <li><i class="fas fa-check-circle"></i> Breast Cancer Sparing Surgeries</li>
-                    <li><i class="fas fa-check-circle"></i> Gastrointestinal Oncology Surgeries</li>
-                  </ul>
-                </div>
-                <div class="col-md-6">
-                  <ul class="procedure-list">
-                    <li><i class="fas fa-check-circle"></i> Sentinel Lymph Node Evaluation</li>
-                    <li><i class="fas fa-check-circle"></i> Cancer Screening & Diagnostics</li>
-                    <li><i class="fas fa-check-circle"></i> Chemotherapy Port Placements</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="specialist-box mt-4 pt-3 border-top">
-                <h5 class="specialists-title"><i class="fas fa-user-md"></i> Department Specialists</h5>
-                <div class="d-flex flex-wrap gap-4 mt-3">
-                  <div class="mini-doc-card d-flex align-items-center gap-3">
-                    <img src="images/doc4.png" alt="Dr. Suneedh Gupta" class="mini-doc-img">
-                    <div>
-                      <h6>Dr. Suneedh Gupta</h6>
-                      <small class="text-muted">MBBS, DNB - Medical Oncology</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="panel-footer mt-4 pt-3 d-flex justify-content-end gap-2">
-              <a href="oncology" class="btn btn-outline-primary rounded-pill px-4"><i class="fas fa-info-circle"></i> Learn More</a>
-              <button class="btn btn-primary btn-book-specialty" data-dept="oncology"><i class="far fa-calendar-check"></i> Book Consultation</button>
-            </div>
-          </div>
-
+        <div class="dp-filter-btns">
+            <button class="dp-filter-btn active" data-filter="all">All <span class="dp-count-badge">12</span></button>
+            <button class="dp-filter-btn" data-filter="surgical"><i class="fas fa-procedures"></i> Surgical <span class="dp-count-badge">4</span></button>
+            <button class="dp-filter-btn" data-filter="clinical"><i class="fas fa-stethoscope"></i> Clinical <span class="dp-count-badge">5</span></button>
+            <button class="dp-filter-btn" data-filter="critical"><i class="fas fa-ambulance"></i> Critical <span class="dp-count-badge">1</span></button>
+            <button class="dp-filter-btn" data-filter="family"><i class="fas fa-baby-carriage"></i> Family <span class="dp-count-badge">2</span></button>
         </div>
-      </div>
     </div>
-  </div>
+</div>
+
+<!-- DEPARTMENTS GRID -->
+<section class="dp-grid-section" id="departments-hub">
+    <div class="container">
+        <div class="dp-grid-header">
+            <div class="dp-eyebrow"><div class="bar"></div> Our Care Matrix</div>
+            <h2 class="dp-grid-h2">Explore Our Specialty Departments</h2>
+            <p class="dp-grid-sub">Choose your specialty below to explore services, our specialist team, and treatment protocols.</p>
+        </div>
+
+        <div class="row g-4" id="departments-grid">
+            <?php foreach($departments as $key => $dept):
+                $cat  = $catMap[$key] ?? 'clinical';
+                $col  = $catColors[$cat] ?? $catColors['clinical'];
+                $catL = $catLabels[$cat];
+                $accent = $col['color'];
+                $lightBg = $col['light'];
+                $sr = $key==='emergency'?'24/7':($key==='ivf'?'1,500+':'99.8%');
+                $srLbl = $key==='emergency'?'Always On':($key==='ivf'?'Babies Born':'Success Rate');
+            ?>
+            <div class="col-xl-4 col-md-6 dp-grid-item filter-<?php echo $cat; ?> dp-reveal"
+                 data-title="<?php echo strtolower($dept['title']); ?>"
+                 data-tagline="<?php echo strtolower($dept['tagline']); ?>"
+                 data-services="<?php echo strtolower(implode(' ',array_map(fn($s)=>$s['title'],$dept['services']))); ?>">
+                <div class="dp-dept-card">
+                    <div class="dp-card-accent-bar" style="background:linear-gradient(90deg,<?php echo $accent; ?>,<?php echo $accent; ?>99);"></div>
+                    <div class="dp-card-body">
+                        <div class="dp-card-head">
+                            <div class="dp-card-icon" style="background:<?php echo $lightBg; ?>;color:<?php echo $accent; ?>;border-color:<?php echo $lightBg; ?>;">
+                                <i class="<?php echo $dept['icon']; ?>"></i>
+                            </div>
+                            <div class="dp-cat-pill">
+                                <span class="dp-cat-dot" style="background:<?php echo $catL['color']; ?>;"></span>
+                                <?php echo $catL['label']; ?>
+                            </div>
+                        </div>
+
+                        <div class="dp-card-title"><?php echo $dept['title']; ?></div>
+                        <div class="dp-card-tagline"><?php echo $dept['tagline']; ?></div>
+
+                        <div class="dp-chips">
+                            <?php $c=0; foreach($dept['services'] as $s): if($c>=3)break; ?>
+                            <span class="dp-chip"><?php echo $s['title']; ?></span>
+                            <?php $c++; endforeach; ?>
+                        </div>
+
+                        <div class="dp-stats-strip">
+                            <div class="dp-stat-box">
+                                <span class="sn" style="color:<?php echo $accent; ?>;"><?php echo $sr; ?></span>
+                                <span class="sl"><?php echo $srLbl; ?></span>
+                            </div>
+                            <div class="dp-stat-box">
+                                <span class="sn"><?php echo count($dept['services']); ?>+</span>
+                                <span class="sl">Services</span>
+                            </div>
+                            <div class="dp-stat-box">
+                                <span class="sn"><?php echo count($dept['procedures']); ?></span>
+                                <span class="sl">Procedures</span>
+                            </div>
+                        </div>
+
+                        <a href="<?php echo $key; ?>" class="dp-explore-link">
+                            <span>Explore Department</span>
+                            <div class="dp-arrow-wrap"><i class="fas fa-arrow-right"></i></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+            <div class="col-12 dp-no-results" id="dp-no-results" style="display:none;">
+                <h3>No departments found</h3>
+                <p>Try a different search term or filter.</p>
+            </div>
+        </div>
+    </div>
 </section>
 
-<?php
-include __DIR__ . '/includes/footer.php';
-?>
+<!-- BOTTOM CTA -->
+<section class="dp-cta">
+    <div class="container">
+        <h2>Not Sure Which <span>Department</span> You Need?</h2>
+        <p>Our patient care team is available 24/7 to guide you to the right specialist for your condition.</p>
+        <div class="d-flex flex-wrap gap-3 justify-content-center">
+            <a href="index.php#appointment" class="btn-primary"><i class="far fa-calendar-check"></i> Book Consultation</a>
+            <a href="tel:+917774223344" class="btn-secondary"><i class="fas fa-phone-alt"></i> Emergency: 7774 223344</a>
+        </div>
+    </div>
+</section>
+
+<?php include __DIR__ . '/includes/footer.php'; ?>
+
+<script>
+// Scroll reveal
+const revEls = document.querySelectorAll('.dp-reveal');
+const revObs = new IntersectionObserver(entries => {
+    entries.forEach((e,i) => {
+        if(e.isIntersecting){
+            setTimeout(()=>e.target.classList.add('visible'), i%3 * 80);
+        }
+    });
+},{threshold:0.06});
+revEls.forEach(el=>revObs.observe(el));
+
+// Filter + Search
+const filterBtns = document.querySelectorAll('.dp-filter-btn');
+const cards      = document.querySelectorAll('.dp-grid-item');
+const searchEl   = document.getElementById('dp-search');
+const noResultEl = document.getElementById('dp-no-results');
+let activeFilter = 'all';
+
+function applyFilters(){
+    const q = searchEl.value.toLowerCase().trim();
+    let vis = 0;
+    cards.forEach(card=>{
+        const catOk  = activeFilter==='all' || card.classList.contains('filter-'+activeFilter);
+        const termOk = q==='' ||
+            (card.dataset.title||'').includes(q) ||
+            (card.dataset.tagline||'').includes(q) ||
+            (card.dataset.services||'').includes(q);
+        const show = catOk && termOk;
+        card.style.display = show ? '' : 'none';
+        if(show) vis++;
+    });
+    noResultEl.style.display = vis===0 ? '' : 'none';
+}
+filterBtns.forEach(btn=>{
+    btn.addEventListener('click',function(){
+        filterBtns.forEach(b=>b.classList.remove('active'));
+        this.classList.add('active');
+        activeFilter = this.dataset.filter;
+        applyFilters();
+    });
+});
+searchEl.addEventListener('input', applyFilters);
+</script>
