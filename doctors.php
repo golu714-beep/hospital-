@@ -8,6 +8,12 @@ include __DIR__ . '/includes/navbar.php';
 
 <!-- SUBPAGE HERO BANNER -->
 <section class="subpage-hero">
+  <!-- Background Visual -->
+  <div class="subpage-hero-bg">
+    <img src="images/hero3.png" alt="Sankalp Specialists and Staff">
+  </div>
+  <div class="subpage-hero-overlay"></div>
+
   <div class="container text-center text-lg-start">
     <div class="row align-items-center g-4">
       <div class="col-lg-8">

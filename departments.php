@@ -11,6 +11,21 @@ $catLabels = [
     'critical'=>['label'=>'Critical Care','icon'=>'fa-ambulance','color'=>'#e11d48'],
     'family'  =>['label'=>'Family','icon'=>'fa-baby-carriage','color'=>'#ea580c'],
 ];
+
+$deptImages = [
+    'ophthalmology' => 'images/ophthalmology.png',
+    'emergency'     => 'images/emergency.png',
+    'gynecology'    => 'images/ultrasound.png',
+    'ivf'           => 'images/ivf.png',
+    'surgery'       => 'images/hero2.png',
+    'pediatrics'    => 'images/pediatric.png',
+    'orthopedics'   => 'images/orthopedics.png',
+    'urology'       => 'images/urology.png',
+    'psychiatry'    => 'images/psychiatry.png',
+    'ent'           => 'images/ent.png',
+    'anesthesia'    => 'images/anesthesia.png',
+    'oncology'      => 'images/oncology.png',
+];
 ?>
 <style>
 /* =============================================
@@ -122,6 +137,93 @@ $catLabels = [
 .dp-stat-num{font-size:1.8rem;font-weight:800;color:#fff;font-family:var(--font-heading);letter-spacing:-0.04em;line-height:1;}
 .dp-stat-label{font-size:0.7rem;font-weight:600;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.1em;margin-top:3px;}
 
+/* Background Slideshow & Overlays */
+.dp-hero-bg-slider {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+.dp-hero-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    z-index: 1;
+}
+.dp-hero-slide.active {
+    opacity: 1;
+    z-index: 2;
+}
+.dp-hero-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.85) contrast(1.05);
+}
+.dp-hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(135deg, rgba(8, 47, 92, 0.75) 0%, rgba(15, 92, 173, 0.55) 50%, rgba(0, 204, 167, 0.25) 100%);
+}
+.dp-hero-ring {
+    z-index: 3;
+}
+
+/* Glassmorphic Static Stats Badges */
+.dp-hero-stats-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.dp-floating-badge-static {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 18px;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+.dp-floating-badge-static:hover {
+    background: rgba(255, 255, 255, 0.13);
+    transform: translateY(-3px);
+}
+.dp-floating-badge-static .badge-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(0, 204, 167, 0.2);
+    border: 1px solid rgba(0, 204, 167, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--secondary);
+    flex-shrink: 0;
+}
+.dp-floating-badge-static .num {
+    font-size: 1.55rem;
+    font-weight: 850;
+    line-height: 1;
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+}
+.dp-floating-badge-static .lbl {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+    line-height: 1;
+}
+
 /* Hero bottom metric bar */
 .dp-hero-metrics{
     display:flex;
@@ -159,7 +261,10 @@ $catLabels = [
     color:var(--text-muted);font-size:0.78rem;font-weight:700;
     padding:9px 18px;border-radius:50px;cursor:pointer;
     font-family:var(--font-body);transition:var(--transition);
-    display:flex;align-items:center;gap:6px;
+    display:inline-flex;align-items:center;justify-content:center;gap:6px;
+    white-space:nowrap;
+    flex-wrap:nowrap;
+    flex-shrink:0;
 }
 .dp-filter-btn:hover{border-color:var(--primary);color:var(--primary);background:rgba(15,92,173,0.04);}
 .dp-filter-btn.active{
@@ -205,6 +310,23 @@ $catLabels = [
 }
 .dp-card-accent-bar{height:3px;width:100%;transition:height 0.25s ease;}
 .dp-dept-card:hover .dp-card-accent-bar{height:4px;}
+
+.dp-card-image-wrap {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    position: relative;
+    background: #e2e8f0;
+}
+.dp-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.dp-dept-card:hover .dp-card-img {
+    transform: scale(1.06);
+}
 
 .dp-card-body{padding:26px 24px 20px;flex:1;display:flex;flex-direction:column;}
 
@@ -304,6 +426,22 @@ $catLabels = [
 @media(max-width:991px){
     .dp-hero-stats-panel{display:none;}
     .dp-hero h1{font-size:2.4rem;}
+    
+    .dp-filter-bar .container{flex-direction:column;align-items:stretch;gap:12px;}
+    .dp-search-wrap{max-width:100%;}
+    .dp-filter-btns{
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        padding-bottom: 6px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        margin-left: -15px !important;
+        margin-right: -15px !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    .dp-filter-btns::-webkit-scrollbar { display: none; }
 }
 @media(max-width:767px){
     .dp-hero{padding:100px 0 0;}
@@ -326,17 +464,6 @@ $catLabels = [
         border-right: none;
     }
     
-    .dp-filter-bar .container{flex-direction:column;align-items:stretch;gap:12px;}
-    .dp-search-wrap{max-width:100%;}
-    .dp-filter-btns{
-        flex-wrap:nowrap;
-        overflow-x:auto;
-        padding-bottom:6px;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-    }
-    .dp-filter-btns::-webkit-scrollbar { display: none; }
-    
     .dp-grid-section { padding: 50px 0; }
     .dp-grid-h2 { font-size: 1.8rem; }
     .dp-dept-card { padding: 22px; }
@@ -348,10 +475,30 @@ $catLabels = [
 
 <!-- HERO -->
 <section class="dp-hero">
+    <!-- Background Slideshow -->
+    <div class="dp-hero-bg-slider">
+        <div class="dp-hero-slide active">
+            <img src="images/hero4.png" alt="Clinical Consultations">
+        </div>
+        <div class="dp-hero-slide">
+            <img src="images/hero2.png" alt="Advanced Operation Theatre">
+        </div>
+        <div class="dp-hero-slide">
+            <img src="images/ultrasound.png" alt="Advanced Diagnostics">
+        </div>
+        <div class="dp-hero-slide">
+            <img src="images/pediatric.png" alt="Pediatric Care">
+        </div>
+    </div>
+    
+    <!-- Gradient Overlay -->
+    <div class="dp-hero-overlay"></div>
+
     <div class="dp-hero-ring"></div><div class="dp-hero-ring"></div><div class="dp-hero-ring"></div>
-    <div class="container">
-        <div class="row g-5 align-items-end">
-            <div class="col-lg-7">
+    
+    <div class="container position-relative" style="z-index: 5;">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-8">
                 <div class="dp-hero-badge">
                     <span class="pulse-dot"></span>
                     Sankalp Hospital · Ambikapur
@@ -367,41 +514,35 @@ $catLabels = [
                     </a>
                 </div>
             </div>
-            <div class="col-lg-5 d-none d-lg-block">
+            <div class="col-lg-4 d-none d-lg-block">
                 <div class="dp-hero-stats-panel">
-                    <div class="dp-hero-stat-card">
-                        <div class="dp-stat-icon"><i class="fas fa-hospital-alt"></i></div>
+                    <!-- Glassmorphic Stat Badges -->
+                    <div class="dp-floating-badge-static">
+                        <div class="badge-icon"><i class="fas fa-hospital-alt"></i></div>
                         <div>
-                            <div class="dp-stat-num">12</div>
-                            <div class="dp-stat-label">Clinical Specialities</div>
+                            <div class="num">12</div>
+                            <div class="lbl">Specialities</div>
                         </div>
                     </div>
-                    <div class="dp-hero-stat-card">
-                        <div class="dp-stat-icon"><i class="fas fa-user-md"></i></div>
+                    <div class="dp-floating-badge-static">
+                        <div class="badge-icon"><i class="fas fa-check-circle"></i></div>
                         <div>
-                            <div class="dp-stat-num">15+</div>
-                            <div class="dp-stat-label">Senior Specialists</div>
+                            <div class="num">99.8%</div>
+                            <div class="lbl">Success Rate</div>
                         </div>
                     </div>
-                    <div class="dp-hero-stat-card">
-                        <div class="dp-stat-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="dp-floating-badge-static">
+                        <div class="badge-icon"><i class="fas fa-ambulance"></i></div>
                         <div>
-                            <div class="dp-stat-num">99.8%</div>
-                            <div class="dp-stat-label">Clinical Success Rate</div>
-                        </div>
-                    </div>
-                    <div class="dp-hero-stat-card">
-                        <div class="dp-stat-icon"><i class="fas fa-ambulance"></i></div>
-                        <div>
-                            <div class="dp-stat-num">24/7</div>
-                            <div class="dp-stat-label">Emergency Ready</div>
+                            <div class="num">24/7</div>
+                            <div class="lbl">Emergency</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="dp-hero-metrics">
+    <div class="dp-hero-metrics position-relative" style="z-index: 5;">
         <div class="container d-flex p-0">
             <div class="dp-metric"><span class="mn">12</span><span class="ml">Specialities</span></div>
             <div class="dp-metric"><span class="mn">15+</span><span class="ml">Specialists</span></div>
@@ -454,6 +595,12 @@ $catLabels = [
                  data-services="<?php echo strtolower(implode(' ',array_map(fn($s)=>$s['title'],$dept['services']))); ?>">
                 <div class="dp-dept-card">
                     <div class="dp-card-accent-bar" style="background:linear-gradient(90deg,<?php echo $accent; ?>,<?php echo $accent; ?>99);"></div>
+                    <?php 
+                        $cardImg = $deptImages[$key] ?? 'images/hero4.png';
+                    ?>
+                    <div class="dp-card-image-wrap">
+                        <img src="<?php echo $cardImg; ?>" alt="<?php echo $dept['title']; ?>" class="dp-card-img" loading="lazy">
+                    </div>
                     <div class="dp-card-body">
                         <div class="dp-card-head">
                             <div class="dp-card-icon" style="background:<?php echo $lightBg; ?>;color:<?php echo $accent; ?>;border-color:<?php echo $lightBg; ?>;">
@@ -562,4 +709,15 @@ filterBtns.forEach(btn=>{
     });
 });
 searchEl.addEventListener('input', applyFilters);
+
+// Auto-play Departments Hero Slideshow
+const dpSlides = document.querySelectorAll('.dp-hero-slide');
+if (dpSlides.length > 0) {
+    let dpActiveSlide = 0;
+    setInterval(() => {
+        dpSlides[dpActiveSlide].classList.remove('active');
+        dpActiveSlide = (dpActiveSlide + 1) % dpSlides.length;
+        dpSlides[dpActiveSlide].classList.add('active');
+    }, 4000);
+}
 </script>

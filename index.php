@@ -185,8 +185,13 @@ include __DIR__ . '/includes/navbar.php';
         </div>
         
         <div class="col-lg-6">
-          <div class="about-image-wrapper">
-            <img src="images/hero4.png" alt="Doctor consulting patient" class="about-img-1 w-100">
+          <div class="about-collage-container">
+            <div class="about-collage-bg-wrap">
+              <img src="images/hero6.png" alt="Sankalp Hospital Facade" class="about-collage-img-bg w-100">
+            </div>
+            <div class="about-collage-fg-wrap">
+              <img src="images/hero4.png" alt="Doctor consulting patient" class="about-collage-img-fg w-100">
+            </div>
             <div class="about-img-experience">
               <h3>15+</h3>
               <p>Years of Caring</p>

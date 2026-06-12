@@ -20,6 +20,22 @@ $doctorsList=[
 ];
 $deptDocs=$doctorsList[$deptKey]??[];
 
+$deptImages = [
+    'ophthalmology' => 'images/ophthalmology.png',
+    'emergency'     => 'images/emergency.png',
+    'gynecology'    => 'images/ultrasound.png',
+    'ivf'           => 'images/ivf.png',
+    'surgery'       => 'images/hero2.png',
+    'pediatrics'    => 'images/pediatric.png',
+    'orthopedics'   => 'images/orthopedics.png',
+    'urology'       => 'images/urology.png',
+    'psychiatry'    => 'images/psychiatry.png',
+    'ent'           => 'images/ent.png',
+    'anesthesia'    => 'images/anesthesia.png',
+    'oncology'      => 'images/oncology.png',
+];
+$deptImage = $deptImages[$deptKey] ?? 'images/hero4.png';
+
 // Dynamic color assignment from category
 $cat = $catMap[$deptKey] ?? 'clinical';
 $a = $catColors[$cat] ?? $catColors['clinical'];
@@ -47,13 +63,13 @@ include __DIR__.'/includes/navbar.php';
 /* ---- HERO ---- */
 .dd-hero{
     position:relative;
-    background:linear-gradient(135deg,var(--primary-dark) 0%,#082f5c 45%,var(--primary) 100%);
     padding:130px 0 0;overflow:hidden;
 }
 .dd-hero::before{
     content:'';position:absolute;inset:0;
     background:radial-gradient(circle at 80% 20%,rgba(<?php echo $rgb;?>,0.22) 0%,transparent 55%),
                radial-gradient(circle at 10% 75%,rgba(0,204,167,0.12) 0%,transparent 45%);
+    z-index: 3;
 }
 /* Animated ring */
 .dd-hero-ring{
@@ -125,25 +141,81 @@ include __DIR__.'/includes/navbar.php';
 }
 .dd-hero-btn-ghost:hover{background:rgba(255,255,255,0.18);color:#fff;transform:translateY(-2px);}
 
-/* Hero right: glass metric cards */
-.dd-hero-right{display:flex;flex-direction:column;gap:12px;}
-.dd-glass-stat{
-    background:rgba(255,255,255,0.08);
-    border:1px solid rgba(255,255,255,0.12);
-    border-radius:18px;padding:20px 22px;
-    backdrop-filter:blur(14px);
-    display:flex;align-items:center;gap:16px;
-    transition:all 0.3s ease;
+/* Background Image & Overlay */
+.dd-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
 }
-.dd-glass-stat:hover{background:rgba(255,255,255,0.13);transform:translateX(-5px);}
-.dd-gs-icon{
-    width:46px;height:46px;border-radius:13px;
-    background:rgba(<?php echo $rgb;?>,0.25);border:1px solid rgba(<?php echo $rgb;?>,0.3);
-    display:flex;align-items:center;justify-content:center;
-    font-size:1.1rem;color:#fff;flex-shrink:0;
+.dd-hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.85) contrast(1.05);
 }
-.dd-gs-num{font-size:1.7rem;font-weight:800;color:#fff;font-family:var(--font-heading);letter-spacing:-0.04em;line-height:1;}
-.dd-gs-lbl{font-size:0.67rem;font-weight:600;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.12em;margin-top:3px;}
+.dd-hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(135deg, rgba(8, 47, 92, 0.75) 0%, rgba(15, 92, 173, 0.55) 50%, rgba(<?php echo $rgb;?>, 0.25) 100%);
+}
+.dd-hero-ring {
+    z-index: 3;
+}
+
+/* Glassmorphic Static Stats Badges */
+.dd-hero-stats-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.dd-floating-badge-static {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 18px;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+.dd-floating-badge-static:hover {
+    background: rgba(255, 255, 255, 0.13);
+    transform: translateY(-3px);
+}
+.dd-floating-badge-static .badge-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(<?php echo $rgb;?>, 0.25);
+    border: 1px solid rgba(<?php echo $rgb;?>, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #fff;
+    flex-shrink: 0;
+}
+.dd-floating-badge-static .num {
+    font-size: 1.55rem;
+    font-weight: 850;
+    line-height: 1;
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+}
+.dd-floating-badge-static .lbl {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+    line-height: 1;
+}
 
 /* Hero metric bar */
 .dd-hero-bar{
@@ -568,10 +640,19 @@ include __DIR__.'/includes/navbar.php';
 
 <!-- HERO -->
 <section class="dd-hero" id="top">
+    <!-- Background Department Image -->
+    <div class="dd-hero-bg">
+        <img src="<?php echo $deptImage; ?>" alt="<?php echo $dept['title']; ?>">
+    </div>
+    
+    <!-- Gradient Overlay -->
+    <div class="dd-hero-overlay"></div>
+
     <div class="dd-hero-ring"></div><div class="dd-hero-ring"></div><div class="dd-hero-ring"></div>
-    <div class="container">
-        <div class="row g-5 align-items-end">
-            <div class="col-lg-7">
+    
+    <div class="container position-relative" style="z-index: 5;">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-8">
                 <div class="dd-breadcrumb">
                     <a href="index.php">Home</a>
                     <i class="fas fa-chevron-right"></i>
@@ -594,30 +675,28 @@ include __DIR__.'/includes/navbar.php';
                     </a>
                 </div>
             </div>
-            <div class="col-lg-5 d-none d-lg-block">
-                <div class="dd-hero-right">
-                    <div class="dd-glass-stat">
-                        <div class="dd-gs-icon"><i class="fas fa-check-double"></i></div>
+            <div class="col-lg-4 d-none d-lg-block">
+                <div class="dd-hero-stats-panel">
+                    <!-- Glassmorphic Stat Badges -->
+                    <div class="dd-floating-badge-static">
+                        <div class="badge-icon"><i class="fas fa-check-double"></i></div>
                         <div>
-                            <div class="dd-gs-num"><?php echo $sr; ?></div>
-                            <div class="dd-gs-lbl"><?php echo $srLbl; ?></div>
+                            <div class="num"><?php echo $sr; ?></div>
+                            <div class="lbl"><?php echo $srLbl; ?></div>
                         </div>
                     </div>
-                    <div class="dd-glass-stat">
-                        <div class="dd-gs-icon"><i class="fas fa-stethoscope"></i></div>
+                    <div class="dd-floating-badge-static">
+                        <div class="badge-icon"><i class="fas fa-stethoscope"></i></div>
                         <div>
-                            <div class="dd-gs-num"><?php echo count($dept['services']); ?> <span style="font-size:1rem;opacity:0.5;">Services</span></div>
-                            <div class="dd-gs-lbl">Available in this dept.</div>
+                            <div class="num"><?php echo count($dept['services']); ?></div>
+                            <div class="lbl">Services</div>
                         </div>
                     </div>
-                    <div class="dd-glass-stat">
-                        <div class="dd-gs-icon"><i class="fas fa-clock"></i></div>
+                    <div class="dd-floating-badge-static">
+                        <div class="badge-icon"><i class="fas fa-clock"></i></div>
                         <div>
-                            <div class="dd-gs-num" style="font-size:1.2rem;display:flex;align-items:center;gap:8px;">
-                                <span style="width:9px;height:9px;background:#22c55e;border-radius:50%;display:inline-block;animation:pulseDot 2s infinite;"></span>
-                                <?php echo $odp; ?>
-                            </div>
-                            <div class="dd-gs-lbl"><?php echo count($deptDocs)>0?count($deptDocs).' specialists assigned':'Fully staffed'; ?></div>
+                            <div class="num"><?php echo $odp; ?></div>
+                            <div class="lbl">OPD Status</div>
                         </div>
                     </div>
                 </div>

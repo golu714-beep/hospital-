@@ -84,7 +84,28 @@
             </ul>
           </div>
         </li>
-        <li><a href="departments.php">Departments</a></li>
+        <li>
+          <a class="d-flex justify-content-between align-items-center dropdown-toggle" data-bs-toggle="collapse" href="#mobileDeptsSubmenu" role="button" aria-expanded="false" aria-controls="mobileDeptsSubmenu">
+            Departments
+          </a>
+          <div class="collapse" id="mobileDeptsSubmenu">
+            <ul class="list-unstyled ps-3 mt-2 fs-6 d-flex flex-column gap-2 border-start">
+              <li><a href="departments.php">All Departments</a></li>
+              <li><a href="ophthalmology">Ophthalmology</a></li>
+              <li><a href="emergency">Emergency & Trauma</a></li>
+              <li><a href="gynecology">Obstetrics & Gynecology</a></li>
+              <li><a href="ivf">Assisted Fertility (IVF)</a></li>
+              <li><a href="surgery">Laparoscopic Surgery</a></li>
+              <li><a href="pediatrics">Pediatrics</a></li>
+              <li><a href="orthopedics">Orthopaedics Surgery</a></li>
+              <li><a href="urology">Urology</a></li>
+              <li><a href="psychiatry">Psychiatry</a></li>
+              <li><a href="ent">ENT</a></li>
+              <li><a href="anesthesiology">Anesthesia</a></li>
+              <li><a href="oncology">Onco Surgery</a></li>
+            </ul>
+          </div>
+        </li>
         <li><a href="doctors.php">Our Experts</a></li>
         <li><a href="empanelments.php">Empanelments</a></li>
         <li><a href="faq.php">FAQs</a></li>

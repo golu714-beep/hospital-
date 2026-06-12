@@ -536,4 +536,63 @@ $(document).ready(function () {
       $(".faq-panel-node[data-category='" + category + "']").fadeIn(300);
     }
   });
+
+  /* ==========================================
+     15. Scroll Progress Bar
+     ========================================== */
+  $("body").append(
+    '<div id="scroll-progress-container"><div id="scroll-progress"></div></div>',
+  );
+  $(window).on("scroll", function () {
+    var winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop;
+    var height =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+    var scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+    $("#scroll-progress").css("width", scrolled + "%");
+  });
+
+  /* ==========================================
+     16. Global Scroll Reveal Animation Observer
+     ========================================== */
+  // Add reveal classes to key sections and cards
+  var revealTargets = $(
+    "section, .stat-card, .dp-dept-card, .dd-svc-card, .doctor-card-wrapper, .myth-card-container, .glossary-item",
+  );
+  revealTargets.addClass("reveal-on-scroll");
+
+  // Apply staggered delays to adjacent grid items
+  $(".row").each(function () {
+    $(this)
+      .find(".reveal-on-scroll")
+      .each(function (index) {
+        if (index > 0 && index <= 5) {
+          $(this).addClass("delay-" + index * 100);
+        }
+      });
+  });
+
+  if ("IntersectionObserver" in window) {
+    var revealObserver = new IntersectionObserver(
+      function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            $(entry.target).addClass("revealed");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.08,
+        rootMargin: "0px 0px -40px 0px",
+      },
+    );
+
+    $(".reveal-on-scroll").each(function () {
+      revealObserver.observe(this);
+    });
+  } else {
+    $(".reveal-on-scroll").addClass("revealed");
+  }
 });
